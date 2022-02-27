@@ -1,0 +1,43 @@
+
+//===========================
+// basics general sass values
+//===========================
+
+// ==================
+// How to use the vars
+// ------------------
+// First line in the sass file
+// @use 'src\styles\_vars.scss';
+// exemple :
+// h1{
+// font: vars.$fontH1;
+// color: vars.$colorH;
+// }
+// ==================
+
+// Button
+//-------
+$btnsize: 100px;
+$btnRottate: 7deg;
+$btnShadow:5px 5px 5px #6363639e ;
+//=======
+
+//font:
+//----
+$fontH1: 48px "Caveat", regular;
+$fontH2: 36px "Caveat", regular;
+$fontH3: 24px "Caveat", regular;
+$colorH:#7E8CAF;
+
+$fontLink: 18px "Caveat", regular;
+$colorsLinkNavBar:#636363;
+$colorLinkBtn:#B57576;
+
+$fontP: 14px "Lato",Regular;
+$colorP:#636363;
+
+$compColor: #ffffff
+
+//====
+
+
