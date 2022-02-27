@@ -1,0 +1,19 @@
+@use 'reset';
+@use 'vars';
+
+ h1 {
+ font: vars.$fontH1;
+ color: vars.$colorH;
+ }
+ h2 {
+ font: vars.$fontH2;
+ color: vars.$colorH;
+ }
+ h3 {
+ font: vars.$fontH3;
+ color: vars.$colorH;
+ }
+ p {
+ font: vars.$fontP;
+ color: vars.$colorP;
+ }

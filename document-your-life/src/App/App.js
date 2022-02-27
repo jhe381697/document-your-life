@@ -1,12 +1,11 @@
-import FormSignIn from '../FormSignIn/formSignIn';
+import HeaderNavbar from '../Components/headerNavbar/headerNavbar';
 import './App.css';
 
 function App() {
   // TODO sup FormSingIn
   return (
     <div className="App">
-      
-      <FormSignIn/>
+      <HeaderNavbar/>
     </div>
   );
 }
