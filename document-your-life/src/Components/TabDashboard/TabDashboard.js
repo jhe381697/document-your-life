@@ -5,10 +5,12 @@ import './tabDashboard.scss';
 
 const TabDashboard = () => {
   return (
-    <div className='tab-dashboard'>
-      <Link to="dashboard/yesterday" className='tab-dashboard-link'>Hier</Link>
-      <Link to="dahsboard/calendar" className='tab-dashboard-link'>Calendrier</Link>
-      <Link to="dashboard/today" className='tab-dashboard-link'>Aujourdhui</Link>
+    <div className='container'>
+      <div className='tab-dashboard'>
+        <Link to="dashboard/yesterday" className='tab-dashboard-link'>Hier</Link>
+        <Link to="dahsboard/calendar" className='tab-dashboard-link'>Calendrier</Link>
+        <Link to="dashboard/today" className='tab-dashboard-link'>Aujourdhui</Link>
+      </div>
     </div>
   )
 }
