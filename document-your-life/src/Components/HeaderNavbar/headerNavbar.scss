@@ -1,4 +1,4 @@
-@use '../../styles/vars';
+@import '../../styles/vars';
 
 .HeaderNavbar{
     max-width: 100%;
@@ -10,12 +10,12 @@
     flex-wrap: nowrap;
     border-bottom: 1px solid #636363;
     border-top: 1px solid #636363;
-    margin: 1.5rem 1.5rem;
-    font: vars.$fontLink;
+    margin: 1.5rem 0;
+    font: $fontLink;
     &-link{
         margin: 0.6rem;
         text-decoration: none;
-        color: vars.$colorsLinkNavBar;
+        color: $colorsLinkNavBar;
     }
     &-logo{
     width: 4rem;

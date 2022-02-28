@@ -1,19 +1,20 @@
-@use 'reset';
-@use 'vars';
+@import 'reset';
+@import 'vars';
+
 
  h1 {
- font: vars.$fontH1;
- color: vars.$colorH;
+ font: $fontH1;
+ color: $colorH;
  }
  h2 {
- font: vars.$fontH2;
- color: vars.$colorH;
+ font: $fontH2;
+ color: $colorH;
  }
  h3 {
- font: vars.$fontH3;
- color: vars.$colorH;
+ font: $fontH3;
+ color: $colorH;
  }
  p {
- font: vars.$fontP;
- color: vars.$colorP;
+ font: $fontP;
+ color: $colorP;
  }
