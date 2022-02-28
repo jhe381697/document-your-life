@@ -1,4 +1,5 @@
 import HeaderNavbar from '../Components/headerNavbar/headerNavbar';
+import TabDashboard from '../Components/TabDashboard/TabDashboard';
 import './App.css';
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
   return (
     <div className="App">
       <HeaderNavbar/>
+      <TabDashboard />
     </div>
   );
 }
