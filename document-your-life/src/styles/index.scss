@@ -1,6 +1,9 @@
 @import 'reset';
 @import 'vars';
 
+#root{
+    margin: 2em;
+}
 
  h1 {
  font: $fontH1;
