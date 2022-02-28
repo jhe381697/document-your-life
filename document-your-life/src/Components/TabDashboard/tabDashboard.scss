@@ -1,0 +1,14 @@
+@import "../../styles/vars.scss";
+
+.tab-dashboard {
+  display: flex;
+  justify-content: space-between;
+  font: $fontLink;
+  padding: 0 1em 0.4em 1em;
+  border-bottom: 1px solid $colorsLinkNavBar;
+
+  &-link {
+    text-decoration: none;
+    color: $colorsLinkNavBar;
+  }
+}
