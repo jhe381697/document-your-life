@@ -5,6 +5,8 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './formSignIn.scss';
 
+// axios post request
+import SignupAxios from '../../RequestsAxios/SignUp';
 // package npm 
 import PasswordChecklist from "react-password-checklist"
 
@@ -19,7 +21,6 @@ const FormSignIn = () => {
 
    // password conditions
     // const [passwordLength, setPasswordLength] = useState(false)
-    const [oneMaj, setOneMaj] = useState(false)
     const [isValid, setIsValid] = useState(false)
     
 
@@ -54,13 +55,9 @@ const FormSignIn = () => {
          && email !== ''
          && isValid === true
          ){
-        console.log('submited')
-        }else if(password.length < 8){
-        console.log('submit failed,password length')
-        // setPasswordLength(true)
-        }else if(oneMaj === true){
-            setOneMaj(true)
-        }
+            SignupAxios(email,firstName,lastName,password,passwordConf)
+            console.log('submited')
+            }
         else{
                 console.log('please check form')
                 return null
@@ -134,7 +131,6 @@ const FormSignIn = () => {
           <button type="submit" onSubmit={handleSubmit} className="formSignin-form-btn">
             Envoyer
           </button>
-                
                 </form>
        </div>
    );
