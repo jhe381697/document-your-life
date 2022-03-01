@@ -6,7 +6,7 @@ import Calendar from '../Components/Calendar/Calendar';
 import './App.css';
 
 function App() {
-  // TODO sup FormSingIn
+
   return (
     <div className="App">
       <HeaderNavbar/>
