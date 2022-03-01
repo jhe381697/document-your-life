@@ -1,0 +1,45 @@
+@import "../../styles/vars.scss";
+
+.card {
+  display:flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  &-date {
+    margin: 1em 0 1.5em 0;
+  }
+
+  &-mood {
+    margin-bottom: 2em;
+
+    &-title {
+        text-align: center;
+        margin-bottom: 1em;
+    }
+  
+    &-infos {
+      display: flex;
+      justify-content: flex-start;
+
+      &-emoji {
+        margin-right: 2em;
+      }
+    }
+  }
+
+  &-mood-label {
+      display: flex;
+      justify-content: center;
+  }
+
+  &-resume {
+    &-title {  
+      text-align: center;
+      margin-bottom: 1em;
+    }
+    &-medium {
+      text-align: center;
+    }
+  }
+}

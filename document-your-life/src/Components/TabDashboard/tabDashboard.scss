@@ -1,6 +1,12 @@
-@import "../../styles/vars.scss";
+  @import "../../styles/vars.scss";
+
+.container {
+  display: flex;
+  justify-content: center;
+}
 
 .tab-dashboard {
+  width: 80%;
   display: flex;
   justify-content: space-between;
   font: $fontLink;
@@ -11,4 +17,9 @@
     text-decoration: none;
     color: $colorsLinkNavBar;
   }
+}
+.dashboard-container{
+    bottom: -204px;
+    position: relative;
+    min-height: 18rem;
 }
