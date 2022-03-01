@@ -7,10 +7,10 @@ import './emoji.scss';
 const Emoji = () => {
   return (
     <>
-      <FontAwesomeIcon icon={faLaughBeam} />
-      <FontAwesomeIcon icon={faSadTear} />
-      <FontAwesomeIcon icon={faSmileWink} />
-      <FontAwesomeIcon icon={faMehBlank} />
+      <FontAwesomeIcon icon={faLaughBeam} className="fas fa-laugh-beam"/>
+      <FontAwesomeIcon icon={faSadTear} className="fas fa-sad-tear"/>
+      <FontAwesomeIcon icon={faSmileWink} className="fas fa-smile-wink"/>
+      <FontAwesomeIcon icon={faMehBlank} className="fas fa-meh-blank"/>
     </>
 
   )
