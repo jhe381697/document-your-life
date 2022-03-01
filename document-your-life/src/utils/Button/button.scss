@@ -1,0 +1,15 @@
+@import "../../styles/vars";
+.AllButton{
+    width: $btnsize;
+    height: $btnsize;
+    border-radius: 50px;
+    transform: rotate(-$btnRottate);
+    box-shadow: $btnShadow;
+    border: none;
+        &-text{
+            overflow: visible;
+            font:$fontH2 ;
+            color: #7E8CAF;
+        }
+    
+}

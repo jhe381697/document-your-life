@@ -1,8 +1,14 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/jsx-key */
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+
+// react-router-dom
+import { Link } from "react-router-dom";
+
+// scss
 import './loginForm.scss';
+
 import loginAxios from '../../Login/LoginRequest';
 
 const LoginForm = () => {
@@ -25,15 +31,11 @@ const LoginForm = () => {
         setSubmited(!submited)
 
     }
-    useEffect(() => {
-       loginAxios(email, password)
-
-    }, submited)
 
 
     return (
         <div className='formLogin'>
-            <h2 className='formLogin-title'>Inscription</h2>
+            <h2 className='formLogin-title'>Connexion</h2>
             <form className='formLogin-form' onSubmit={handleSubmit}>
                 <p className='formLogin-form-title'>Email</p>
                 <input
@@ -50,10 +52,13 @@ const LoginForm = () => {
                     onChange={(e) => setPassword(e.target.value)}
                     type="password"
                     placeholder='Entrez votre Mot de passe' />
-                <button type="submit" onSubmit={handleSubmit} className="formLogin-form-btn">
-                    Envoyer
-                </button>
+                <div className='button-container'>
+                <button type="submit" onSubmit={handleSubmit} className="AllButton">
+                    <p className='AllButton-text'>Envoyer</p>  
+                    </button>
+                </div>
 
+                <Link to="/dashboard/calendar">TODO remov link</Link>
             </form>
         </div>
     );
