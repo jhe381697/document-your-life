@@ -1,5 +1,7 @@
 /* eslint-disable react/jsx-key */
 import React from 'react';
+import Emoji from '../Emoji/Emoji';
+
 import './card.scss';
 
 const Card = () => {
@@ -9,7 +11,7 @@ const Card = () => {
           <div className="card-mood">
             <h3 className="card-mood-title">My mood</h3> 
             <div className="card-mood-infos">
-              <p className='card-mood-infos-emoji'>Emoticône</p>
+              <Emoji />
               <p className="card-mood-infos-label">Label</p>
             </div>
           </div>
