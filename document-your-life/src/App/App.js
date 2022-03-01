@@ -10,6 +10,7 @@ import { Routes, Route } from "react-router-dom";
 import HeaderNavbar from '../Components/HeaderNavbar/HeaderNavbar';
 import TabDashboard from '../Components/TabDashboard/TabDashboard';
 import FormSignIn from "../Components/FormSignIn/formSignIn";
+import HomePage from "../Components/HomePage/HomePage";
 
 // Sass
 import './App.css';
@@ -21,14 +22,17 @@ function App() {
       <HeaderNavbar />
 
       <Routes>
+        <Route path="/" element={
+          <HomePage />}
+        />
+        <Route path="/signup" element={
+          <FormSignIn />}
+        />
         <Route path="/dashboard/*" element={
           <TabDashboard />
         }
         />
 
-        <Route path="/home/signup" element={
-          <FormSignIn />}
-        />
       </Routes>
     </div>
   );
