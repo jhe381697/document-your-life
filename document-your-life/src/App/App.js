@@ -10,7 +10,8 @@ import { Routes, Route } from "react-router-dom";
 import HeaderNavbar from '../Components/HeaderNavbar/HeaderNavbar';
 import TabDashboard from '../Components/TabDashboard/TabDashboard';
 import FormSignIn from "../Components/FormSignIn/formSignIn";
-import Card from "../Components/Card/Card";
+
+import HomePage from "../Components/HomePage/HomePage";
 
 // Sass
 import './App.css';
@@ -20,18 +21,19 @@ function App() {
   return (
     <div className="App">
       <HeaderNavbar />
-      {/*A SUPPR*/}
-      <Card />
 
       <Routes>
+        <Route path="/" element={
+          <HomePage />}
+        />
+        <Route path="/signup" element={
+          <FormSignIn />}
+        />
         <Route path="/dashboard/*" element={
           <TabDashboard />
         }
         />
 
-        <Route path="/home/signup" element={
-          <FormSignIn />}
-        />
       </Routes>
     </div>
   );
