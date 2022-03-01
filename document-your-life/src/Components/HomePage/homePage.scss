@@ -1,0 +1,21 @@
+.homepage{
+    display: flex;
+    flex-direction: column;
+    &-title{
+    display: flex;
+    margin: 1rem 0;
+    justify-content: center;
+    }
+    &-link{
+    display: flex;
+    margin: 1rem 0;
+    justify-content: center;
+
+    }
+    &-btn{
+    display: flex;
+    margin: 1rem 0;
+    justify-content: center;
+        
+    }
+}

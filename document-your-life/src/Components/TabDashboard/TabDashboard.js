@@ -8,6 +8,7 @@ import { Routes, Route } from "react-router-dom";
 
 // Components
 import Calendar from '../Calendar/Calendar';
+import Card from '../Card/Card';
 
 
 const TabDashboard = () => {
@@ -16,16 +17,21 @@ const TabDashboard = () => {
       <div className='container'>
 
         <div className='tab-dashboard'>
-          <Link to="yesterday" className='tab-dashboard-link'>Hier</Link>
+          <Link to="last/card" className='tab-dashboard-link'>Hier</Link>
           <Link to="calendar" className='tab-dashboard-link'>Calendrier</Link>
-          <Link to="today" className='tab-dashboard-link'>Aujourdhui</Link>
+          <Link to="today/card" className='tab-dashboard-link'>Aujourdhui</Link>
         </div>
 
       </div>
       <Routes>
         <Route path="/calendar" element={
-          <Calendar />}
-        />
+          <Calendar />} />
+        <Route path="today/card" element={
+          // oday Card to modify
+          <Card />} />
+        <Route path="last/card" element={
+          // last Card to modify
+          <Card />} />
       </Routes>
     </div>
   )

@@ -1,6 +1,6 @@
 @import '../../styles/vars';
 
-.formSignin{
+.formLogin{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -37,24 +37,4 @@
                color: #636363;
             }
         }
-} 
-.AllButton{
-    width: $btnsize;
-    height: $btnsize;
-    border-radius: 50px;
-    transform: rotate(-$btnRottate);
-    box-shadow: $btnShadow;
-    border: none;
-        &-text{
-            overflow: visible;
-            font:$fontH2 ;
-            color: #7E8CAF;
-        }
-    
-}
-.button-container{
-    display: flex;
-    justify-content: center;
-    position: relative;
-    bottom: 8px;
 }
