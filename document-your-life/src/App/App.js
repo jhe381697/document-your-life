@@ -11,6 +11,7 @@ import HeaderNavbar from '../Components/HeaderNavbar/HeaderNavbar';
 import TabDashboard from '../Components/TabDashboard/TabDashboard';
 import FormSignIn from "../Components/FormSignIn/formSignIn";
 import HomePage from "../Components/HomePage/HomePage";
+import Login from "../Components/LoginForm/LoginForm";
 
 // Sass
 import './App.css';
@@ -27,6 +28,9 @@ function App() {
         />
         <Route path="/signup" element={
           <FormSignIn />}
+        />
+        <Route path="/login" element={
+          <Login />}
         />
         <Route path="/dashboard/*" element={
           <TabDashboard />

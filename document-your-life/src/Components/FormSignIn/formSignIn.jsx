@@ -170,9 +170,11 @@ const FormSignIn = () => {
                 <p> J'accepte les conditions d'utilisation </p>
                 {checkboxText? <p className='formSignin-form-checkbox-error'>Acceptez les conditions d'utilisation </p>: null}
                 </div>
-          <button type="submit" onSubmit={handleSubmit} className="formSignin-form-btn">
-            Envoyer
+                <div className='button-container'>
+          <button onSubmit={handleSubmit} type="submit"  className="AllButton">
+           <p className='AllButton-text'>C'est parti!</p>
           </button>
+                </div>
                 </form>
        </div> 
         : null
