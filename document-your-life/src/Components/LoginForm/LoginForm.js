@@ -4,18 +4,20 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 // react-router-dom
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // scss
 import './loginForm.scss';
 
 import LoginAxios from '../../Login/LoginRequest';
+import Notify from '../../utils/notifyFunc';
 
-const LoginForm = () => {
+const LoginForm = ({ toggleConnection}) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [submited, setSubmited] = useState(true)
 
+    let navigate = useNavigate();
     /**
      * @function handleSubmit
      * @param {*} e 
@@ -31,11 +33,16 @@ const LoginForm = () => {
         const response = await LoginAxios(
             email, password
         )
-        console.log(response)
+        console.log(response.status)
         setSubmited(!submited)
-        console.log(email, password)
         LoginAxios(email, password)
-
+            if(response.status ===200){
+                toggleConnection(false)
+                navigate('/dashboard/calendar', { replace: true })
+            } else {
+                toggleConnection(true)
+                Notify("Attention, votre identifiant ou votre mot de passe est incorrect.","warning")
+            }
     }
 
 
@@ -71,9 +78,6 @@ const LoginForm = () => {
 };
 
 LoginForm.propTypes = {
-    className: PropTypes.string,
-};
-LoginForm.defaultProps = {
-    className: '',
+    toggleConnection: PropTypes.func.isRequired,
 };
 export default React.memo(LoginForm);

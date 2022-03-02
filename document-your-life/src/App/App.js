@@ -1,7 +1,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable react/jsx-key */
 
-import React from "react";
+import React, { useState } from "react";
 
 // React Router Dom
 import { Routes, Route } from "react-router-dom";
@@ -18,10 +18,10 @@ import Login from "../Components/LoginForm/LoginForm";
 import './App.css';
 
 function App() {
-
+  const [isConnected, setIsConnected] = useState(true)
   return (
     <div className="App">
-      <HeaderNavbar />
+      <HeaderNavbar connectionStatus={isConnected}/>
 
       <Routes>
         <Route path="/" element={
@@ -31,7 +31,7 @@ function App() {
           <FormSignIn />}
         />
         <Route path="/login" element={
-          <Login />}
+          <Login toggleConnection={setIsConnected}/>}
         />
         <Route path="/dashboard/*" element={
           <TabDashboard />
