@@ -16,11 +16,20 @@ import Login from "../Components/LoginForm/LoginForm";
 
 // Sass
 import './App.css';
+import { Refreshtoken } from "../Login/LoginRequest";
 
 function App() {
   const [isConnected, setIsConnected] = useState(true)
   return (
     <div className="App">
+      <button onClick={() => {
+        const data = localStorage.getItem("token")
+        console.log('localsorage', data)
+        Refreshtoken()
+      }}>token test</button>
+      <button onClick={() => {
+        Refreshtoken()
+      }}>token test2</button>
       <HeaderNavbar connectionStatus={isConnected}/>
 
       <Routes>

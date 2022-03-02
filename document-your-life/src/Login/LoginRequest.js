@@ -53,15 +53,32 @@ import axios from 'axios'
 //              console.log(error);
 //          });
 //  }
-export default async function LoginAxios(email, password) {
+
+
+export async function Refreshtoken() {
+    const data = localStorage.getItem("token")
     try {
-        const response = await axios.post('https://dyl-api.herokuapp.com/login', {
-            email:email,
-            password:password,
-        });
+        const response = await axios.post(`https://dyl-api.herokuapp.com/api/${data}`, {
+        })
         return response;
     }
     catch (err) {
         return err.response;
     }
 }
+
+
+
+export default async function LoginAxios(email, password) {
+    try {
+        const response = await axios.post('https://dyl-api.herokuapp.com/login', {
+            email:email,
+            password:password,
+        })
+        return response;
+    }
+    catch (err) {
+        return err.response;
+    }
+}
+

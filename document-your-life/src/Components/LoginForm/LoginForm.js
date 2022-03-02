@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/jsx-key */
-import React, { useState } from 'react';
+import React, {  useState } from 'react';
 import PropTypes from 'prop-types';
 
 // react-router-dom
@@ -33,10 +33,11 @@ const LoginForm = ({ toggleConnection}) => {
         const response = await LoginAxios(
             email, password
         )
-        console.log(response.status)
+        console.log(response.data)
         setSubmited(!submited)
         LoginAxios(email, password)
             if(response.status ===200){
+                localStorage.setItem('token',response.data.refreshTokenGenerated)
                 toggleConnection(false)
                 navigate('/dashboard/calendar', { replace: true })
             } else {
@@ -44,8 +45,7 @@ const LoginForm = ({ toggleConnection}) => {
                 Notify("Attention, votre identifiant ou votre mot de passe est incorrect.","warning")
             }
     }
-
-
+    
     return (
         <div className='formLogin'>
             <h2 className='formLogin-title'>Connexion</h2>
@@ -72,6 +72,7 @@ const LoginForm = ({ toggleConnection}) => {
                 </div>
 
                 <Link to="/dashboard/calendar">TODO remov link</Link>
+                
             </form>
         </div>
     );
