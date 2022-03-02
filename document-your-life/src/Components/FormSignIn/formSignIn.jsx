@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable react/jsx-key */
@@ -6,7 +7,7 @@ import PropTypes from 'prop-types';
 import './formSignIn.scss';
 
 // react-router-dom
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 // axios post request
 import SignupAxios from '../../RequestsAxios/SignUp';
@@ -18,7 +19,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Notify from '../../utils/notifyFunc';
 
 const FormSignIn = () => {
-//   let navigate = useNavigate();
+  let navigate = useNavigate();
 
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
@@ -60,24 +61,24 @@ const FormSignIn = () => {
      * -all inputs completed 
      * -and same passwort and password confirmation
      */
-    function handleSubmit(e) {
+    const handleSubmit =(e) => {
     e.preventDefault();
+    let reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
         if( checkbox === true
          && firstName !== ''
          && lastName !== ''
          && email !== ''
          && isValid === true
+         && reg.test(email) 
          ){
-            // setShowModal(false)
+            SignupAxios(email,firstName,lastName,password,passwordConf)
+            setShowModal(false)
             Notify(`Salut ${firstName}, Bravo pour ton inscription`,"success")
-            console.log("methode Post SignUp")
-            // SignupAxios(email, firstName, lastName, password, passwordConf)
-            SignupAxios()
-            console.log('submited', SignupAxios)
-            // navigate('/login', { replace: true })
+            console.log('submited')
+            navigate('/login', { replace: true })
             }
         else{
-        console.log(SignupAxios.response)
             Notify(`Une erreur est survenue lors de l'inscription`,"error")
                 console.log('please check form')
                 setCheckboxText(true)

@@ -59,7 +59,7 @@ const LoginForm = () => {
                     type="password"
                     placeholder='Entrez votre Mot de passe' />
                 <div className='button-container'>
-                    <button type="submit" onSubmit={handleSubmit} className="AllButton">
+                    <button type="submit" className="AllButton">
                        <p className='AllButton-text'>Envoyer</p>  
                     </button>
                 </div>
