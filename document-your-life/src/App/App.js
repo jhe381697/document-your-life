@@ -10,6 +10,7 @@ import { Routes, Route } from "react-router-dom";
 import HeaderNavbar from '../Components/HeaderNavbar/HeaderNavbar';
 import TabDashboard from '../Components/TabDashboard/TabDashboard';
 import FormSignIn from "../Components/FormSignIn/formSignIn";
+import Card from "../Components/Card/Card";
 
 import HomePage from "../Components/HomePage/HomePage";
 import Login from "../Components/LoginForm/LoginForm";
@@ -34,10 +35,11 @@ function App() {
           <Login />}
         />
         <Route path="/dashboard/*" element={
-          <TabDashboard />
-        }
+          <TabDashboard />}
         />
-
+        <Route path="/card" element={
+           <Card />}
+        />
       </Routes>
     </div>
   );
