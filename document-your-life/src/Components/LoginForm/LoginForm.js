@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import './loginForm.scss';
 
 import loginAxios from '../../Login/LoginRequest';
+import LoginAxios from '../../Login/LoginRequest';
 
 const LoginForm = () => {
     const [email, setEmail] = useState('')
@@ -29,6 +30,8 @@ const LoginForm = () => {
         e.preventDefault();
         console.log(loginAxios.response)
         setSubmited(!submited)
+        console.log(email, password)
+        LoginAxios(email, password)
 
     }
 
@@ -53,8 +56,8 @@ const LoginForm = () => {
                     type="password"
                     placeholder='Entrez votre Mot de passe' />
                 <div className='button-container'>
-                <button type="submit" onSubmit={handleSubmit} className="AllButton">
-                    <p className='AllButton-text'>Envoyer</p>  
+                    <button type="submit" onSubmit={handleSubmit} className="AllButton">
+                       <p className='AllButton-text'>Envoyer</p>  
                     </button>
                 </div>
 

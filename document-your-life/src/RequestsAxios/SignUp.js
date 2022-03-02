@@ -1,7 +1,6 @@
 import axios from 'axios'
 
 /**
- * 
  * @param {*} email 
  * @param {*} firstName 
  * @param {*} lastName 
@@ -15,8 +14,7 @@ axios.post('https://dyl-api.herokuapp.com/signup', {
     last_name: lastName,
     password: password,
     passwordConfirm: passwordconf,
-})
-    .then(function (response) {
+}).then(function (response) {
         console.log(response);
     })
     .catch(function (error) {
