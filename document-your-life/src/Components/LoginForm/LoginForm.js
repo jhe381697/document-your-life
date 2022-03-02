@@ -9,13 +9,13 @@ import { Link } from "react-router-dom";
 // scss
 import './loginForm.scss';
 
-import loginAxios from '../../Login/LoginRequest';
 import LoginAxios from '../../Login/LoginRequest';
 
 const LoginForm = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [submited, setSubmited] = useState(true)
+
     /**
      * @function handleSubmit
      * @param {*} e 
@@ -26,9 +26,12 @@ const LoginForm = () => {
      * -all inputs completed 
      * -and same passwort and password confirmation
      */
-    const handleSubmit = (e) => {
+    async function handleSubmit(e) {
         e.preventDefault();
-        console.log(loginAxios.response)
+        const response = await LoginAxios(
+            email, password
+        )
+        console.log(response)
         setSubmited(!submited)
         console.log(email, password)
         LoginAxios(email, password)

@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import './formSignIn.scss';
 
 // react-router-dom
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 // axios post request
 import SignupAxios from '../../RequestsAxios/SignUp';
@@ -18,7 +18,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Notify from '../../utils/notifyFunc';
 
 const FormSignIn = () => {
-  let navigate = useNavigate();
+//   let navigate = useNavigate();
 
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
@@ -60,7 +60,7 @@ const FormSignIn = () => {
      * -all inputs completed 
      * -and same passwort and password confirmation
      */
-    const handleSubmit =(e) => {
+    function handleSubmit(e) {
     e.preventDefault();
         if( checkbox === true
          && firstName !== ''
@@ -68,13 +68,16 @@ const FormSignIn = () => {
          && email !== ''
          && isValid === true
          ){
-            SignupAxios(email,firstName,lastName,password,passwordConf)
-            setShowModal(false)
+            // setShowModal(false)
             Notify(`Salut ${firstName}, Bravo pour ton inscription`,"success")
-            console.log('submited')
-            navigate('/login', { replace: true })
+            console.log("methode Post SignUp")
+            // SignupAxios(email, firstName, lastName, password, passwordConf)
+            SignupAxios()
+            console.log('submited', SignupAxios)
+            // navigate('/login', { replace: true })
             }
         else{
+        console.log(SignupAxios.response)
             Notify(`Une erreur est survenue lors de l'inscription`,"error")
                 console.log('please check form')
                 setCheckboxText(true)
