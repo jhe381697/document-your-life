@@ -1,9 +1,10 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/jsx-key */
 import React, { useState } from 'react';
+import PropTypes  from 'prop-types'
 
 // react-router-dom
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 // scss
 import './loginForm.scss';
@@ -11,7 +12,7 @@ import './loginForm.scss';
 import LoginAxios from '../../Login/LoginRequest';
 import Notify from '../../utils/notifyFunc';
 
-const LoginForm = () => {
+const LoginForm = ({ setIsConnected}) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [submited, setSubmited] = useState(true)
@@ -34,14 +35,17 @@ const LoginForm = () => {
         console.log(response.data)
         setSubmited(!submited)
         LoginAxios(email, password)
-            if(response.status ===200){
-                localStorage.setItem('token',response.data.refreshTokenGenerated)
+        if (response.status === 200) {
+            setIsConnected(false)
+            localStorage.setItem('token', response.data.refreshTokenGenerated)
+            localStorage.setItem('userId', response.data.userId)
                 navigate('/dashboard/calendar', { replace: true })
+
             } else {
+                setIsConnected(true)
                 Notify("Attention, votre identifiant ou votre mot de passe est incorrect.","warning")
             }
     }
-    
     return (
         <div className='formLogin'>
             <h2 className='formLogin-title'>Connexion</h2>
@@ -66,14 +70,12 @@ const LoginForm = () => {
                        <p className='AllButton-text'>Envoyer</p>  
                     </button>
                 </div>
-
-                <Link to="/dashboard/calendar">TODO remov link</Link>
-                
             </form>
         </div>
     );
 };
 
 LoginForm.propTypes = {
+    setIsConnected: PropTypes.func
 };
 export default React.memo(LoginForm);

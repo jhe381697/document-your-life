@@ -43,13 +43,11 @@ const FormSignIn = () => {
      * @param {event}
      * change checkbox value ( true or false ) with onChange on checkbox
      */
-    const handleCheckbox = (e) => {
-    console.log(e.target.checked)
+    const handleCheckbox = () => {
         setCheckbox(!checkbox)
     }
     const handleIsValid = (e) => {
         setIsValid(e)
-        console.log(e,'sdf')
     }
     /**
      * @function handleSubmit

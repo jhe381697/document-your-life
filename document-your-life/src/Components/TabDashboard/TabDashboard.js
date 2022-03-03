@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-key */
 import React from 'react'
+
 import { Link } from 'react-router-dom'
 import './tabDashboard.scss';
 
@@ -13,6 +14,7 @@ import Card from '../Card/Card';
 
 const TabDashboard = () => {
   return (
+  
     <div className='dashboard-container'>
       <div className='container'>
 
@@ -37,6 +39,8 @@ const TabDashboard = () => {
   )
 }
 
-TabDashboard.propTypes = {}
+TabDashboard.propTypes = {
+
+}
 
 export default React.memo(TabDashboard);
