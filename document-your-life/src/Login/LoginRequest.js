@@ -55,19 +55,6 @@ import axios from 'axios'
 //  }
 
 
-export async function Refreshtoken() {
-    const data = localStorage.getItem("token")
-    try {
-        const response = await axios.post(`https://dyl-api.herokuapp.com/api/${data}`, {
-        })
-        return response;
-    }
-    catch (err) {
-        return err.response;
-    }
-}
-
-
 
 export default async function LoginAxios(email, password) {
     try {

@@ -1,7 +1,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable react/jsx-key */
 
-import React, { useState } from "react";
+import React from "react";
 
 // React Router Dom
 import { Routes, Route } from "react-router-dom";
@@ -16,21 +16,12 @@ import Login from "../Components/LoginForm/LoginForm";
 
 // Sass
 import './App.css';
-import { Refreshtoken } from "../Login/LoginRequest";
 
 function App() {
-  const [isConnected, setIsConnected] = useState(true)
+
   return (
     <div className="App">
-      <button onClick={() => {
-        const data = localStorage.getItem("token")
-        console.log('localsorage', data)
-        Refreshtoken()
-      }}>token test</button>
-      <button onClick={() => {
-        Refreshtoken()
-      }}>token test2</button>
-      <HeaderNavbar connectionStatus={isConnected}/>
+      <HeaderNavbar/>
 
       <Routes>
         <Route path="/" element={
@@ -40,12 +31,12 @@ function App() {
           <FormSignIn />}
         />
         <Route path="/login" element={
-          <Login toggleConnection={setIsConnected}/>}
+          <Login/>}
         />
         <Route path="/dashboard/*" element={
           <TabDashboard />
         }
-        />
+          />
 
       </Routes>
     </div>
