@@ -1,5 +1,16 @@
-.CardEdit {
-  width: 20rem;
-  height: 20rem;
-  background-color: rgba(124, 122, 122, 0.26);
+@import '../../styles/vars';
+
+.button-card-edit {
+  width: $btnsize;
+    height: $btnsize;
+    border-radius: 50px;
+    transform: rotate(-$btnRottate);
+    box-shadow: $btnShadow;
+    border: none;
+
+    &-text {
+      overflow: visible;
+      color: #7E8CAF;
+      font:$fontH2 ;
+    }
 }

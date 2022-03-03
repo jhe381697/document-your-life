@@ -1,6 +1,5 @@
 /* eslint-disable react/jsx-key */
 import React from 'react';
-import { useState } from 'react';
 
 import CardEdit from '../CardEdit/CardEdit';
 import Emoji from '../Emoji/Emoji';
@@ -9,14 +8,6 @@ import './card.scss';
 
 
 const Card = () => {
-
-  const [isOpen, setIsOpen] = useState(false)
-
-  function handleClick (event) {
-    event.preventDefault()  // empêche le rechargement de la page
-    console.log("toggle", isOpen)
-    setIsOpen(!isOpen)
-    }
 
     return (
         <>
@@ -36,9 +27,8 @@ const Card = () => {
               <div className="card-resume-medium">Medium</div>
             </div>
           </div>
-          <button onClick={handleClick}>New Day !</button>
+          <CardEdit />
         </div>
-        {!isOpen? <CardEdit toggle={handleClick}/> : null}
         </>
     );
 };
