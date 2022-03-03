@@ -1,45 +1,37 @@
 /* eslint-disable react/jsx-key */
-import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import './headerNavbar.scss';
+import React, { memo } from 'react';
 
 // react-router-dom
 //==================
 import { Link } from "react-router-dom";
-import axiosLogStatusBool from '../../utils/isConnectedFunc';
 //==================
 
-// ******MUI********
-//==================
-
-//==================
-
-const HeaderNavbar = () => {
+const HeaderNavbar = ({ handleConnection, IsConnected}) => {
     // response=== response API/log
-    const response = 200
-    // TODO lien le setIsCoinnected a l'Api de connection si reponse 200 -> true else false
-    const [isConnected, setIsConnected] = useState(false)
 
-    useEffect(() => {
-        setIsConnected(axiosLogStatusBool(response))
-    },[])
+
 
 
     return (
             <div className='HeaderNavbar'>
-                <div className='HeaderNavbar-logo'></div>
-            <Link className='HeaderNavbar-link' to='/about' >À propos</Link>
-            <Link className='HeaderNavbar-link'  to='/contact' >Contact</Link>
-            {/* condition if connected then show  link to logout and if disconnected show link to login */}
-            {isConnected ? <Link className='HeaderNavbar-link' to='/login' >Connexion</Link> : <Link className='HeaderNavbar-link' to='/logout' >Déconnexion</Link>}
+                    <div className='HeaderNavbar-logo'>
+                        {/* TODO Add logo */}
+                    </div>
+                        <Link className='HeaderNavbar-link' to='/about' >À propos</Link>
+                        <Link className='HeaderNavbar-link'  to='/contact' >Contact</Link>
+                {/* condition if connected then show  link to logout and if disconnected show link to login */}
+                    {IsConnected?
+                        <Link className='HeaderNavbar-link' to='/login' >Connexion</Link> :null}
+                    {!IsConnected? 
+                        <Link onClick={handleConnection} className='HeaderNavbar-link' to='/' >Déconnexion</Link> :null}
             </div>
     );
 };
 
 HeaderNavbar.propTypes = {
-    className: PropTypes.string,
+    IsConnected: PropTypes.bool.isRequired,
+    handleConnection: PropTypes.func.isRequired,
 };
-HeaderNavbar.defaultProps = {
-    className: '',
-};
-export default React.memo(HeaderNavbar);
+export default memo(HeaderNavbar);

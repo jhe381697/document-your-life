@@ -1,19 +1,33 @@
 import axios from 'axios'
 
-/**
- * 
- * @param {*} email 
- * @param {*} firstName 
- * @param {*} lastName 
- * @param {*} password 
- * @param {*} passwordconf 
- */
-export default function loginAxios() {
-    axios.get('https://dyl-api.herokuapp.com/login')
-        .then(function (response) {
-            console.log(response);
+export default async function LoginAxios(email, password) {
+    try {
+        const response = await axios.post('https://dyl-api.herokuapp.com/login', {
+            email:email,
+            password:password,
         })
-        .catch(function (error) {
-            console.log(error);
-        });
+        return response;
+    }
+    catch (err) {
+        return err.response;
+    }
+}
+
+
+export async function GetProfile() {
+    let access_token = localStorage.getItem('token')
+    let userId = localStorage.getItem('userId')
+    console.log("LocalStorage user value:",userId)
+    axios.get(`https://dyl-api.herokuapp.com/user/:${userId}/profil`, {
+    headers: {
+        'Authorization': `Bearer ${access_token}`
+    }
+    })
+    .then((res) => {
+        console.log(res.data)
+    })
+    .catch((error) => {
+        console.error(error)
+    })
+
 }

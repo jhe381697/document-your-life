@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable react/jsx-key */
@@ -42,13 +43,11 @@ const FormSignIn = () => {
      * @param {event}
      * change checkbox value ( true or false ) with onChange on checkbox
      */
-    const handleCheckbox = (e) => {
-    console.log(e.target.checked)
+    const handleCheckbox = () => {
         setCheckbox(!checkbox)
     }
     const handleIsValid = (e) => {
         setIsValid(e)
-        console.log(e,'sdf')
     }
     /**
      * @function handleSubmit
@@ -62,11 +61,14 @@ const FormSignIn = () => {
      */
     const handleSubmit =(e) => {
     e.preventDefault();
+    let reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
         if( checkbox === true
          && firstName !== ''
          && lastName !== ''
          && email !== ''
          && isValid === true
+         && reg.test(email) 
          ){
             SignupAxios(email,firstName,lastName,password,passwordConf)
             setShowModal(false)

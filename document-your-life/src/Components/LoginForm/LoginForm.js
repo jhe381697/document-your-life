@@ -1,20 +1,22 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/jsx-key */
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import PropTypes  from 'prop-types'
 
 // react-router-dom
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 // scss
 import './loginForm.scss';
 
-import loginAxios from '../../Login/LoginRequest';
+import LoginAxios from '../../Login/LoginRequest';
+import Notify from '../../utils/notifyFunc';
 
-const LoginForm = () => {
+const LoginForm = ({ setIsConnected}) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [submited, setSubmited] = useState(true)
+    let navigate = useNavigate();
     /**
      * @function handleSubmit
      * @param {*} e 
@@ -25,14 +27,25 @@ const LoginForm = () => {
      * -all inputs completed 
      * -and same passwort and password confirmation
      */
-    const handleSubmit = (e) => {
+    async function handleSubmit(e) {
         e.preventDefault();
-        console.log(loginAxios.response)
+        const response = await LoginAxios(
+            email, password
+        )
+        console.log(response.data)
         setSubmited(!submited)
+        LoginAxios(email, password)
+        if (response.status === 200) {
+            setIsConnected(false)
+            localStorage.setItem('token', response.data.refreshTokenGenerated)
+            localStorage.setItem('userId', response.data.userId)
+                navigate('/dashboard/calendar', { replace: true })
 
+            } else {
+                setIsConnected(true)
+                Notify("Attention, votre identifiant ou votre mot de passe est incorrect.","warning")
+            }
     }
-
-
     return (
         <div className='formLogin'>
             <h2 className='formLogin-title'>Connexion</h2>
@@ -53,21 +66,16 @@ const LoginForm = () => {
                     type="password"
                     placeholder='Entrez votre Mot de passe' />
                 <div className='button-container'>
-                <button type="submit" onSubmit={handleSubmit} className="AllButton">
-                    <p className='AllButton-text'>Envoyer</p>  
+                    <button type="submit" className="AllButton">
+                       <p className='AllButton-text'>Envoyer</p>  
                     </button>
                 </div>
-
-                <Link to="/dashboard/calendar">TODO remov link</Link>
             </form>
         </div>
     );
 };
 
 LoginForm.propTypes = {
-    className: PropTypes.string,
-};
-LoginForm.defaultProps = {
-    className: '',
+    setIsConnected: PropTypes.func
 };
 export default React.memo(LoginForm);
