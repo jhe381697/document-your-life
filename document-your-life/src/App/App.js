@@ -13,6 +13,7 @@ import FormSignIn from "../Components/FormSignIn/formSignIn";
 
 import HomePage from "../Components/HomePage/HomePage";
 import Login from "../Components/LoginForm/LoginForm";
+import Card from "../Components/Card/Card";
 
 // Sass
 import './App.css';
@@ -48,6 +49,9 @@ function App() {
           <TabDashboard IsConnected={IsConnected} />
         }
           />
+        <Route path="/card" element={
+          <Card />}
+        />
       </Routes>
     </div>
   );
