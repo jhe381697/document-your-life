@@ -2,7 +2,6 @@
 import React from 'react';
 
 import CardEdit from '../CardEdit/CardEdit';
-import Emoji from '../Emoji/Emoji';
 
 import './card.scss';
 
@@ -16,7 +15,6 @@ const Card = () => {
           <div className="card-mood">
             <h3 className="card-mood-title">My mood</h3> 
             <div className="card-mood-infos">
-              <Emoji />
               <p className="card-mood-infos-label">Label</p>
             </div>
           </div>
