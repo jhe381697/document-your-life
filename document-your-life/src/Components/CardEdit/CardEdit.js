@@ -5,6 +5,8 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLaughBeam,faSadTear, faSmileWink, faMehBlank } from '@fortawesome/free-solid-svg-icons';
+// import axios pour la requête
+import axios from "axios";
 
 import './cardEdit.scss';
 
@@ -21,42 +23,48 @@ const style = {
 };
 
 export default function CardEdit() {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
 
-  // onClick déclenche une fonction handleOnClick qui déclenche une requête Post axios
-  // Cette requête axios Post renvoie l'émoticone sélectionnée à la BD
+	// useState pour ouv/ferm Modal
+	const [open, setOpen] = React.useState(false);
+	const handleOpen = () => setOpen(true);
+	const handleClose = () => setOpen(false);
 
-  function handleClickHappy (event) {
+	// useState qui correspond à chaque emoticon cliqué
+	const [happy, setHappy] = React.useState('');
+	const [sad, setSad] = React.useState('');
+	const [cool, setCool] = React.useState('');
+	const [neutral, setNeutral] = React.useState('');
+
+	// Mes fonctions "onClick" changent les setStates
+	function handleClickHappy (event) {
     event.preventDefault();
-    const mood = "Happy";
-    console.log(mood);
-    return mood; 
+    setHappy("Happy");
+    console.log(event.target)
   }
 
-  function handleClickSad (event) {
+	function handleClickSad (event) {
     event.preventDefault();
-    const mood = "Sad";
-    console.log(mood);
-    return mood;
+    setSad("Sad");
+    console.log(event.target)
   }
 
   function handleClickCool (event) {
     event.preventDefault();
-    const mood = "Cool";
-    console.log(mood);
-    return mood;
+    setCool("Cool");
+    console.log(event.target)
   }
 
   function handleClickNeutral (event) {
     event.preventDefault();
-    const mood = "Neutral";
-    console.log(mood);
-    return mood;
+    setNeutral("Neutral");
+    console.log(event.target)
   }
 
-    return (
+    axios.post("https://dyl-api.herokuapp.com/", {happy, sad, cool, neutral})
+          .then(response => console.log(response)
+          .catch(error => console.log(error)))
+
+return (
       <div>
         <button className="button-card-edit" onClick={handleOpen}>
           <span className='button-card-edit-text'>
@@ -92,4 +100,4 @@ export default function CardEdit() {
         </Modal>
       </div>
     );
-  }
+}
