@@ -14,6 +14,8 @@ import FormSignIn from "../Components/FormSignIn/formSignIn";
 import HomePage from "../Components/HomePage/HomePage";
 import Login from "../Components/LoginForm/LoginForm";
 import Card from "../Components/Card/Card";
+import AvatarIcon from '../Components/AvatarIcon/AvatarIcon';
+import AvatarBuild from "../Components/AvatarBuild/AvatarBuild";
 
 // Sass
 import './App.css';
@@ -34,6 +36,8 @@ function App() {
   return (
     <div className="App">
       <HeaderNavbar IsConnected={IsConnected} handleConnection={handleConnection}/>
+      <AvatarIcon />
+      <AvatarBuild />
 
       <Routes>
         <Route path="/" element={

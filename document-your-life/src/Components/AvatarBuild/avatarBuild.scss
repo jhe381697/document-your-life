@@ -1,0 +1,23 @@
+@import '../../styles/vars';
+
+.container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.avatar {
+  display: flex;
+  justify-content: center;
+
+  &-preview {
+    position: relative;
+    right: -5em;
+    top: 2em;
+    width: 7em;
+    height: 7em;
+
+    &-text {
+      font:$fontH3 ;
+    }
+  }
+}
