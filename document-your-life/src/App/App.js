@@ -46,9 +46,8 @@ function App() {
           <Login setIsConnected={setIsConnected}/>}
         />
         <Route path="/dashboard/*" element={
-          <TabDashboard IsConnected={IsConnected} />
-        }
-          />
+          <TabDashboard IsConnected={IsConnected} />}
+        />
         <Route path="/card" element={
           <Card />}
         />
