@@ -1,0 +1,36 @@
+.cardresume-container {
+  display: flex;
+  justify-content: center;
+}
+
+.cardresume {
+  display: flex;
+  flex-direction: column;
+  margin: 1em 0 1em 0;
+  width: 80%;
+  background-color: #D1F4CB;
+  box-shadow: 0 10px 30px rgba(0,0,0,.1);
+
+  h2 {
+    color: black;
+    margin: 0.5em 0 0.5em 0;
+  }
+
+  h3 {
+    color: black;
+    margin: 0.3em 0 0.3em 0;
+  }
+
+  p {
+    text-align: center;
+    margin: 0.3em 0 0.3em 0;
+  }
+
+  &-mood {
+    margin: 1em 0.5em 1em 0.5em;
+  }
+
+  &-medium {
+    margin: 1em 0.5em 1em 0.5em;
+  }
+}
