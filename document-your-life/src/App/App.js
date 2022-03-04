@@ -16,6 +16,7 @@ import Login from "../Components/LoginForm/LoginForm";
 
 // Sass
 import './App.css';
+import ProfilePage from "../Components/ProfilePage/ProfilePage";
 
 function App() {
   const [IsConnected, setIsConnected] = useState(false)
@@ -47,7 +48,9 @@ function App() {
         <Route path="/dashboard/*" element={
           <TabDashboard IsConnected={IsConnected} />
         }
-          />
+        />
+        <Route path="/profil" element={ <ProfilePage /> }
+        />
       </Routes>
     </div>
   );
