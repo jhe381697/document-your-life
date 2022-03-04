@@ -9,7 +9,6 @@ import { Routes, Route } from "react-router-dom";
 
 // Components
 import Calendar from '../Calendar/Calendar';
-import Card from '../Card/Card';
 
 
 const TabDashboard = () => {
@@ -28,12 +27,12 @@ const TabDashboard = () => {
       <Routes>
         <Route path="/calendar" element={
           <Calendar />} />
-        <Route path="today/card" element={
-          // oday Card to modify
-          <Card />} />
-        <Route path="last/card" element={
+        <Route path="today" element={
+          // today Card to modify
+          <p>CardResume</p>} />
+        <Route path="last" element={
           // last Card to modify
-          <Card />} />
+          <p>CardResume</p>} />
       </Routes>
     </div>
   )
