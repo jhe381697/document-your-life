@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-key */
 import React from 'react'
-
 import { Link } from 'react-router-dom'
+
 import './tabDashboard.scss';
 
 // React Router Dom
@@ -9,6 +9,7 @@ import { Routes, Route } from "react-router-dom";
 
 // Components
 import Calendar from '../Calendar/Calendar';
+import CardResume from '../CardResume/CardResume';
 
 
 const TabDashboard = () => {
@@ -18,9 +19,9 @@ const TabDashboard = () => {
       <div className='container'>
 
         <div className='tab-dashboard'>
-          <Link to="last/card" className='tab-dashboard-link'>Hier</Link>
+          <Link to="last" className='tab-dashboard-link'>Hier</Link>
           <Link to="calendar" className='tab-dashboard-link'>Calendrier</Link>
-          <Link to="today/card" className='tab-dashboard-link'>Aujourdhui</Link>
+          <Link to="today" className='tab-dashboard-link'>Aujourdhui</Link>
         </div>
 
       </div>
@@ -28,11 +29,11 @@ const TabDashboard = () => {
         <Route path="/calendar" element={
           <Calendar />} />
         <Route path="today" element={
-          // today Card to modify
-          <p>CardResume</p>} />
+          // today card resume
+          <CardResume />} />
         <Route path="last" element={
-          // last Card to modify
-          <p>CardResume</p>} />
+          // last card resume
+          <CardResume />} />
       </Routes>
     </div>
   )
