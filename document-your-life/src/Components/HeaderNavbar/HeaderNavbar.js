@@ -10,8 +10,6 @@ import { Link } from "react-router-dom";
 
 const HeaderNavbar = ({ handleConnection, IsConnected }) => {
 
-
-
     return (
         <div className='HeaderNavbar'>
             <div className='HeaderNavbar-logo'>
