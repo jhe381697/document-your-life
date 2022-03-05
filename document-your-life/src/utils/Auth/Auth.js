@@ -1,4 +1,0 @@
-
-function Auth(
-LoginForm
-)
