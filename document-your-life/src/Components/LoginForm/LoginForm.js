@@ -39,7 +39,7 @@ try{
     const response = await LoginAxios(user)
     setIsAuthenticated(response)
     navigate('/profil')
-    console.log('sdfa')
+    console.log(response)
 
 } catch ({ response }) {
     Notify("Attention, votre identifiant ou votre mot de passe est incorrect.", "warning")

@@ -2,7 +2,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable react/jsx-key */
 
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 // Sass
 import './App.css';
@@ -20,11 +20,12 @@ import HomePage from "../Components/HomePage/HomePage";
 import Login from "../Components/LoginForm/LoginForm";
 import Auth from "../contexts/Auth";
 import PrivateRoute from '../Components/PrivateRoute/PrivateRoute'
-
+import getUserData from "../RequestsAxios/userData";
 
 function App() {
-  const [IsConnected, setIsConnected] = useState(false)
   const [isAuthenticated, setIsAuthenticated] = useState(hasAuthenticated())
+
+  const [IsConnected, setIsConnected] = useState(false)
   let data = localStorage.getItem('userId')
   if (data === undefined) {
     console.log('no user')
