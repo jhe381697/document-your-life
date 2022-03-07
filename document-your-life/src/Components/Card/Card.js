@@ -5,7 +5,6 @@ import CardEdit from '../CardEdit/CardEdit';
 
 import './card.scss';
 
-
 const Card = () => {
 
     return (
