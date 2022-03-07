@@ -15,22 +15,71 @@
     }
 }
 
+// container
+.emojis {
+  position: relative;
+}
+
+// Icone de fermeture
+.fa-times {
+position: absolute;
+top: 0;
+right: 0;
+font-size: 1.5em;
+}
+
+// Icones Emojis
+.emojis-text {
+  margin-bottom: 0.5em;
+}
+
 .fa-laugh-beam {
-  color: green;
-  font-size: 1.5em;
+  color: rgb(1, 248, 1);
+  font-size: 2.5em;
+  margin-right: 1em;
 }
 
 .fa-sad-tear {
   color: grey;
-  font-size: 1.5em;
+  font-size: 2.5em;
+  margin-right: 1em;
 }
 
 .fa-smile-wink {
-  color: yellow;
-  font-size: 1.5em;
+  color: rgb(255, 157, 0);
+  font-size: 2.5em;
+  margin-right: 1em;
 }
 
 .fa-meh-blank {
-  color: lightblue;
-  font-size: 1.5em;
+  color: rgb(245, 231, 104);
+  font-size: 2.5em;
+}
+
+// Icones Médias
+.medias-text {
+  margin-bottom: 0.5em;
+}
+
+.fa-keyboard {
+  font: $colorP;
+  font-size: 2.5em;
+  margin-right: 1em;
+}
+
+.fa-camera {
+  font: $colorP;
+  font-size: 2.5em;
+  margin-right: 1em;
+}
+
+.fa-microphone {
+  font: $colorP;
+  font-size: 2.5em;
+  margin-right: 1em;
+}
+
+.fa-video {
+  font: $colorP;
+  font-size: 2.5em;
 }
