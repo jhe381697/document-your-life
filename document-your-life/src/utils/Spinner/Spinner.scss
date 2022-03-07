@@ -1,0 +1,23 @@
+.spinner {
+  width: 100px;
+  height: 100px;
+  background-color: #f0f;
+
+  margin: auto;
+  animation: rotateplane 1s infinite ease-in-out;
+}
+
+@keyframes rotateplane {
+  0% {
+    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+  background-color: rgb(0, 255, 34);
+  }
+  50% {
+    transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+  background-color: #f0f;
+  }
+  100% {
+    transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+  background-color: #f0f;
+  }
+}
