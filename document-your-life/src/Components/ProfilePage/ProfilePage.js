@@ -1,56 +1,43 @@
 /* eslint-disable react/jsx-key */
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import getUserData from '../../RequestsAxios/userData';
+import { Link } from 'react-router-dom';
 import Spinner from '../../utils/Spinner/Spinner';
 import './profilePage.scss';
 
 
 const ProfilePage = () => {
-    const location= useLocation()
     const [loading, setLoading] = useState(false);
-    const [showProfile, setShaowProfile] = useState(false)
-    const [userProfil, setuserProfil] = useState([])
-
-    const handleGetProfile = async (e) => {
-        e.preventDefault()
-        setShaowProfile(!showProfile)
+    const [user, setUser] = useState("");
+    const clearState = () => {
+        setUser('')
     }
-
-    const loadUserProfile = async () => {
-        setLoading(true);
-        const response = await getUserData();
-        if (response.status === 200) {
-            console.log("loading")
-            setuserProfil(response.data);
-            setLoading(false);
-        }
-        else {
-            console.log('error 404')
-        }
-
-    }
-
     useEffect(() => {
-        if (location !== "/profil"){
-            setuserProfil([])
-            console.log('location usestate remove')
-        }
-        console.log('call from func', userProfil, "top")
-        loadUserProfile();
+        clearState()
+        getUserData().then(clearState())
+            .then(response => {
+                console.log(response.data)
+                setUser(response.data)
+            })
+            .then(setLoading(false))
     }, []);
 
     return (
         <>
-            {loading? <Spinner/> : (
-                <div className='ProfilePage'>
-                    <button onClick={handleGetProfile}>asdfasdfasdf</button>
-                    <div>
-                        <p>{userProfil.email}</p>
-                        <p>{userProfil.first_name}</p>
-                        <p>{userProfil.last_name}</p>
-                    </div>
+            {loading ? <Spinner /> : (
+                <>
+                    <Link className='retourn' to="/dashboard/calendar">
+                        retourn
+                    </Link>
+                <div className='profilPage'>
+                    <p className='profilPage-personal-avatar'>Avatar</p>
+                    <ul className='profilPage-personal'>
+                        <li className='profilPage-personal-credentials'>{user.email}</li>
+                        <li className='profilPage-personal-credentials'>{user.first_name}</li>
+                        <li className='profilPage-personal-credentials'>{user.last_name}</li>
+                    </ul>
                 </div>
+                </>
             )
             }
         </>
