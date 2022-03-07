@@ -3,6 +3,7 @@ import React from 'react'
 import './cardResume.scss'
 
 const CardResume = () => {
+
   return (
     <div className='cardresume-container'>
       <div className='cardresume'>
