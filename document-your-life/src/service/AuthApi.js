@@ -23,10 +23,18 @@ export function hasAuthenticated() {
 export default function LoginAxios(credentials) {
     return instance
         .post('/login', credentials)
-        .then(response => response.data.tokenGenerated)
+        .then(response => {
+            response
+
+            addItem('token', response.data.tokenGenerated);
+            addItem('userId', response.data.userId);
+            return (true, response)
+        })
         .then(token => {
-            addItem('token', token);
+            console.log(token)
             return true
+        }).catch((err)=>{
+            console.log(err.reponse.status)
         })
 
 }
