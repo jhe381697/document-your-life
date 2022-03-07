@@ -24,7 +24,7 @@ export default async function getAllCards() {
 }
 export async function patchTodayCard() {
     try {
-        const res = await instance.patch(` /user/:userId/cards/today`, {
+        const res = await instance.patch(` /user/${userId}/cards/today`, {
             headers: {
                 'Authorization': `Bearer ${access_token}`
             }
@@ -37,7 +37,7 @@ export async function patchTodayCard() {
 }
 export async function postTodayCard() {
     try {
-        const res = await instance.post(`/user/:userId/cards/today`, {
+        const res = await instance.post(`/user/${userId}/cards/today`, {
             headers: {
                 'Authorization': `Bearer ${access_token}`
             }
