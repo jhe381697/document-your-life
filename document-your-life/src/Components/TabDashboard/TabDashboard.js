@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/jsx-key */
 import React from 'react'
 
@@ -13,6 +14,7 @@ import Calendar from '../Calendar/Calendar';
 
 
 const TabDashboard = () => {
+  
   return (
   
     <div className='dashboard-container'>
@@ -20,7 +22,7 @@ const TabDashboard = () => {
         <div className='tab-dashboard'>
           <Link to="last/card" className='tab-dashboard-link'>Hier</Link>
           <Link to="calendar" className='tab-dashboard-link'>Calendrier</Link>
-          <Link to="today/card" className='tab-dashboard-link'>Aujourdhui</Link>
+          <Link to="today/card" className='tab-dashboard-link'>Aujourd'hui</Link>
         </div>
       </div>
       <Routes>
