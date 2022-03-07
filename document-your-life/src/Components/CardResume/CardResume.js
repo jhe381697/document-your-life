@@ -5,10 +5,16 @@ import './cardResume.scss'
 
 const CardResume = () => {
 
-  const [value, setValue] = useState();
+  // const [value, setValue] = useState();
+  const [mood, setMood] = useState();
+  const [medium, setMedium] = useState();
 
   useEffect(() => {
-    setValue(1);  // 1 remplacé par la réponse axios
+    setMood("emoticone");  // "emoticone" remplacé par la réponse axios
+  }, [])
+
+  useEffect(() => {
+    setMedium("medium");
   }, [])
   
   return (
@@ -17,11 +23,11 @@ const CardResume = () => {
         <h2>Date de la journée</h2>
         <div className='cardresume-mood'>
           <h3>Humeur de la journée</h3>
-          <div className='cardresume-mood-emoji'>{value}</div>
+          <div className='cardresume-mood-emoji'>{mood}</div>
         </div>
         <div className='cardresume-medium'>
           <h3>Résumé de la journée</h3>
-          <div className='cardresume-medium-infos'>medium</div>
+          <div className='cardresume-medium-infos'>{medium}</div>
         </div>
       </div>
     </div>
