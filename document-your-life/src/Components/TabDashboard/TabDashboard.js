@@ -19,8 +19,8 @@ const TabDashboard = () => {
 
   return (
     <>
-      <AvatarIcon />
       <div className='dashboard-container'>
+      <AvatarIcon />
         <div className='container'>
           <div className='tab-dashboard'>
             <Link to="last" className='tab-dashboard-link'>Hier</Link>
