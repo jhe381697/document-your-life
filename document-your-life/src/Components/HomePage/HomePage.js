@@ -1,34 +1,68 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/jsx-key */
 /* eslint-disable react/jsx-no-undef */
-import React  from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+
 // Scss
 import './homePage.scss';
 
 // Components
 import YoutubeEmbed from "../../utils/YoutubeEmbed/YoutubeEmbed";
 import Button from '../../utils/Button/Button';
+import Modal from '@mui/material/Modal';
+import Box from '@mui/material/Box';
 
 // Npm package
 
-// React Router Dom
 
 const HomePage = () => {
     // enter the end of a youtube link
-    const WelcomVid = 'o1eHKf-dMwo' 
-    
+    const WelcomVid = 'o1eHKf-dMwo'
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
+    useEffect(() => {
+        handleOpen()
+    }, [])
     return (
         <>
-        <div className='homepage'>
-            <h2 className='homepage-title'> Document Your Life </h2>
-            <div>
-             <YoutubeEmbed embedId={WelcomVid} />
+            <div className='homepage'>
+                <h2 className='homepage-title'> Document Your Life </h2>
+                <div>
+                    <YoutubeEmbed embedId={WelcomVid} />
+                </div>
             </div>
-        </div>
-        <div className='homepage-btn'>
-            <Button btnName="Let's Go!" path='/signup'/>
-        </div>
+            <div className='homepage-btn'>
+                <Button btnName="Let's Go!" path='/signup' />
+            </div>
+            <div className='homeModal'>
+                <Modal
+                    className="modalHover"
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description">
+                    <Box
+                        className="modalHover-box" >
+                        <h1 className='modalHover-title'>Bienvenue sur Document Your Life</h1>
+                        <h3 className='modalHover-subtitle'>Ici vous pourrez:</h3>
+                        <ul className='modalHover-container'>
+                            <li className='modalHover-container-text'>Logoden biniou. Bevañ onest. Vered ali. Ennon daoust. Oentr c’hilpenn. Rak  dan. Kant bloavezh. Gant ganin. Gouriz a-raok . Here aotrou.</li>
+
+                            <li className='modalHover-container-text'>Vezañ gambr. Drezañ ur. Wrierez drezo. Warnon diwezh. Deuet war. Plelann-Veur tregas. Holen Baz. Arabat goulenn. Mousc’hoarzhin chokolad. Bloaz yar.</li>
+
+                            <li className='modalHover-container-text'>Labourat eost. Zo danvez. Mamm vihan. Harz dreñv. Ur harzhal. Karout gavr. Brieg gaoued. Pluenn araok. Nebeutoc’h Sun. Gouzout he.</li>
+
+                            <li className='modalHover-container-text'>Bloaz pal. Abardaez burzhud. C’har asied. Merc’her arrebeuri. Pegañ skouarn. Hor kleñved. Bobl sioul. Tregastell broust. Gouere unan. Sellout askorn.</li>
+                        </ul>
+                        <button>Connexion</button>
+                        <button>inscription</button>
+                        <button>Voir la video de présentation</button>
+                    </Box>
+                </Modal>
+            </div>
         </>
     );
 };

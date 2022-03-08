@@ -2,8 +2,6 @@
 import axios from "axios";
 import { getItem } from "../service/LocaleStorage";
 
-let access_token = getItem('token')
-let userId = getItem('userId')
 
 const instance = axios.create({
     baseURL: 'https://dyl-api.herokuapp.com',
@@ -11,6 +9,8 @@ const instance = axios.create({
 });
 
 export default async function getAllCards() {
+    let access_token = getItem('token')
+    let userId = getItem('userId')
     try {
         const res = await instance.get(`/user/${userId}/cards/${cardId}`, {
             text: "text",
@@ -26,6 +26,8 @@ export default async function getAllCards() {
     }
 }
 export async function getTodayCard() {
+    let access_token = getItem('token')
+    let userId = getItem('userId')
     try {
         const response = await instance.get(`/user/${userId}/dashboard`, {
             headers: {
@@ -50,7 +52,9 @@ export async function getTodayCard() {
  * @audio {audio} file-
  * @returns 
  */
-export async function putTodayCard(type,value) {
+export async function putTodayCard(type, value) {
+    let access_token = getItem('token')
+    let userId = getItem('userId')
     const formData = new FormData();
     formData.append(type, value)
     try {
