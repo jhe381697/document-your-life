@@ -103,7 +103,8 @@ if(video !== null){
   console.log("video submitted")
 }
 
-
+const test = await putTodayCard("moodLabel","sad")
+console.log(test)
     // Utilisation de la requête PUT de CardsReq
     
     // putTodayCard("moodLabel", iconsToDatabase)
@@ -111,7 +112,7 @@ if(video !== null){
     // putTodayCard("image", mediasToDatabase)
     // putTodayCard("audio", mediasToDatabase)
     // putTodayCard("video", mediasToDatabase)
-
+return handleCloseModal()
 }
 
 return (
