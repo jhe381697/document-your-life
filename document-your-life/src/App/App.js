@@ -22,6 +22,8 @@ import Auth from "../contexts/Auth";
 import PrivateRoute, { IfConnectedRoute } from '../Components/PrivateRoute/PrivateRoute'
 import Contact from "../Contact/Contact";
 import About from "../About/About";
+import Card from "../Components/Card/Card"
+
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(hasAuthenticated())
@@ -68,6 +70,13 @@ function App() {
               <PrivateRoute>
                 <TabDashboard />
               </PrivateRoute>} />
+
+          <Route path="/card" element={
+              <PrivateRoute>
+                 <Card />
+              </PrivateRoute>
+          } />
+
           <Route path="/profil"
             element={
               <PrivateRoute>
@@ -76,7 +85,7 @@ function App() {
             } />
         </Routes>
       </div>
-    </Auth.Provider >
+    </Auth.Provider>
   );
 }
 
