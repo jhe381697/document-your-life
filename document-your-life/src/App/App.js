@@ -23,6 +23,7 @@ import PrivateRoute from '../Components/PrivateRoute/PrivateRoute'
 import Contact from "../Contact/Contact";
 import About from "../About/About";
 
+
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(hasAuthenticated())
 
@@ -61,9 +62,12 @@ function App() {
                 <ProfilePage />
               </PrivateRoute>
             } />
+            {/* INSERER POUR TESTS SUR CARDEDIT */}
+          <Route path="/card" element={<Card />} />
+          <Route path="/cardEdit" element={<CardEdit />} />
         </Routes>
       </div>
-    </Auth.Provider >
+    </Auth.Provider>
   );
 }
 
