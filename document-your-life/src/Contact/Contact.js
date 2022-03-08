@@ -30,6 +30,7 @@ const Contact = () => {
     ]
     return (
         <>
+        <h2>Contactes</h2>
             {devTeam.map(({ name, github, avatar }) => {
                 return (
                     <DevCard key={name} name={name} github={github} avatar={avatar} />

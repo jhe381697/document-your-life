@@ -21,6 +21,7 @@ import Login from "../Components/LoginForm/LoginForm";
 import Auth from "../contexts/Auth";
 import PrivateRoute from '../Components/PrivateRoute/PrivateRoute'
 import Contact from "../Contact/Contact";
+import About from "../About/About";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(hasAuthenticated())
@@ -47,6 +48,7 @@ function App() {
           <Route path="/signup" element={<FormSignIn />} />
           <Route path="/login" element={<Login />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/about" element={<About />} />
           {/* acces only with loggin or get redirected */}
           <Route path="/dashboard/*"
             element={
