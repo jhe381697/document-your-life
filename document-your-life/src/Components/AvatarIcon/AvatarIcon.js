@@ -1,10 +1,12 @@
 /* eslint-disable react/jsx-key */
-import React, { useEffect, useState } from 'react'
+import React, { memo, useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom';
 import { putTodayCard } from '../../RequestsAxios/CardsReq';
 import getUserData from '../../RequestsAxios/userData';
 import './avatarIcon.scss'
 
 const AvatarIcon = () => {
+  const locationURL = useLocation()
 
   const [file, setFile] = useState(null);
   const [toggle, setToggle] = useState(true);
@@ -26,13 +28,16 @@ const AvatarIcon = () => {
   }
 
   function handleToggle() {
-    setToggle(!toggle)
+    if (locationURL.pathname === "/profil") {
+      setToggle(!toggle)
+    }
+    return
   }
   async function getAvatarFromApi() {
     const res = await getUserData()
-    if(res.status === 200 ){
-    setAvatar(res.data.image)      
-    }else(console.log(res.status))
+    if (res.status === 200) {
+      setAvatar(res.data.image)
+    } else (console.log(res.status))
   }
   useEffect(() => {
     getAvatarFromApi()
@@ -42,16 +47,18 @@ const AvatarIcon = () => {
     <div className="avatarInput">
       {!toggle ? (
         <>
-          <label className="avatarInput-inpute">
-            <p> Ajouter une image</p>
-            <input type="file" name="upload_file" onChange={handleInputChange} />
-          </label>
-          <button type="submit" className="avatarInput-btn" title='Modifier votre photo de profile' onClick={() => submit()}>+</button></>
-      ) : <img onDoubleClick={handleToggle} className='avatarInput-avatar' src={avatar}/>}
+          <div className="avatarInput-inpute">
+            <label>
+              <input type="file" name="upload_file" onChange={handleInputChange} />
+            </label>
+            <button type="submit" className="avatarInput-btn" title='Modifier votre photo de profile' onClick={() => submit()}>+</button>
+          </div>
+        </>
+      ) : <img onClick={handleToggle} className='avatarInput-avatar' src={avatar} />}
     </div>
 
   )
 
 }
 
-export default AvatarIcon;
+export default memo(AvatarIcon);

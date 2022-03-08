@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import getUserData from '../../RequestsAxios/userData';
 import Spinner from '../../utils/Spinner/Spinner';
+import AvatarIcon from '../AvatarIcon/AvatarIcon';
 import './profilePage.scss';
 
 
@@ -32,7 +33,7 @@ const ProfilePage = () => {
             {loading ? <Spinner /> : (
                 <>
                     <div className='profilPage'>
-                        <p className='profilPage-personal-avatar'>Avatar</p>
+                        <AvatarIcon/>
                         <ul className='profilPage-personal'>
                             <li className='profilPage-personal-credentials'>{user.email}</li>
                             <li className='profilPage-personal-credentials'>{user.first_name}</li>

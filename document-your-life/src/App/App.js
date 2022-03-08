@@ -36,7 +36,6 @@ function App() {
     setIsAuthenticated(false)
     localStorage.removeItem('userId')
     localStorage.removeItem('token')
-    window.location.reload(true);
   }
 
   return (
