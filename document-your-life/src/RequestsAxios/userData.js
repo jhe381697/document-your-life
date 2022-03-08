@@ -9,9 +9,9 @@ const instance = axios.create({
     timeout: 1000
 });
 
-export default async function getUserData() {
+export default function getUserData() {
     try{
- const res = await instance.get(`/user/${userId}/profil`, {
+ const res = instance.get(`/user/${userId}/profil`, {
             headers: {
                 'Authorization': `Bearer ${access_token}`
             }
