@@ -10,7 +10,6 @@ const CardResume = () => {
   const [mood, setMood] = useState([]);
   const [mediums, setMediums] = useState([]);
   const [date, setDate] = useState();
-  
 
   const todayCardData = async () => {
     const todayCard = await getTodayCard();
@@ -36,6 +35,7 @@ const CardResume = () => {
   }, [])
   console.log(mood);
   console.log(mediums);
+  console.log(date);
 
   return (
     <div className='cardresume-container'>
