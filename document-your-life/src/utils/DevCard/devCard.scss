@@ -1,0 +1,25 @@
+.devCard{
+    border-radius: 5px;
+    display: flex;
+    width: 9rem;
+    height: 9rem;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    margin: 3rem;
+    box-shadow: 0px 0px 20px 0px #636363;
+        &:hover{
+            background-color: lightgray;
+            width: 14rem;
+            height:14rem;
+        }
+
+    &-avatar{
+        background-color: rgb(81, 255, 0);
+        height: 3rem;
+        width: 3rem;
+        border-radius: 50px;
+    }
+    &-link{
+    }
+}

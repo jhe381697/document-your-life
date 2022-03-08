@@ -18,4 +18,4 @@ const AvatarIcon = () => {
   );
 };
 
-export default AvatarIcon;
+export default React.memo(AvatarIcon);

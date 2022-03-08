@@ -1,6 +1,7 @@
   @import "../../styles/vars.scss";
 
 .container {
+  margin-top: 3rem;
   display: flex;
   justify-content: center;
 }
@@ -19,7 +20,7 @@
   }
 }
 .dashboard-container{
-    bottom: -204px;
+    bottom: -1rem;
     position: relative;
     min-height: 18rem;
 }
