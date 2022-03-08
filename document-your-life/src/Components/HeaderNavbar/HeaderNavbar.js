@@ -5,13 +5,14 @@ import React, { memo, useContext } from 'react';
 
 // react-router-dom
 //==================
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Auth from '../../contexts/Auth';
 //==================
 
 const HeaderNavbar = ({ handleConnection }) => {
     const { isAuthenticated } = useContext(Auth);
-
+    const LocationURL = useLocation()
+    console.log(LocationURL.pathname)
     return (
         <div className='HeaderNavbar'>
             <div className='HeaderNavbar-logo'>
@@ -22,12 +23,17 @@ const HeaderNavbar = ({ handleConnection }) => {
             {/* condition if connected then show  link to logout and if disconnected show link to login */}
             {!isAuthenticated ? (
                 <>
-                    <Link className='HeaderNavbar-link' to='/login' >Connexion</Link>
+                    {LocationURL.pathname === '/' ?
+                        <Link className='HeaderNavbar-link' to='/login' >Connexion</Link> :
+                        <Link className='HeaderNavbar-link' to='/' >Accueil</Link>
+                          
+                          }
 
                 </>
             ) : (
                 <>
-                    <Link className='HeaderNavbar-link' to='/profil' >Profil</Link>
+                    {LocationURL.pathname === '/profil' ? <Link className='HeaderNavbar-link' to='/Dashboard/calendar' >Dashboard</Link> :
+                        <Link className='HeaderNavbar-link' to='/profil' >Profil</Link>}
                     <Link onClick={handleConnection} className='HeaderNavbar-link' to='/' >Déconnexion</Link>
                 </>
             )}
