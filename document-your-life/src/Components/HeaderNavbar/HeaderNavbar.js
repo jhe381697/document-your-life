@@ -12,7 +12,6 @@ import Auth from '../../contexts/Auth';
 const HeaderNavbar = ({ handleConnection }) => {
     const { isAuthenticated } = useContext(Auth);
     const LocationURL = useLocation()
-    console.log(LocationURL.pathname)
     return (
         <div className='HeaderNavbar'>
             <div className='HeaderNavbar-logo'>
