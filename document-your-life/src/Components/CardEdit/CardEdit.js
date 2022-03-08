@@ -22,6 +22,7 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
+//!TODO faire les inputes text, video, image, audio sous forme file 
 
 export default function CardEdit() {
   // useState ouv/ferm Modal
@@ -102,9 +103,6 @@ if(video !== null){
   putTodayCard("video",video)
   console.log("video submitted")
 }
-
-const test = await putTodayCard("moodLabel","sad")
-console.log(test)
     // Utilisation de la requête PUT de CardsReq
     
     // putTodayCard("moodLabel", iconsToDatabase)
