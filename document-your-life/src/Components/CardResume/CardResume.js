@@ -2,7 +2,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import './cardResume.scss'
-
+import { Link } from "react-router-dom"
 const CardResume = () => {
 
   // const [value, setValue] = useState();
@@ -18,6 +18,7 @@ const CardResume = () => {
   }, [])
   
   return (
+    <Link to='/card'>
     <div className='cardresume-container'>
       <div className='cardresume'>
         <h2>Date de la journée</h2>
@@ -31,6 +32,7 @@ const CardResume = () => {
         </div>
       </div>
     </div>
+    </Link>
   )
 }
 

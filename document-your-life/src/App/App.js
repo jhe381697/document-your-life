@@ -22,6 +22,7 @@ import Auth from "../contexts/Auth";
 import PrivateRoute from '../Components/PrivateRoute/PrivateRoute'
 import Contact from "../Contact/Contact";
 import About from "../About/About";
+import Card from "../Components/Card/Card"
 
 
 function App() {
@@ -56,15 +57,19 @@ function App() {
               <PrivateRoute>
                 <TabDashboard />
               </PrivateRoute>} />
+
+          <Route path="/card" element={
+              <PrivateRoute>
+                 <Card />
+              </PrivateRoute>
+          } />
+
           <Route path="/profil"
             element={
               <PrivateRoute>
                 <ProfilePage />
               </PrivateRoute>
             } />
-            {/* INSERER POUR TESTS SUR CARDEDIT */}
-          <Route path="/card" element={<Card />} />
-          <Route path="/cardEdit" element={<CardEdit />} />
         </Routes>
       </div>
     </Auth.Provider>
