@@ -43,7 +43,6 @@ try{
 
 } catch ({ response }) {
     Notify("Attention, votre identifiant ou votre mot de passe est incorrect.", "warning")
-      console.log('asdfasdfasdfasdfasdf')
     
 }
 
