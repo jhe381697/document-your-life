@@ -48,4 +48,4 @@ ProfilePage.propTypes = {
 };
 ProfilePage.defaultProps = {
 };
-export default React.memo(ProfilePage)
+export default ProfilePage

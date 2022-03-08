@@ -20,7 +20,6 @@ import HomePage from "../Components/HomePage/HomePage";
 import Login from "../Components/LoginForm/LoginForm";
 import Auth from "../contexts/Auth";
 import PrivateRoute from '../Components/PrivateRoute/PrivateRoute'
-import getUserData from "../RequestsAxios/userData";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(hasAuthenticated())
