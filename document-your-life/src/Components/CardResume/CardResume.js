@@ -8,7 +8,9 @@ const CardResume = () => {
 
   // const [value, setValue] = useState();
   const [mood, setMood] = useState([]);
-  // const [mediums, setMediums] = useState([]);
+  const [mediums, setMediums] = useState([]);
+  const [date, setDate] = useState();
+  
 
   const todayCardData = async () => {
     const todayCard = await getTodayCard();
@@ -16,11 +18,11 @@ const CardResume = () => {
     if (todayCard.status === 200)
       {
         setMood(todayCard.data.lastCards[0].moodlabel);
-        // setMediums(todayCard.data.lastCards[0].audio);
-        // setMediums(todayCard.data.lastCards[0].image);
-        // setMediums(todayCard.data.lastCards[0].text);
-        // setMediums(todayCard.data.lastCards[0].video);
-        // const cardDate = todayCard.data.lastCards[0].created_at;
+        setMediums(todayCard.data.lastCards[0].audio);
+        setMediums(todayCard.data.lastCards[0].image);
+        setMediums(todayCard.data.lastCards[0].text);
+        setMediums(todayCard.data.lastCards[0].video);
+        setDate(todayCard.data.lastCards[0].created_at);
         return
       }
     else {
@@ -33,11 +35,12 @@ const CardResume = () => {
     todayCardData();
   }, [])
   console.log(mood);
+  console.log(mediums);
 
   return (
     <div className='cardresume-container'>
       <div className='cardresume'>
-        <h2>Date de la journée</h2>
+        <h2>{date}</h2>
         <div className='cardresume-mood'>
           <h3>Humeur de la journée</h3>
           <div className='cardresume-mood-emoji'>{mood}</div>
@@ -46,7 +49,7 @@ const CardResume = () => {
           <h3>Résumé de la journée</h3>
           <div className='cardresume-medium-infos'>
             {/* {mediums.map((medium) => (
-              {medium}
+              
             ))} */}
           </div>
         </div>
