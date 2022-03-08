@@ -23,8 +23,9 @@ const Calendar = () => {
     e.preventDefault();
     const res = await putTodayCard("moodLabel","neutral")
     const res1 = await getTodayCard()
+    if (res.status === 200 || res1.status === 200){
     settest1(res1)
-    settest(res)
+    settest(res)}
      console.log('test PUT', test,
       'test GET', test1)
   }

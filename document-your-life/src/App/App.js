@@ -2,7 +2,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable react/jsx-key */
 
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 
 // Sass
 import './App.css';
@@ -20,6 +20,7 @@ import HomePage from "../Components/HomePage/HomePage";
 import Login from "../Components/LoginForm/LoginForm";
 import Auth from "../contexts/Auth";
 import PrivateRoute from '../Components/PrivateRoute/PrivateRoute'
+import Contact from "../Contact/Contact";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(hasAuthenticated())
@@ -34,6 +35,7 @@ function App() {
     setIsAuthenticated(false)
     localStorage.removeItem('userId')
     localStorage.removeItem('token')
+    window.location.reload(true);
   }
 
   return (
@@ -44,6 +46,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/signup" element={<FormSignIn />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/contact" element={<Contact />} />
           {/* acces only with loggin or get redirected */}
           <Route path="/dashboard/*"
             element={
