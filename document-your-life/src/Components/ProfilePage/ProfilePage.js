@@ -7,19 +7,32 @@ import './profilePage.scss';
 
 
 const ProfilePage = () => {
-    const [loading, setLoading] = useState(false);
-    const [user, setUser] = useState("");
-    const clearState = () => {
-        setUser('')
+    const initialState = {
+        email: '',
+        first_name: '',
+        last_name: '',
+
     }
+    const [loading, setLoading] = useState(false);
+    const [user, setUser] = useState(initialState);
+
     useEffect(() => {
-        clearState()
-        getUserData().then(clearState())
+        if (user === initialState){
+        getUserData().then()
             .then(response => {
                 console.log(response.data)
                 setUser(response.data)
             })
             .then(setLoading(false))
+
+            console.log(user)
+            return 
+        } else {
+            console.log(user)
+
+            setUser(initialState)
+        }
+
     }, []);
 
     return (
@@ -29,14 +42,14 @@ const ProfilePage = () => {
                     <Link className='retourn' to="/dashboard/calendar">
                         retourn
                     </Link>
-                <div className='profilPage'>
-                    <p className='profilPage-personal-avatar'>Avatar</p>
-                    <ul className='profilPage-personal'>
-                        <li className='profilPage-personal-credentials'>{user.email}</li>
-                        <li className='profilPage-personal-credentials'>{user.first_name}</li>
-                        <li className='profilPage-personal-credentials'>{user.last_name}</li>
-                    </ul>
-                </div>
+                    <div className='profilPage'>
+                        <p className='profilPage-personal-avatar'>Avatar</p>
+                        <ul className='profilPage-personal'>
+                            <li className='profilPage-personal-credentials'>{user.email}</li>
+                            <li className='profilPage-personal-credentials'>{user.first_name}</li>
+                            <li className='profilPage-personal-credentials'>{user.last_name}</li>
+                        </ul>
+                    </div>
                 </>
             )
             }
