@@ -7,21 +7,26 @@ import './cardResume.scss'
 const CardResume = () => {
 
   // const [value, setValue] = useState();
-  const [mood, setMood] = useState([]);
-  const [mediums, setMediums] = useState([]);
   const [date, setDate] = useState();
+  const [mood, setMood] = useState([]);
+  const [texts, setTexts] = useState([]);
+  const [sounds, setSounds] = useState([]);
+  const [pictures, setPictures] = useState([]);
+  const [videos, setVideos] = useState([]);
+
+
 
   const todayCardData = async () => {
     const todayCard = await getTodayCard();
     console.log(todayCard);
     if (todayCard.status === 200)
       {
-        setMood(todayCard.data.lastCards[0].moodlabel);
-        setMediums(todayCard.data.lastCards[0].audio);
-        setMediums(todayCard.data.lastCards[0].image);
-        setMediums(todayCard.data.lastCards[0].text);
-        setMediums(todayCard.data.lastCards[0].video);
         setDate(todayCard.data.lastCards[0].created_at);
+        setMood(todayCard.data.lastCards[0].moodlabel);
+        setTexts(todayCard.data.lastCards[0].text);
+        setSounds(todayCard.data.lastCards[0].audio);
+        setPictures(todayCard.data.lastCards[0].image);
+        setVideos(todayCard.data.lastCards[0].video);
         return
       }
     else {
@@ -34,7 +39,7 @@ const CardResume = () => {
     todayCardData();
   }, [])
   console.log(mood);
-  console.log(mediums);
+  console.log(sounds);
   console.log(date);
 
   return (
@@ -48,9 +53,18 @@ const CardResume = () => {
         <div className='cardresume-medium'>
           <h3>Résumé de la journée</h3>
           <div className='cardresume-medium-infos'>
-            {/* {mediums.map((medium) => (
-              
-            ))} */}
+            {texts.map((text) => (
+              {text}
+            ))}
+            {sounds.map((sound) => (
+              {sound}
+            ))}
+            {pictures.map((picture) => (
+              {picture}
+            ))}
+            {videos.map((video) => (
+              {video}
+            ))}
           </div>
         </div>
       </div>
