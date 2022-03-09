@@ -5,12 +5,12 @@ import './devCard.scss';
 
 const DevCard = ({ name, github, avatar }) => {
     return (
-            <a title='Cliquez pour accéder à nos github' className='devCard-link' href={github}>
-        <div className='devCard'>
-                <img className='devCard-avatar' src={avatar}></img>
-                <h3 className='devCard-name'>{name}</h3>
-        </div>
-            </a>
+      <a title='Cliquez pour accéder à nos github' className='devCard-link' href={github}>
+      <div className='devCard'>
+        <img className='devCard-avatar' src={avatar}></img>
+        <h3 className='devCard-name'>{name}</h3>
+      </div>
+      </a>
     );
 };
 
