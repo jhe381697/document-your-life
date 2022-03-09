@@ -5,16 +5,12 @@ import { getTodayCard } from '../../RequestsAxios/CardsReq';
 import './cardResume.scss'
 import { Link } from "react-router-dom"
 const CardResume = () => {
-
-  // const [value, setValue] = useState();
   const [date, setDate] = useState();
   const [mood, setMood] = useState([]);
   const [texts, setTexts] = useState([]);
   const [sounds, setSounds] = useState([]);
   const [pictures, setPictures] = useState([]);
   const [videos, setVideos] = useState([]);
-
-
 
   const todayCardData = async () => {
     const todayCard = await getTodayCard();
@@ -54,18 +50,25 @@ const CardResume = () => {
         <div className='cardresume-medium'>
           <h3>Résumé de la journée</h3>
           <div className='cardresume-medium-infos'>
-            {texts.map((text) => (
-              {text}
-            ))}
-            {sounds.map((sound) => (
-              {sound}
-            ))}
-            {pictures.map((picture) => (
-              {picture}
-            ))}
-            {videos.map((video) => (
-              {video}
-            ))}
+            {texts ? 
+            texts.map((text) => (
+              <div>{text}</div>
+            )) : null}
+
+            {sounds ?
+            sounds.map((sound) => (
+              <div>{sound}</div>
+            )) : null}
+
+            {pictures ?
+            pictures.map((picture) => (
+              <div>{picture}</div>
+            )) : null}
+
+            {videos ?
+            videos.map((video) => (
+              <div>{video}</div>
+            )) : null}
           </div>
         </div>
       </div>
