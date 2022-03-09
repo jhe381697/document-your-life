@@ -13,10 +13,13 @@ const Card = () => {
   const [sounds, setSounds] = useState([]);
   const [pictures, setPictures] = useState([]);
   const [videos, setVideos] = useState([]);
-  const [isCardEditDisable, setIsCardEditDisable] = useState(false);
+  const [isCardEditDisable, setIsCardEditDisable] = useState(true);
+  const [currentDate, setCurrentDate] = useState(new Date());
+  const [lastDate, setLastDate] = useState();
+
 
   async function dayCardData() {
-    const dayCard = await getAllCards(22);
+    const dayCard = await getAllCards(12);
     console.log(dayCard);
     if (dayCard.status === 200)
       {
@@ -38,16 +41,15 @@ const Card = () => {
   const todayDateData = async () => {
     const todayDate = await getTodayCard();
     console.log(todayDate);
-    const lastDate = todayDate.data.lastCards[0].created_at;
-    const currentDate = Date.now();
-    if (lastDate === currentDate) {
-      if (isCardEditDisable === false) {
-        setIsCardEditDisable(true);
-      }
-    }
-    else if (isCardEditDisable === true) {
+    const nowDate = todayDate.data.lastCards[0].created_at;
+    const nowCurrentDate = new Date();
+    console.log(lastDate);
+    console.log(currentDate);
+    setCurrentDate(nowCurrentDate.toISOString().split('T')[0]);
+    setLastDate(nowDate.split('T')[0]);
+    if (lastDate !== currentDate) {
       setIsCardEditDisable(false);
-    }
+      }
   }
 
   console.log(mood);
@@ -86,7 +88,9 @@ const Card = () => {
           </div>
         </div>
       </div>
-      <CardEdit disabled={isCardEditDisable} />
+      {
+        isCardEditDisable ? <CardEdit/> : null
+      }
     </div>
   )
 }
