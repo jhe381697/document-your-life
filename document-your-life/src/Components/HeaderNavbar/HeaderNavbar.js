@@ -2,7 +2,7 @@
 import PropTypes from 'prop-types';
 import './headerNavbar.scss';
 import React, { memo, useContext } from 'react';
-
+import logo from '../../LogoDyl/dyllogo.png'
 // react-router-dom
 //==================
 import { Link, useLocation } from "react-router-dom";
@@ -14,9 +14,7 @@ const HeaderNavbar = ({ handleConnection }) => {
     const LocationURL = useLocation()
     return (
         <div className='HeaderNavbar'>
-            <div className='HeaderNavbar-logo'>
-                {/* TODO Add logo */}
-            </div>
+                <img className='HeaderNavbar-logo' src={logo} />
             <Link className='HeaderNavbar-link' to='/about' >À propos</Link>
             <Link className='HeaderNavbar-link' to='/contact' >Contact</Link>
             {/* condition if connected then show  link to logout and if disconnected show link to login */}
@@ -25,8 +23,8 @@ const HeaderNavbar = ({ handleConnection }) => {
                     {LocationURL.pathname === '/' ?
                         <Link className='HeaderNavbar-link' to='/login' >Connexion</Link> :
                         <Link className='HeaderNavbar-link' to='/' >Accueil</Link>
-                          
-                          }
+
+                    }
 
                 </>
             ) : (

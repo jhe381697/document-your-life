@@ -58,7 +58,7 @@ export async function putTodayCard(type, value) {
     const formData = new FormData();
     formData.append(type, value)
     try {
-        const res = await instance.put(`/user/${userId}/cards/today`, 
+        const res = await instance.put(`/user/${userId}/cards/today`,
             formData, {
             headers: {
                 'Authorization': `Bearer ${access_token}`
