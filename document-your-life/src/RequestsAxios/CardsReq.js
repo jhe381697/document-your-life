@@ -13,7 +13,6 @@ export default async function getAllCards() {
     let userId = getItem('userId')
     try {
         const res = await instance.get(`/user/${userId}/cards/${cardId}`, {
-            text: "text",
             headers: {
                 'Authorization': `Bearer ${access_token}`,
             }
