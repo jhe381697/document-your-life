@@ -7,19 +7,14 @@ const instance = axios.create({
 });
 
 export default function getUserData() {
-let userId = localStorage.getItem('userId')
-let access_token = localStorage.getItem('token')
-    console.log('1',userId)
-    if (userId === null) {
-        console.log('2', userId)
-    } else {
-        const res = instance.get(`/user/${userId}/profil`, {
-            headers: {
-                'Authorization': `Bearer ${access_token}`
-            }
-        })
-        console.log('3', userId)
-        return res
-   
+    let userId = localStorage.getItem('userId')
+    let access_token = localStorage.getItem('token')
+    const res = instance.get(`/user/${userId}/profil`, {
+        headers: {
+            'Authorization': `Bearer ${access_token}`
+        }
+    })
+    return res
+
+
 }
-    }
