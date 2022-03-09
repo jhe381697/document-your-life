@@ -33,9 +33,63 @@
             font:$fontP;
     }
     }
-
+    &-button{
+        background-color: transparent;
+        border: 1px solid #0a62b917;
+        box-sizing: border-box;
+        color: #00132cab;
+        font-family: "Lato", regular;
+        font-size: 1rem;
+        font-weight: 600;
+        line-height: 24px;
+        padding: 5px 23px;
+        margin: 20px 0 10px;
+        position: relative;
+        text-decoration: none;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        &:hover {
+            background-color: transparent;
+            cursor: pointer;
+            outline: 0;
+        }
+        &:before {
+            background-color: #d5edf69c;
+            content: "";
+            height: calc(100% + 3px);
+            position: absolute;
+            right: -7px;
+            top: -9px;
+            transition: background-color 300ms ease-in;
+            width: 100%;
+            z-index: -1;
+        }
+        &:hover:before{
+            background-color: #6DCFF6;
+        }
+    }
+    &-skipButton {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 6px 30px;
+        font-family: "Lato", regular;
+        border-radius: 6px;
+        color: #7E8CAF;
+        background: rgba(255, 255, 255, 0.041);
+        border: none;
+        box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.014);
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        &:focus{
+            box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+            outline: 0;
+        }
+    }
     &-box{
-    background-color:#ffffffc4 ;
+    background-color:#ffffffe0 ;
     margin: 2rem;
     padding: 1rem;
     height: 85%;
@@ -49,6 +103,15 @@
     }
     &-subtitle{
         margin-top: 0.5rem;
-        margin-bottom: 3rem;
+        margin-bottom: 2.5rem;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .modalHover{
+        justify-content: space-around;
+        &-skipButton {
+            bottom: 0;
+        }
     }
 }

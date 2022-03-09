@@ -7,6 +7,10 @@ import PropTypes from 'prop-types';
 // Scss
 import './homePage.scss';
 
+// react-router-dom
+//==================
+import { Link } from "react-router-dom";
+
 // Components
 import YoutubeEmbed from "../../utils/YoutubeEmbed/YoutubeEmbed";
 import Button from '../../utils/Button/Button';
@@ -55,11 +59,15 @@ const HomePage = () => {
 
                             <li className='modalHover-container-text'>Labourat eost. Zo danvez. Mamm vihan. Harz dreñv. Ur harzhal. Karout gavr. Brieg gaoued. Pluenn araok. Nebeutoc’h Sun. Gouzout he.</li>
 
-                            <li className='modalHover-container-text'>Bloaz pal. Abardaez burzhud. C’har asied. Merc’her arrebeuri. Pegañ skouarn. Hor kleñved. Bobl sioul. Tregastell broust. Gouere unan. Sellout askorn.</li>
+                            {/* <li className='modalHover-container-text'>Bloaz pal. Abardaez burzhud. C’har asied. Merc’her arrebeuri. Pegañ skouarn. Hor kleñved. Bobl sioul. Tregastell broust. Gouere unan. Sellout askorn.</li> */}
                         </ul>
-                        <button>Connexion</button>
-                        <button>inscription</button>
-                        <button>Voir la video de présentation</button>
+                        <button className='modalHover-button'>
+                            <Link to='/login'>Connexion</Link>
+                        </button>
+                        <button className='modalHover-button'>
+                            <Link to='/signup'>Inscription</Link>
+                        </button>
+                        <button className='modalHover-skipButton' onClick={handleClose}>Passer</button>
                     </Box>
                 </Modal>
             </div>
