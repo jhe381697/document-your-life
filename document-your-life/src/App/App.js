@@ -74,7 +74,7 @@ function App() {
                 <TabDashboard />
               </PrivateRoute>} />
 
-          <Route path="/card" element={
+          <Route path="/card/*" element={
               <PrivateRoute>
                  <Card />
               </PrivateRoute>
