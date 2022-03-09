@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-key */
 import React, { useEffect, useState } from 'react';
 import getUserData from '../../RequestsAxios/userData';
-import { Link } from 'react-router-dom';
 import Spinner from '../../utils/Spinner/Spinner';
+import AvatarIcon from '../AvatarIcon/AvatarIcon';
 import './profilePage.scss';
 
 
@@ -32,11 +32,8 @@ const ProfilePage = () => {
         <>
             {loading ? <Spinner /> : (
                 <>
-                    <Link className='retourn' to="/dashboard/calendar">
-                        retourn
-                    </Link>
                     <div className='profilPage'>
-                        <p className='profilPage-personal-avatar'>Avatar</p>
+                        <AvatarIcon/>
                         <ul className='profilPage-personal'>
                             <li className='profilPage-personal-credentials'>{user.email}</li>
                             <li className='profilPage-personal-credentials'>{user.first_name}</li>

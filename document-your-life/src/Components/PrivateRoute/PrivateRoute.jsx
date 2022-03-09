@@ -8,11 +8,19 @@ import { useContext } from "react";
 import { Navigate } from "react-router-dom";
 import Auth from "../../contexts/Auth";
 
-const PrivateRoute = ({ children  }) => {
+export default function PrivateRoute({ children  }) {
     const { isAuthenticated } = useContext(Auth);
 
     return isAuthenticated ? ( children 
         ) : (
         <Navigate to="/" />)
 }
-export default PrivateRoute
+
+export  function IfConnectedRoute({ children  }) {
+    const { isAuthenticated } = useContext(Auth);
+
+    return !isAuthenticated ? ( children 
+        ) : (
+        <Navigate to="/dashboard/calendar" />)
+}
+

@@ -19,9 +19,11 @@ import ProfilePage from "../Components/ProfilePage/ProfilePage";
 import HomePage from "../Components/HomePage/HomePage";
 import Login from "../Components/LoginForm/LoginForm";
 import Auth from "../contexts/Auth";
-import PrivateRoute from '../Components/PrivateRoute/PrivateRoute'
+import PrivateRoute, { IfConnectedRoute } from '../Components/PrivateRoute/PrivateRoute'
 import Contact from "../Contact/Contact";
 import About from "../About/About";
+import Card from "../Components/Card/Card"
+
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(hasAuthenticated())
@@ -36,7 +38,6 @@ function App() {
     setIsAuthenticated(false)
     localStorage.removeItem('userId')
     localStorage.removeItem('token')
-    window.location.reload(true);
   }
 
   return (
@@ -44,17 +45,38 @@ function App() {
       <div className="App">
         <HeaderNavbar IsConnected={IsConnected} handleConnection={handleConnection} />
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/signup" element={<FormSignIn />} />
-          <Route path="/login" element={<Login />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
+
+          {/* acces only if not logged or get redirected */}
+          <Route path="/" element={
+            <IfConnectedRoute>
+          <HomePage />
+            </IfConnectedRoute>
+          } />
+          <Route path="/signup" element={
+            <IfConnectedRoute>
+              <FormSignIn />
+            </IfConnectedRoute>} />
+          <Route path="/login" element={
+            <IfConnectedRoute>
+              <Login />
+            </IfConnectedRoute>} />
+            
           {/* acces only with loggin or get redirected */}
+
           <Route path="/dashboard/*"
             element={
               <PrivateRoute>
                 <TabDashboard />
               </PrivateRoute>} />
+
+          <Route path="/card" element={
+              <PrivateRoute>
+                 <Card />
+              </PrivateRoute>
+          } />
+
           <Route path="/profil"
             element={
               <PrivateRoute>
@@ -63,7 +85,7 @@ function App() {
             } />
         </Routes>
       </div>
-    </Auth.Provider >
+    </Auth.Provider>
   );
 }
 

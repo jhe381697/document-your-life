@@ -66,9 +66,11 @@ export async function putTodayCard(type, value) {
         }
 
         )
+        console.log(res)
         return res
     }
     catch (err) {
+        console.log(err.res)
         return err.res;
     }
 }

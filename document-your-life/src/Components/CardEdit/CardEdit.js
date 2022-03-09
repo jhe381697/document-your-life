@@ -1,15 +1,16 @@
 /* eslint-disable react/jsx-key */
 import * as React from 'react';
+import { putTodayCard } from '../../RequestsAxios/CardsReq';
 import Box from '@mui/material/Box';
-// import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLaughBeam, faSadTear, faSmileWink, faMehBlank, faKeyboard, faCamera, faMicrophone, faVideo, faTimes } from '@fortawesome/free-solid-svg-icons';
-// import axios pour la requête
-import axios from "axios";
 
+// import du css
 import './cardEdit.scss';
 
+// Style de la box material-ui
 const style = {
   position: 'absolute',
   top: '50%',
@@ -21,13 +22,10 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
+//!TODO faire les inputes text, video, image, audio sous forme file 
 
 export default function CardEdit() {
-
-  // Importation du userId via le localStorage
-  let userId= localStorage.getItem('userId')
-
-	// useState pour ouv/ferm Modal
+  // useState ouv/ferm Modal
 	const [open, setOpen] = React.useState(false);
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
@@ -36,116 +34,90 @@ export default function CardEdit() {
   function handleCloseModal (event) {
     event.preventDefault();
     open ? setOpen(false) : '';
+    // Remise à (null) des icones cliqués à la ferm de la modale
+    setHappy(null)
+    setSad(null)
+    setCool(null)
+    setNeutral(null)
+    setText(null)
+    setPhoto(null)
+    setMicro(null)
+    setVideo(null)
   }
+  
+  // Usestates des icones
+  
+  const [happy, setHappy]= React.useState(null)
+  const [sad, setSad]= React.useState(null)
+  const [cool, setCool]= React.useState(null)
+  const [neutral, setNeutral]= React.useState(null)
+  
+  const [text, setText] = React.useState(null);
+	const [photo, setPhoto] = React.useState(null);
+	const [micro, setMicro] = React.useState(null);
+	const [video, setVideo] = React.useState(null);
 
-  // Essai d'un useState général
-  const[icons, setIcons] = React.useState(null);
-  const[medias, setMedias] = React.useState(null);
+  // // useStates emojis et médias
+  // const[icons, setIcons] = React.useState(null);
+  // const[medias, setMedias] = React.useState(null);
 
-  // Fonction au Submit qui récupère le State
-// async function setSubmit () {
-//   await axiosRequest(icons);
-// }
+  // // Variables qui reçoivent les useStates
+  // let iconsToDatabase = icons;
+  // let mediasToDatabase = medias;
+  // console.log(iconsToDatabase);
+  // console.log(mediasToDatabase);
 
-  // Fonction au click qui récupère le name de la cible
-  // function handleClick (event) {
-  //   event.preventDefault();
-  //   setIcons(event.target.name);
-  //   console.log(icons)
-  // }
+  // Requête POST axios vers la BDD
+  const handleOnSubmit = async(e) => {
+    e.preventDefault();
+if(happy !== null){
+  putTodayCard("moodLabel",happy)
+  console.log("happy submitted")
+}
+if(sad !== null){
+  putTodayCard("moodLabel",sad)
+  console.log("sad submitted")
+}
+if(cool !== null){
+  putTodayCard("moodLabel",cool)
+  console.log("cool submitted")
+}
+if(neutral !== null){
+  putTodayCard("moodLabel",neutral)
+  console.log("neutral submitted")
+}
 
-	// useState qui correspond à chaque emoticon cliqué
-	// const [happy, setHappy] = React.useState('');
-	// const [sad, setSad] = React.useState('');
-	// const [cool, setCool] = React.useState('');
-	// const [neutral, setNeutral] = React.useState('');
-
-  // useState qui correspond à chaque média cliqué
-	// const [text, setText] = React.useState('');
-	// const [photo, setPhoto] = React.useState('');
-	// const [micro, setMicro] = React.useState('');
-	// const [video, setVideo] = React.useState('');
-
-	// fonctions "onClick" changent les setStates Emojis
-	// function handleClickHappy (event) {
-  //   event.preventDefault();
-  //   setIcons("Happy");
-  //   console.log(event.target)
-  // }
-
-	// function handleClickSad (event) {
-  //   event.preventDefault();
-  //   setIcons("Sad");
-  //   console.log(event.target)
-  // }
-
-  // function handleClickCool (event) {
-  //   event.preventDefault();
-  //   setIcons("Cool");
-  //   console.log(event.target)
-  // }
-
-  // function handleClickNeutral (event) {
-  //   event.preventDefault();
-  //   setIcons("Neutral");
-  //   console.log(event.target)
-  // }
-
-  // fonctions "onClick" changent les setStates Médias
-	// function handleClickKeyboard (event) {
-  //   event.preventDefault();
-  //   setIcons("text");
-  //   console.log(event.target)
-  // }
-
-	// function handleClickPhoto (event) {
-  //   event.preventDefault();
-  //   setIcons("Photo");
-  //   console.log(event.target)
-  // }
-
-  // function handleClickMicrophone (event) {
-  //   event.preventDefault();
-  //   setIcons("Micro");
-  //   console.log(event.target)
-  // }
-
-  // function handleClickVideo (event) {
-  //   event.preventDefault();
-  //   setIcons("Video");
-  //   console.log(event.target)
-  // }
-
-  // async function axiosRequest (params) {
-  //   await axios.post(`https://dyl-api.herokuapp.com/user/${userId}/cards/today`, {moodLabel: params})
-  //   .then(response => console.log(response)
-  //   .catch(error => console.log(error)))
-  // }
-  // axiosRequest();
-
-  // let iconsToDatabase = new FormData();
-
-  // iconsToDatabase.set(icons, '');
-
-  let iconsToDatabase = icons;
-  let mediasToDatabase = medias;
-  console.log(iconsToDatabase);
-  console.log(mediasToDatabase);
-
-  async function axiosRequest (iconsToDatabase, mediasToDatabase) {
-    await axios.post(`https://dyl-api.herokuapp.com/user/${userId}/cards/today`, {
-      iconsToDatabase, mediasToDatabase})
-    .then(response => console.log(response)
-    .catch(error => console.log(error)))
-  }
-  axiosRequest();
+if(text !== null){
+  putTodayCard("text",text)
+  console.log("text submitted")
+}
+if(photo !== null){
+  putTodayCard("image",photo)
+  console.log("image submitted")
+}
+if(micro !== null){
+  putTodayCard("audio",micro)
+  console.log("audio submitted")
+}
+if(video !== null){
+  putTodayCard("video",video)
+  console.log("video submitted")
+}
+    // Utilisation de la requête PUT de CardsReq
+    
+    // putTodayCard("moodLabel", iconsToDatabase)
+    // putTodayCard("text", mediasToDatabase)
+    // putTodayCard("image", mediasToDatabase)
+    // putTodayCard("audio", mediasToDatabase)
+    // putTodayCard("video", mediasToDatabase)
+return handleCloseModal()
+}
 
 return (
       <div>
         <button className="button-card-edit" onClick={handleOpen}>
           <span className='button-card-edit-text'>
-            New Day !
-          </span>
+            New Day !          </span>
         </button>
         <Modal
           open={open}
@@ -157,19 +129,19 @@ return (
             <div className="emojis">
             <FontAwesomeIcon icon={faTimes} className="fas fa-times" name="faTimes" onClick={handleCloseModal}/>
               <h3 className="emojis-text">Partage ton humeur du jour:</h3>
-              <FontAwesomeIcon icon={faLaughBeam} className="setIconsfas fa-laugh-beam" name="Happy" onClick={() => setIcons("Happy")} />
-              <FontAwesomeIcon icon={faSadTear} className="fas fa-sad-tear" name="Sad" onClick={() => setIcons("Sad")} />
-              <FontAwesomeIcon icon={faSmileWink} className="fas fa-smile-wink" name="Cool" onClick={() => setIcons("Cool")} />
-              <FontAwesomeIcon icon={faMehBlank} className="fas fa-meh-blank" name="Neutral" onClick={() => setIcons("Neutral")} />
-            </div>
+              <FontAwesomeIcon icon={faLaughBeam} className="fas fa-laugh-beam" name="Happy" onClick={() => setHappy("happy")} />
+              <FontAwesomeIcon icon={faSadTear} className="fas fa-sad-tear" name="Sad" onClick={() => setSad("sad")} />
+              <FontAwesomeIcon icon={faSmileWink} className="fas fa-smile-wink" name="Cool" onClick={() => setCool("cool")} />
+              <FontAwesomeIcon icon={faMehBlank} className="fas fa-meh-blank" name="Neutral" onClick={() => setNeutral("neutral")} />
+              </div>
             <div className="medias">
               <h3 className="medias-text">... et illustre ta journée:</h3>
-              <FontAwesomeIcon icon={faKeyboard} className="fas fa-keyboard" name="Text" onClick={() => setMedias("Text")}/>
-              <FontAwesomeIcon icon={faCamera} className="fas fa-camera" name="Photo" onClick={() => setMedias("Photo")}/>
-              <FontAwesomeIcon icon={faMicrophone} className="fas fa-microphone" name="Micro" onClick={() => setMedias("Micro")}/>
-              <FontAwesomeIcon icon={faVideo} className="fas fa-video" name="Video" onClick={() => setMedias("Video")} />
+              <FontAwesomeIcon icon={faKeyboard} className="fas fa-keyboard" name="Text" onClick={() => setText("text")}/>
+              <FontAwesomeIcon icon={faCamera} className="fas fa-camera" name="Photo" onClick={() => setPhoto("image")}/>
+              <FontAwesomeIcon icon={faMicrophone} className="fas fa-microphone" name="Micro" onClick={() => setMicro("audio")}/>
+              <FontAwesomeIcon icon={faVideo} className="fas fa-video" name="Video" onClick={() => setVideo("video")} />
             </div>
-            <button type="submit">Envoyer</button>
+            <Button sx={{ mt: 3 }} type="submit" variant="outlined" className="submit" onClick={handleOnSubmit}>Envoyer</Button>
           </Box> 
         </Modal>
       </div>

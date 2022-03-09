@@ -3,7 +3,7 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import { getTodayCard } from '../../RequestsAxios/CardsReq';
 import './cardResume.scss'
-
+import { Link } from "react-router-dom"
 const CardResume = () => {
 
   // const [value, setValue] = useState();
@@ -43,6 +43,7 @@ const CardResume = () => {
   console.log(date);
 
   return (
+    <Link to='/card'>
     <div className='cardresume-container'>
       <div className='cardresume'>
         <h2>{date}</h2>
@@ -69,6 +70,7 @@ const CardResume = () => {
         </div>
       </div>
     </div>
+    </Link>
   )
 }
 
