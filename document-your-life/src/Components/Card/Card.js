@@ -2,7 +2,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import getAllCards, { getTodayCard } from '../../RequestsAxios/CardsReq';
-// import CardEdit from '../CardEdit/CardEdit';
+import CardEdit from '../CardEdit/CardEdit';
 
 import './card.scss';
 
@@ -38,16 +38,23 @@ const Card = () => {
   const todayDateData = async () => {
     const todayDate = await getTodayCard();
     console.log(todayDate);
-    // const lastDate = todayDate.data.lastCards[0].created_at;
-    // const currentDate = Date.now();
-
+    const lastDate = todayDate.data.lastCards[0].created_at;
+    const currentDate = Date.now();
+    if (lastDate === currentDate) {
+      if (isCardEditDisable === false) {
+        setIsCardEditDisable(true);
+      }
+    }
+    else if (isCardEditDisable === true) {
+      setIsCardEditDisable(false);
+    }
   }
 
   console.log(mood);
   useEffect(() => {
     dayCardData();
     todayDateData();
-  }, [])
+  }, []);
 
   return (
     <div className='card-container'>
@@ -79,11 +86,7 @@ const Card = () => {
           </div>
         </div>
       </div>
-      <div>
-        {/* {
-          lastDate === currentDate ? <CardEdit/> : 
-        } */}
-      </div>
+      <CardEdit disabled={isCardEditDisable} />
     </div>
   )
 }
