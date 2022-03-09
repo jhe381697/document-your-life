@@ -1,5 +1,9 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
+/* eslint-disable react/no-find-dom-node */
 /* eslint-disable react/jsx-key */
 import * as React from 'react';
+// import { useRef, useEffect } from "react";
 import { putTodayCard } from '../../RequestsAxios/CardsReq';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -9,6 +13,7 @@ import { faLaughBeam, faSadTear, faSmileWink, faMehBlank, faKeyboard, faCamera, 
 
 // import du css
 import './cardEdit.scss';
+
 
 // Style de la box material-ui
 const style = {
@@ -46,7 +51,6 @@ export default function CardEdit() {
   }
   
   // Usestates des icones
-  
   const [happy, setHappy]= React.useState(null)
   const [sad, setSad]= React.useState(null)
   const [cool, setCool]= React.useState(null)
@@ -57,63 +61,77 @@ export default function CardEdit() {
 	const [micro, setMicro] = React.useState(null);
 	const [video, setVideo] = React.useState(null);
 
-  // // useStates emojis et médias
-  // const[icons, setIcons] = React.useState(null);
-  // const[medias, setMedias] = React.useState(null);
+  // Apparition de l'input média au click
 
-  // // Variables qui reçoivent les useStates
-  // let iconsToDatabase = icons;
-  // let mediasToDatabase = medias;
-  // console.log(iconsToDatabase);
-  // console.log(mediasToDatabase);
+  const [styles, setStyles] = React.useState("container1");
+
+  const displayInput = () => {
+
+    text !== ('') ? setStyles("container2") : setStyles("container1");
+    photo !== ('') ? setStyles("container2") : setStyles("container1");
+    micro !== ('') ? setStyles("container2") : setStyles("container1");
+    video !== ('') ? setStyles("container2") : setStyles("container1");
+
+    // if(text !== (null)){
+    // setStyles("container2");
+    // }
+    // if(photo !== (null)){
+    // setStyles("container2");
+    // }
+    // if(micro !== (null)){
+    // setStyles("container2");
+    // }
+    // if(video !== (null)){
+    // setStyles("container2");
+    // }
+  }
 
   // Requête POST axios vers la BDD
   const handleOnSubmit = async(e) => {
     e.preventDefault();
-if(happy !== null){
-  putTodayCard("moodLabel",happy)
-  console.log("happy submitted")
-}
-if(sad !== null){
-  putTodayCard("moodLabel",sad)
-  console.log("sad submitted")
-}
-if(cool !== null){
-  putTodayCard("moodLabel",cool)
-  console.log("cool submitted")
-}
-if(neutral !== null){
-  putTodayCard("moodLabel",neutral)
-  console.log("neutral submitted")
-}
+      if(happy !== null){
+        putTodayCard("moodLabel",happy)
+        console.log("happy submitted")
+      }
+      if(sad !== null){
+        putTodayCard("moodLabel",sad)
+        console.log("sad submitted")
+      }
+      if(cool !== null){
+        putTodayCard("moodLabel",cool)
+        console.log("cool submitted")
+      }
+      if(neutral !== null){
+        putTodayCard("moodLabel",neutral)
+        console.log("neutral submitted")
+      }
+      if(text !== null){
+        putTodayCard("text",text)
+        console.log("text submitted")
+      }
+      if(photo !== null){
+        putTodayCard("image",photo)
+        console.log("image submitted")
+      }
+      if(micro !== null){
+        putTodayCard("audio",micro)
+        console.log("audio submitted")
+      }
+      if(video !== null){
+        putTodayCard("video",video)
+        console.log("video submitted")
+      }
 
-if(text !== null){
-  putTodayCard("text",text)
-  console.log("text submitted")
-}
-if(photo !== null){
-  putTodayCard("image",photo)
-  console.log("image submitted")
-}
-if(micro !== null){
-  putTodayCard("audio",micro)
-  console.log("audio submitted")
-}
-if(video !== null){
-  putTodayCard("video",video)
-  console.log("video submitted")
-}
-
-    // Utilisation de la requête PUT de CardsReq
-    
-    // putTodayCard("moodLabel", iconsToDatabase)
-    // putTodayCard("text", mediasToDatabase)
-    // putTodayCard("image", mediasToDatabase)
-    // putTodayCard("audio", mediasToDatabase)
-    // putTodayCard("video", mediasToDatabase)
-
-  open ? setOpen(false) : '';
-
+    // Fermeture de la modale et remise à (null) des icones cliqués Submit
+     open ? setOpen(false) : '';
+     setHappy(null)
+     setSad(null)
+     setCool(null)
+     setNeutral(null)
+     setText(null)
+     setPhoto(null)
+     setMicro(null)
+     setVideo(null)
 }
 
 return (
@@ -125,7 +143,7 @@ return (
         <Modal
           open={open}
           onClose={handleClose}
-          aria-labelledby="modal-modal-title"
+          aria-labelledby="modal-modal-title"s
           aria-describedby="modal-modal-description"
         >
           <Box sx={style}> 
@@ -138,13 +156,19 @@ return (
               <FontAwesomeIcon icon={faMehBlank} className="fas fa-meh-blank" name="Neutral" onClick={() => setNeutral("neutral")} />
               </div>
             <div className="medias">
-              <h3 className="medias-text">... et illustre ta journée:</h3>
-              <FontAwesomeIcon icon={faKeyboard} className="fas fa-keyboard" name="Text" onClick={() => setText("text")}/>
-              <FontAwesomeIcon icon={faCamera} className="fas fa-camera" name="Photo" onClick={() => setPhoto("image")}/>
-              <FontAwesomeIcon icon={faMicrophone} className="fas fa-microphone" name="Micro" onClick={() => setMicro("audio")}/>
-              <FontAwesomeIcon icon={faVideo} className="fas fa-video" name="Video" onClick={() => setVideo("video")} />
+              <h3 className="medias-text">... illustre ta journée:</h3>
+              <FontAwesomeIcon icon={faKeyboard} className="fas fa-keyboard" name="Text" onClick={() => setText("text"), displayInput} />
+              <FontAwesomeIcon icon={faCamera} className="fas fa-camera" name="Photo" onClick={() => setPhoto("image"), displayInput}/>
+              <FontAwesomeIcon icon={faMicrophone} className="fas fa-microphone" name="Micro" onClick={() => setMicro("audio"), displayInput}/>
+              <FontAwesomeIcon icon={faVideo} className="fas fa-video" name="Video" onClick={() => setVideo("video"), displayInput}/>
             </div>
-            <Button sx={{ mt: 3 }} type="submit" variant="outlined" className="submit" onClick={handleOnSubmit}>Envoyer</Button>
+            <div className={styles}>
+              <label className="files-text">... et ajoute ton média:</label>
+              <input className="files" type="file" id="myfile" name="myfile" />
+            </div>
+            <div className="submit">
+              <Button sx={{ mt: 3 }} type="submit" variant="outlined" className="submit" onClick={handleOnSubmit}>Envoyer</Button>
+            </div>
           </Box> 
         </Modal>
       </div>
