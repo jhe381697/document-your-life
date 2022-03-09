@@ -1,26 +1,28 @@
-/* eslint-disable react/jsx-key */
+ /* eslint-disable react/jsx-key */
 import React from 'react'
 import { useState, useEffect } from 'react';
 import getAllCards, { getTodayCard } from '../../RequestsAxios/CardsReq';
 import CardEdit from '../CardEdit/CardEdit';
 
 import './card.scss';
+import { useLocation } from 'react-router-dom';
 
 const Card = () => {
+  let idFromLocation = useLocation().pathname.split('/card/').at(-1)
+  console.log(idFromLocation)
   const [date, setDate] = useState();
-  const [mood, setMood] = useState([]);
-  const [texts, setTexts] = useState([]);
-  const [sounds, setSounds] = useState([]);
-  const [pictures, setPictures] = useState([]);
-  const [videos, setVideos] = useState([]);
+  const [mood, setMood] = useState([null]);
+  const [texts, setTexts] = useState([null]);
+  const [sounds, setSounds] = useState([null]);
+  const [pictures, setPictures] = useState([null]);
+  const [videos, setVideos] = useState([null]);
   const [isCardEditDisable, setIsCardEditDisable] = useState(true);
   const [currentDate, setCurrentDate] = useState(new Date());
   const [lastDate, setLastDate] = useState();
 
 
   async function dayCardData() {
-    const dayCard = await getAllCards(12);
-    console.log(dayCard);
+    const dayCard = await getAllCards(idFromLocation);
     if (dayCard.status === 200)
       {
         setDate(dayCard.data.card.dateString);
@@ -40,19 +42,19 @@ const Card = () => {
 
   const todayDateData = async () => {
     const todayDate = await getTodayCard();
-    console.log(todayDate);
+    if(todayDate.statue === 200){
     const nowDate = todayDate.data.lastCards[0].created_at;
     const nowCurrentDate = new Date();
-    console.log(lastDate);
-    console.log(currentDate);
     setCurrentDate(nowCurrentDate.toISOString().split('T')[0]);
     setLastDate(nowDate.split('T')[0]);
+    console.table({lastDate, currentDate})
     if (lastDate !== currentDate) {
       setIsCardEditDisable(false);
       }
+    } else (
+      console.table({ lastDate, currentDate }))
   }
 
-  console.log(mood);
   useEffect(() => {
     dayCardData();
     todayDateData();
@@ -88,9 +90,7 @@ const Card = () => {
           </div>
         </div>
       </div>
-      {
-        isCardEditDisable ? <CardEdit/> : null
-      }
+      {isCardEditDisable ? <CardEdit/> : null}
     </div>
   )
 }
