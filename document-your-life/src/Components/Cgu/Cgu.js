@@ -25,11 +25,11 @@ const Cgu = () => {
       <p>L'hébergeur du site <span className="dyl">www.documentyourlife.com</span> est la société Firebase, dont le siège social est situé au sasu, avec le numéro de téléphone : 0896857441.</p>
       <h2 className="articles">ARTICLE 2 : Accès au site</h2>
       <p>Le site <span className="dyl">www.documentyourlife.com</span> permet à l'Utilisateur un accès gratuit aux services suivants :
-      Le site internet propose les services suivants :
       <ul>
         <li>Possibilité de créer un espace personnel,</li>
         <li>Possibilité d'éditer du texte sur son espace personnel,</li>
         <li>Possibilité de prendre et/ou d'uploader des photos sur son espace personnel,</li>
+        <li>Possibilité de prendre et/ou d'uploader des videos sur son espace personnel,</li>
         <li>Possibilité d'activer son enregistreur audio et d'uploader l'enregistrement sur son espace personnel,</li>
         <li>Mise à jour des données: le client a la possibilité de mettre à jour les données personnelles présentes dans sa page de "PROFIL"</li>
       </ul>  
