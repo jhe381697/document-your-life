@@ -62,31 +62,27 @@ export default function CardEdit() {
 	const [video, setVideo] = React.useState(null);
 
   // Apparition de l'input média au click
-
   const [styles, setStyles] = React.useState("container1");
 
   const displayInput = () => {
-
     text !== ('') ? setStyles("container2") : setStyles("container1");
     photo !== ('') ? setStyles("container2") : setStyles("container1");
     micro !== ('') ? setStyles("container2") : setStyles("container1");
     video !== ('') ? setStyles("container2") : setStyles("container1");
-
-    // if(text !== (null)){
-    // setStyles("container2");
-    // }
-    // if(photo !== (null)){
-    // setStyles("container2");
-    // }
-    // if(micro !== (null)){
-    // setStyles("container2");
-    // }
-    // if(video !== (null)){
-    // setStyles("container2");
-    // }
   }
 
-  // Requête POST axios vers la BDD
+  // Couleur change suivant upload du fichier ou non
+  const [color, setColor] = React.useState("files1");
+  // const [file, setFile] = useState(null);
+
+  const handleInputChange = (event) => {
+    setColor("files2");
+    // setFile(event.target.file[0])
+  }
+
+
+  // Requête PUT axios fichiers vers la BDD
+  // Requête PUT axios icones vers la BDD
   const handleOnSubmit = async(e) => {
     e.preventDefault();
       if(happy !== null){
@@ -121,6 +117,9 @@ export default function CardEdit() {
         putTodayCard("video",video)
         console.log("video submitted")
       }
+      // if(file !== null){
+      //   putTodayCard("file", file)
+      // }
 
     // Fermeture de la modale et remise à (null) des icones cliqués Submit
      open ? setOpen(false) : '';
@@ -132,9 +131,10 @@ export default function CardEdit() {
      setPhoto(null)
      setMicro(null)
      setVideo(null)
-}
+     setColor('files1')
+  }
 
-return (
+  return (
       <div>
         <button className="button-card-edit" onClick={handleOpen}>
           <span className='button-card-edit-text'>
@@ -164,7 +164,7 @@ return (
             </div>
             <div className={styles}>
               <label className="files-text">... et ajoute ton média:</label>
-              <input className="files" type="file" id="myfile" name="myfile" />
+              <input className={color} type="file" id="myfile" name="myfile" onChange={handleInputChange}/>
             </div>
             <div className="submit">
               <Button sx={{ mt: 3 }} type="submit" variant="outlined" className="submit" onClick={handleOnSubmit}>Envoyer</Button>
