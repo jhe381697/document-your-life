@@ -1,8 +1,7 @@
 /* eslint-disable react/jsx-key */
 import React, { memo, useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom';
-import { putTodayCard } from '../../RequestsAxios/CardsReq';
-import getUserData from '../../RequestsAxios/userData';
+import getUserData, { patchAvatar } from '../../RequestsAxios/userData';
 import './avatarIcon.scss'
 
 const AvatarIcon = () => {
@@ -18,7 +17,7 @@ const AvatarIcon = () => {
 
   async function submit() {
     if (file !== null) {
-      const res = await putTodayCard("image", file)
+      const res = await patchAvatar("avatar",file)
       console.log(res)
       console.warn(file)
       setToggle(!toggle)
@@ -39,8 +38,10 @@ const AvatarIcon = () => {
       setAvatar(res.data.image)
     } else (console.log(res.status))
   }
+  
   useEffect(() => {
     getAvatarFromApi()
+
   }, [])
 
   return (
