@@ -23,6 +23,7 @@ import PrivateRoute, { IfConnectedRoute } from '../Components/PrivateRoute/Priva
 import Contact from "../Contact/Contact";
 import About from "../About/About";
 import Card from "../Components/Card/Card"
+import Cgu from "../Components/Cgu/Cgu";
 
 
 function App() {
@@ -47,6 +48,8 @@ function App() {
         <Routes>
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
+          {/* A ENLEVER */}
+          <Route path="/cgu" element={<Cgu />} />
 
           {/* acces only if not logged or get redirected */}
           <Route path="/" element={
