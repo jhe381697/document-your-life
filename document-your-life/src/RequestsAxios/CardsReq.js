@@ -8,7 +8,7 @@ const instance = axios.create({
     timeout: 1000
 });
 
-export default async function getAllCards() {
+export default async function getAllCards(cardId) {
     let access_token = getItem('token')
     let userId = getItem('userId')
     try {
