@@ -44,9 +44,9 @@ const CardResume = ({id}) => {
   useEffect(() => {
     setIsLoading(true)
     todayCardData();
-    console.log(id, "from resum")
+    console.log(id, date ,"from resum")
     setIsLoading(false)
-  }, [id])
+  }, [id,date])
 
 
   return (
@@ -63,12 +63,12 @@ const CardResume = ({id}) => {
             <div className='cardresume-medium'>
               <h3>Résumé de la journée</h3>
               <div className='cardresume-medium-infos'>
-                {texts ?
+                {texts && texts ===[] ?
                   texts.map((text) => (
                     <div key={text}>{text}</div>
                   )) : null}
 
-                {sounds ?
+                  {sounds && sounds===[] ?
                   sounds.map((sound) => (
                     <div key={sound}>{sound}</div>
                   )) : null}

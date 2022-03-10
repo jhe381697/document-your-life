@@ -55,10 +55,22 @@ export default function CardEdit() {
   const [sad, setSad] = React.useState(null);
   const [cool, setCool] = React.useState(null);
   const [neutral, setNeutral] = React.useState(null);
-  const [text, setText] = React.useState(null);
+  const [text, setText] = React.useState('');
   const [photo, setPhoto] = React.useState(null);
   const [micro, setMicro] = React.useState(null);
   const [video, setVideo] = React.useState(null);
+
+
+  const [toggleText, setToggleText] = React.useState(false);
+  function handleToggleText() {
+    setToggleText(!toggleText)
+    console.log(toggleText)
+  }
+
+  const handleTextFile = (event) => {
+    setText(event.target.files[0])
+    console.log(event)
+  }
 
 
   const [toggleImg, setToggleImg] = React.useState(false);
@@ -66,7 +78,7 @@ export default function CardEdit() {
     setToggleImg(!toggleImg)
     console.log(toggleImg)
   }
-  
+
   const handleImageFile = (event) => {
     setPhoto(event.target.files[0])
     console.log(event)
@@ -82,12 +94,6 @@ export default function CardEdit() {
   const handleVideoFile = (event) => {
     setVideo(event)
     console.log(event)
-  }
-
-
-  const handleInputChange = (event) => {
-    setColor("files2");
-    setFile(event.target)
   }
 
   // Requête PUT axios fichiers vers la BDD
@@ -165,8 +171,8 @@ export default function CardEdit() {
           <div className="medias">
 
             <h3 className="medias-text">... illustre ta journée:</h3>
-            <FontAwesomeIcon icon={faKeyboard} className="fas fa-keyboard" name="Text" onClick={() => { setText("text"), displayInput }} />
 
+            <form onSubmit={handleOnSubmit} >
             {!toggleImg ?
               (<>
                 <div>
@@ -200,7 +206,25 @@ export default function CardEdit() {
 
 
             <FontAwesomeIcon icon={faMicrophone} className="fas fa-microphone" name="Micro" />
+
+
+            {toggleText ?
+              (<>
+                <div>
+                    <FontAwesomeIcon icon={faKeyboard} className="fas fa-keyboard" name="Text" />
+                    <input type="text"
+                      onChange={(e) => setText(e.target.value)} value={text} name="upload_text" />
+                </div>
+              </>)
+              :
+              <div onClick={handleToggleText}>
+                <FontAwesomeIcon icon={faKeyboard} className="fas fa-keyboard" name="Text" />
+              </div>}
+            </form>
+
           </div>
+
+
 
 
           <div className="submit">
