@@ -1,6 +1,7 @@
 .avatarInput{
   display: flex;
   justify-content: center;
+
   &-btn{
     display: flex;
     font-size: 2rem;
@@ -16,21 +17,24 @@
     align-content: center;
     border: none;
   }
+
   &-inpute{
     background-color: #63636317;
     width: 5rem;
     height: 5rem;
     border-radius: 50px;
   }
+
   &-avatar{
     display: flex;
-    width: 5rem;
-    height: 5rem;
+    width: 8.5rem;
+    height: 8.5rem;
     border-radius: 50px;
     justify-content: center;
     align-items: center;
     align-content: center;
     overflow: auto;
+    margin-bottom: 3.5rem;
   }
 }
 input[type="file"] {
