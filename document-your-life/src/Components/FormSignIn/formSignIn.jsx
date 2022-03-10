@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import './formSignIn.scss';
 
 // react-router-dom
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // axios post request
 import SignupAxios from '../../RequestsAxios/SignUp';
@@ -169,7 +169,7 @@ const FormSignIn = () => {
 				}}/>
                 <div className='formSignin-form-checkbox'>
                 <input className='formSignine-form-checkbox-input' type="checkbox" name='checkbox' onChange={handleCheckbox}/>
-                <p> J'accepte les conditions d'utilisation </p>
+                <Link to='/cgu'> <p>J'accepte les conditions d'utilisation</p> </Link>
                 {checkboxText? <p className='formSignin-form-checkbox-error'>Acceptez les conditions d'utilisation </p>: null}
                 </div>
                 <div className='button-container'>

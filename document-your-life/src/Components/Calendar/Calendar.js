@@ -46,14 +46,13 @@ const Calendar = () => {
         cards.map(({ id, label, created_at }) => {
           return (
             <div key={id}>
-
               <Link to={'/card/' + id}>
                 <div style={labelToColor(label)} className='calendarRow'>
                   <p className='calendarRow-text'>{moment(created_at).format("DD-MMM-YYYY")}</p>
                 </div>
               </Link>
               <Routes>
-                <Route path={'/card/' + id} element={<Card />} />
+                <Route path={'/card/' + id} element={<Card key={id}/>} />
               </Routes>
             </div >
           )

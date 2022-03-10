@@ -6,36 +6,36 @@ import CardEdit from '../CardEdit/CardEdit';
 
 import './card.scss';
 import { useLocation } from 'react-router-dom';
+import Spinner from '../../utils/Spinner/Spinner';
+import labelToColor from '../../utils/LabelToColor/LabelToColor';
 
 const Card = () => {
   let idFromLocation = useLocation().pathname.split('/card/').at(-1)
-  console.log(idFromLocation)
+  const [isLoading, setIsLoading] = useState(true)
+
   const [date, setDate] = useState();
-  const [mood, setMood] = useState([null]);
-  const [texts, setTexts] = useState([null]);
-  const [sounds, setSounds] = useState([null]);
-  const [pictures, setPictures] = useState([null]);
-  const [videos, setVideos] = useState([null]);
-  const [isCardEditDisable, setIsCardEditDisable] = useState(true);
-  const [currentDate, setCurrentDate] = useState(new Date());
-  const [lastDate, setLastDate] = useState();
+
+  const [mood, setMood] = useState([]);
+  const [texts, setTexts] = useState([]);
+  const [sounds, setSounds] = useState([]);
+  const [pictures, setPictures] = useState([]);
+  const [videos, setVideos] = useState([]);
+
 
 
   async function dayCardData() {
     const dayCard = await getAllCards(idFromLocation);
-    if (dayCard.status === 200)
-      {
+    if (dayCard.status === 200){
         setDate(dayCard.data.card.dateString);
-        setMood(dayCard.data.card.moodlabel);
-        setTexts(dayCard.data.card.text);
-        setSounds(dayCard.data.card.audio);
-        setPictures(dayCard.data.card.image);
-        setVideos(dayCard.data.card.video);
-
+      setMood(oldArray => [...oldArray, dayCard.data.card.moodlabel]);
+      setTexts(oldArray => [...oldArray, dayCard.data.card.text]);
+      setSounds(oldArray => [...oldArray, dayCard.data.card.audio]);
+      setPictures(oldArray => [...oldArray, dayCard.data.card.image]);
+      setVideos(oldArray => [...oldArray, dayCard.data.card.video]);
+      setIsLoading(false)
         return
       }
     else {
-      dayCardData();
       console.log('erreur')
     }
   }
@@ -43,26 +43,21 @@ const Card = () => {
   const todayDateData = async () => {
     const todayDate = await getTodayCard();
     if(todayDate.statue === 200){
-    const nowDate = todayDate.data.lastCards[0].created_at;
-    const nowCurrentDate = new Date();
-    setCurrentDate(nowCurrentDate.toISOString().split('T')[0]);
-    setLastDate(nowDate.split('T')[0]);
-    console.table({lastDate, currentDate})
-    if (lastDate !== currentDate) {
-      setIsCardEditDisable(false);
-      }
-    } else (
-      console.table({ lastDate, currentDate }))
+console.log(todayDate)
+      setIsLoading(false)
+    }
   }
 
   useEffect(() => {
     dayCardData();
     todayDateData();
   }, []);
-
+console.log(mood)
   return (
     <div className='card-container'>
-      <div className='card'>
+      {isLoading ? <Spinner /> :
+
+        <div style={labelToColor(mood[0])} className='card'>
         <h2>{date}</h2>
         <div className='card-mood'>
           <h3>Humeur de la journée</h3>
@@ -81,7 +76,7 @@ const Card = () => {
             )) : null}
             {pictures ?
             pictures.map((picture) => (
-              <div>{picture}</div>
+                          <img className='card-user-video' src={picture}></img>
             )) : null}
             {videos ?
             videos.map((video) => (
@@ -90,7 +85,8 @@ const Card = () => {
           </div>
         </div>
       </div>
-      {isCardEditDisable ? <CardEdit/> : null}
+            }
+            <CardEdit/> 
     </div>
   )
 }
