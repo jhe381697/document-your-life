@@ -35,9 +35,9 @@ const ProfilePage = () => {
                     <div className='profilPage'>
                         <AvatarIcon/>
                         <ul className='profilPage-personal'>
-                            <li className='profilPage-personal-credentials'>{user.email}</li>
                             <li className='profilPage-personal-credentials'>{user.first_name}</li>
                             <li className='profilPage-personal-credentials'>{user.last_name}</li>
+                            <li className='profilPage-personal-credentials'>{user.email}</li>
                         </ul>
                     </div>
                 </>

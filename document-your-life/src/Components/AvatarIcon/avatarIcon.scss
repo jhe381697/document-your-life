@@ -2,23 +2,26 @@
   display: flex;
   justify-content: center;
   &-text{
-  
+
   }
+
   &-inpute{
     background-color: #63636365;
     width: 5rem;
     height: 5rem;
     border-radius: 50px;
   }
+
   &-avatar{
     display: flex;
-    width: 5rem;
-    height: 5rem;
+    width: 8.5rem;
+    height: 8.5rem;
     border-radius: 50px;
     justify-content: center;
     align-items: center;
     align-content: center;
     overflow: auto;
+    margin-bottom: 3.5rem;
   }
 }
 input[type="file"] {
