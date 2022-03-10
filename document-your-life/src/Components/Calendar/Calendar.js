@@ -20,19 +20,18 @@ const Calendar = () => {
 
   async function handleUserDataCard() {
     const res = await getTodayCard()
-    if (res !== undefined){
-    if (res.status === 200) {
-      setCardExist(true)
-      console.log(res.data.calendarMoods)
-      setCards(res.data.calendarMoods)
-      setIsLoading(false)
-    }
-    else (
-      console.log(cards)
-    )
+    if (res !== undefined) {
+      if (res.status === 200) {
+        setCardExist(true)
+        console.log(res.data.calendarMoods)
+        setCards(res.data.calendarMoods)
+        setIsLoading(false)
+      }
+      else (
+        console.log(cards)
+      )
     } else (
       setCardExist(false))
-
   }
 
 
@@ -43,28 +42,28 @@ const Calendar = () => {
   return (
 
     <>
-{!cardExist?
-   <CardEdit /> :
-    <div className="calendar-container">
-      {/* // eslint-disable-next-line react/jsx-key */}
-      {/* <CalendarItem onClickDay={handleDay} onChange={onChange} value={value} /> */}
-      {isLoading ? <Spinner /> :
-        cards.map(({ id, label, created_at }) => {
-          return (
-            <div key={id}>
-              <Link to={'/card/' + id}>
-                <div style={labelToColor(label)} className='calendarRow'>
-                  <p className='calendarRow-text'>{moment(created_at).format("DD-MMM-YYYY")}</p>
-                </div>
-              </Link>
-              <Routes>
-                <Route path={'/card/' + id} element={<Card key={id}/>} />
-              </Routes>
-            </div >
-          )
-        })}
-    </div>
-}</>
+      {!cardExist ?
+        <CardEdit /> :
+        <div className="calendar-container">
+          {/* // eslint-disable-next-line react/jsx-key */}
+          {/* <CalendarItem onClickDay={handleDay} onChange={onChange} value={value} /> */}
+          {isLoading ? <Spinner /> :
+            cards.map(({ id, label, created_at }) => {
+              return (
+                <div key={id}>
+                  <Link to={'/card/' + id}>
+                    <div style={labelToColor(label)} className='calendarRow'>
+                      <p className='calendarRow-text'>{moment(created_at).format("DD-MMM-YYYY")}</p>
+                    </div>
+                  </Link>
+                  <Routes>
+                    <Route path={'/card/' + id} element={<Card key={id} />} />
+                  </Routes>
+                </div >
+              )
+            })}
+        </div>
+      }</>
   );
 }
 

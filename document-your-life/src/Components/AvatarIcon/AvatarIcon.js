@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/jsx-key */
 import React, { memo, useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom';
@@ -9,7 +10,7 @@ const AvatarIcon = () => {
 
   const [file, setFile] = useState(null);
   const [toggle, setToggle] = useState(true);
-  const [avatar, setAvatar] = useState('');
+  const [avatar, setAvatar] = useState();
 
   const handleInputChange = (event) => {
     setFile(event.target.files[0])
@@ -17,7 +18,7 @@ const AvatarIcon = () => {
 
   async function submit() {
     if (file !== null) {
-      const res = await patchAvatar("avatar",file)
+      const res = await patchAvatar("avatar", file)
       console.log(res)
       console.warn(file)
       setToggle(!toggle)
@@ -38,24 +39,25 @@ const AvatarIcon = () => {
       setAvatar(res.data.image)
     } else (console.log(res.status))
   }
-  
-  useEffect((event) => {
+
+  useEffect(() => {
     getAvatarFromApi()
-console.log(event)
-  }, [event])
+  }, [])
+
+  useEffect(() => {
+    submit()
+  }, [file])
 
   return (
     <div className="avatarInput">
-      {!toggle ? (
-        <>
-            <label className="avatarInput-inpute">
-              <p> Ajoutez un avatar</p>
-            <input type="file" max-size="5000" name="upload_file" onChange={handleInputChange} />
-            </label>
-            <button type="submit" className="avatarInput-btn" title='Modifier votre photo de profile' onClick={() => submit()}>+</button>
-         
-        </>
-      ) : <img onClick={handleToggle} className='avatarInput-avatar' src={avatar} />}
+      <label className="avatarInput-inpute">
+        <div>
+          <img onClick={handleToggle} className='avatarInput-avatar' src={avatar} />
+          {!toggle ? (<p type="submit" className="avatarInput-text" title='Modifier votre photo de profile' onClick={() => submit()}>Modifier l'avatar</p>) : null}
+        </div>
+        <input type="file" max-size="5000" name="upload_file" onChange={handleInputChange} />
+      </label>
+
     </div>
 
   )

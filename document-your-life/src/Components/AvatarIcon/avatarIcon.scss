@@ -1,23 +1,11 @@
 .avatarInput{
   display: flex;
   justify-content: center;
-  &-btn{
-    display: flex;
-    font-size: 2rem;
-    /* transform: rotate(45deg); */
-    width: 2rem;
-    height: 2rem;
-    border-radius: 50px;
-    transform: rotate(45deg);
-    background-color: #f0f;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    align-content: center;
-    border: none;
+  &-text{
+  
   }
   &-inpute{
-    background-color: #63636317;
+    background-color: #63636365;
     width: 5rem;
     height: 5rem;
     border-radius: 50px;
