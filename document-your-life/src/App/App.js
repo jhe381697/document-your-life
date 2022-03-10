@@ -52,7 +52,7 @@ function App() {
           <Route path="/about" element={<About />} />
           {/* A ENLEVER */}
           <Route path="/cgu" element={<Cgu />} />
-
+          <Route path="/contact" element={<Cgu />} />
           {/* acces only if not logged or get redirected */}
           <Route path="/" element={
             <IfConnectedRoute>
