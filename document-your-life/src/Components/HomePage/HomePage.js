@@ -57,9 +57,9 @@ const HomePage = () => {
 
                             <li className='modalHover-container-text'>Bloaz pal. Abardaez burzhud. C’har asied. Merc’her arrebeuri. Pegañ skouarn. Hor kleñved. Bobl sioul. Tregastell broust. Gouere unan. Sellout askorn.</li>
                         </ul>
-                        <button>Connexion</button>
-                        <button>inscription</button>
-                        <button>Voir la video de présentation</button>
+                        <button>Inscription</button>
+                        <button>Connexion</button>                        
+                        <button>Regarder la video de présentation</button>
                     </Box>
                 </Modal>
             </div>

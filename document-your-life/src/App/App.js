@@ -23,6 +23,9 @@ import PrivateRoute, { IfConnectedRoute } from '../Components/PrivateRoute/Priva
 import Contact from "../Contact/Contact";
 import About from "../About/About";
 import Card from "../Components/Card/Card"
+import Cgu from "../Components/Cgu/Cgu";
+import CardResume from "../Components/CardResume/CardResume";
+import CardEdit from "../Components/CardEdit/CardEdit";
 
 
 function App() {
@@ -47,6 +50,8 @@ function App() {
         <Routes>
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
+          {/* A ENLEVER */}
+          <Route path="/cgu" element={<Cgu />} />
 
           {/* acces only if not logged or get redirected */}
           <Route path="/" element={
@@ -71,7 +76,7 @@ function App() {
                 <TabDashboard />
               </PrivateRoute>} />
 
-          <Route path="/card" element={
+          <Route path="/card/*" element={
               <PrivateRoute>
                  <Card />
               </PrivateRoute>
@@ -81,6 +86,18 @@ function App() {
             element={
               <PrivateRoute>
                 <ProfilePage />
+              </PrivateRoute>
+            } />
+          <Route path="/last"
+            element={
+              <PrivateRoute>
+                <CardResume />
+              </PrivateRoute>
+            } />
+          <Route path="/today"
+            element={
+              <PrivateRoute>
+                <CardEdit />
               </PrivateRoute>
             } />
         </Routes>
