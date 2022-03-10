@@ -1,0 +1,95 @@
+@import '../styles/vars';
+
+.container {
+  margin-top: -10em;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font: $fontP;
+  letter-spacing: 1px;
+}
+
+h2 {
+  margin: 1em 0em 0.5em 0em;
+}
+
+.form-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.textarea {
+  font: $fontP;
+  padding: 3em 3em;
+  margin-bottom: 2em;
+  margin-top: 1em;
+  border: none;
+  border-bottom: 1px solid grey;
+}
+
+.textarea::placeholder {
+  text-align: center;
+}
+
+input {
+  font: $fontP;
+  padding: 1em 6em;
+  margin-bottom: 1em;
+  border: none;
+  border-bottom: 1px solid grey;
+}
+
+.input::placeholder {
+  text-align: center;
+}
+
+.button {
+  font-size: 1em;
+  font-weight: 400;
+  text-decoration: none;
+  letter-spacing: 1px;
+  padding: 0.5em 2em 0.5em;
+  border: 1px solid black;
+  border-radius: 15px;
+  cursor: pointer;
+  position: relative;
+  background: rgb(222,222,222);
+}
+
+.button:hover {
+transform: scale(1.03);
+transition: 0.3s;
+background: rgb(222,222,222);
+}
+
+//! Mise en forme des messages d'erreurs à la soumission du formulaire
+//! En cas d'erreur ou d'oubli => le placeHolder change de style au moment de la soumission
+
+.error::placeholder {
+  color: red;
+}
+
+.form-message {
+  margin-top: 0.8em;
+  padding: 0.2em;
+  opacity: 0;
+  color: black;
+  transition: 0.2s ease;
+  border-radius: 10px;
+}
+
+#not-mail {
+  display: none;
+  position: absolute;
+  bottom: -0.8em;
+  right: 6em;
+  color: red;
+}
