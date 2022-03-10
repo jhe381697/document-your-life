@@ -10,7 +10,7 @@ import { Routes, Route } from "react-router-dom";
 
 // Components
 import Calendar from '../Calendar/Calendar';
-// import CardResume from '../CardResume/CardResume';
+import CardResume from '../CardResume/CardResume';
 import AvatarIcon from '../AvatarIcon/AvatarIcon';
 
 
@@ -30,12 +30,12 @@ const TabDashboard = () => {
         <Routes>
           <Route path="/calendar" element={
             <Calendar />} />
-          {/* <Route path="today" element={
+          <Route path="today" element={
             // today card resume
             <CardResume />} />
           <Route path="last" element={
             // last card resume
-            <CardResume />} />*/}
+            <CardResume />} />
         </Routes> 
       </div>
     </>
