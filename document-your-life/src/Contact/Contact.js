@@ -48,7 +48,7 @@ const handleSubmit = (e) => {
 };
 
 return (
-<div className="container">
+  <div className="contact-container">
   <form className="contact-form">
     <h2>Contactez-nous!</h2>
     <div className="form-content">

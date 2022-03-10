@@ -84,11 +84,6 @@ export default function CardEdit() {
     console.log(event)
   }
 
-  // Apparition de l'input média au click
-  const [styles, setStyles] = React.useState("container1");
-
-  // Couleur change suivant upload du fichier ou non
-  const [color, setColor] = React.useState("files1");
 
   const handleInputChange = (event) => {
     setColor("files2");
@@ -174,7 +169,7 @@ export default function CardEdit() {
 
             {!toggleImg ?
               (<>
-                <div className={styles}>
+                <div>
                   <label >
                     <FontAwesomeIcon icon={faCamera} className="fas fa-camera" name="Photo" />
                     <input type="file" max-size="5000" name="upload_file" onChange={setPhoto} />
@@ -189,7 +184,7 @@ export default function CardEdit() {
 
             {!toggleVideo ?
               (<>
-                <div className={styles}>
+                <div>
                   <label >
                     <FontAwesomeIcon icon={faVideo} className="fas fa-video" name="Video" />
                     <input type="file" max-size="5000" name="upload_file" onChange={setVideo} />
