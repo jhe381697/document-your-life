@@ -39,17 +39,18 @@ const AvatarIcon = () => {
     } else (console.log(res.status))
   }
   
-  useEffect(() => {
+  useEffect((event) => {
     getAvatarFromApi()
-
-  }, [])
+console.log(event)
+  }, [event])
 
   return (
     <div className="avatarInput">
       {!toggle ? (
         <>
             <label className="avatarInput-inpute">
-              <input type="file" name="upload_file" onChange={handleInputChange} />
+              <p> Ajoutez un avatar</p>
+            <input type="file" max-size="5000" name="upload_file" onChange={handleInputChange} />
             </label>
             <button type="submit" className="avatarInput-btn" title='Modifier votre photo de profile' onClick={() => submit()}>+</button>
          

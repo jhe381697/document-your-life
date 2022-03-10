@@ -16,15 +16,18 @@
     flex-wrap: nowrap;
     flex-direction: row;
     background: #fff;
+
     &-link{
         margin: 0.6rem;
         text-decoration: none;
         color: $colorsLinkNavBar;
     }
+    
     &-logo{
         height: 15rem;
-    position: fixed;
-    z-index: -1;
-    border-radius: 500px;
+        position: fixed;
+        z-index: -1;
+        border-radius: 500px;
+        margin-top: 1rem;
     }
 }
