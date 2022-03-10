@@ -1,42 +1,50 @@
-@import "../../styles/vars.scss";
+.card-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
 
 .card {
-  display:flex;
-  justify-content: center;
+  display: flex;
   flex-direction: column;
-  align-items: center;
-  position: relative;
+  margin: 1em 0 1em 0;
+  width: 80%;
+  box-shadow: 0 10px 30px rgba(0,0,0,.1);
+  border-radius: 5px;
 
-  &-date {
-    margin: 1em 0 1.5em 0;
+    &-user-video{
+      max-width: 8rem;
+      max-height: 8rem;
+    }
+
+  h2 {
+    color: #636363;
+    margin: 0.5em 0 0.5em 0;
+  }
+
+  h3 {
+    color: #636363;
+    margin: 0.3em 0 0.3em 0;
   }
 
   &-mood {
-    margin-bottom: 2em;
+    margin: 1em 0.5em 1em 0.5em;
 
-    &-title {
-        text-align: center;
-        margin-bottom: 1em;
+    &-emoji {
+      text-align: center;
+      color: #636363;
+      margin: 0.3em 0 0.3em 0;
     }
-  
+  }
+
+  &-medium {
+    margin: 1em 0.5em 1em 0.5em;
+
     &-infos {
-      display: flex;
-      justify-content: flex-start;
-    }
-  }
-
-  &-mood-label {
-      display: flex;
-      justify-content: center;
-  }
-
-  &-resume {
-    &-title {  
       text-align: center;
-      margin-bottom: 1em;
-    }
-    &-medium {
-      text-align: center;
+      color: #636363;
+      margin: 0.3em 0 0.3em 0;
     }
   }
 }
