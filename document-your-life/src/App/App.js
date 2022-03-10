@@ -24,6 +24,8 @@ import Contact from "../Contact/Contact";
 import About from "../About/About";
 import Card from "../Components/Card/Card"
 import Cgu from "../Components/Cgu/Cgu";
+import CardResume from "../Components/CardResume/CardResume";
+import CardEdit from "../Components/CardEdit/CardEdit";
 
 
 function App() {
@@ -84,6 +86,18 @@ function App() {
             element={
               <PrivateRoute>
                 <ProfilePage />
+              </PrivateRoute>
+            } />
+          <Route path="/last"
+            element={
+              <PrivateRoute>
+                <CardResume />
+              </PrivateRoute>
+            } />
+          <Route path="/today"
+            element={
+              <PrivateRoute>
+                <CardEdit />
               </PrivateRoute>
             } />
         </Routes>
