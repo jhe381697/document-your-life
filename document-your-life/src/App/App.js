@@ -11,6 +11,7 @@ import './App.css';
 import { Routes, Route } from "react-router-dom";
 
 // Components
+import Logo from "../Components/logo/logo";
 import HeaderNavbar from '../Components/HeaderNavbar/HeaderNavbar';
 import TabDashboard from '../Components/TabDashboard/TabDashboard';
 import FormSignIn from "../Components/FormSignIn/formSignIn";
@@ -46,6 +47,7 @@ function App() {
   return (
     <Auth.Provider value={{ isAuthenticated, setIsAuthenticated }}>
       <div className="App">
+        <Logo/>
         <HeaderNavbar IsConnected={IsConnected} handleConnection={handleConnection} />
         <Routes>
           <Route path="/contact" element={<Contact />} />

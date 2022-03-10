@@ -1,0 +1,14 @@
+.logo {
+    z-index: -1;
+    width: fit-content;
+    &-image{
+        top: 0;
+        right: 50%;
+        transform: translate(50%,-20%);
+        z-index: -1;
+        position: absolute;
+        width: 400px;
+        max-width: 236px;
+        
+    }
+}
