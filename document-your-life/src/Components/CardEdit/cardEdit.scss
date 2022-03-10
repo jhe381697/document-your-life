@@ -2,17 +2,22 @@
 
 .button-card-edit {
   width: $btnsize;
-    height: $btnsize;
-    border-radius: 50px;
-    transform: rotate(-$btnRottate);
-    box-shadow: $btnShadow;
-    border: none;
+  height: $btnsize;
+  border-radius: 50px;
+  transform: rotate(-$btnRottate);
+  box-shadow: $btnShadow;
+  background-color: $btnBackColor;
+  border: none;
+      &-text{
+          overflow: visible;
+          font:$fontH2 ;
+          color: #af9661;
+      }
 
-    &-text {
-      overflow: visible;
-      color: #7E8CAF;
-      font:$fontH2 ;
-    }
+      &:hover {
+          transform: scale(1.05);
+          transition: 0.5s;
+      }
 }
 
 // container

@@ -16,7 +16,7 @@
                 flex-direction: column;
                 align-items: center;
                 justify-content: flex-end;
-            padding-bottom: 3rem;
+                padding-bottom: 3rem;
             &-avatar{
             height: 5rem;
             width: 5rem;
@@ -31,4 +31,17 @@
                 margin: 1rem 0;
             }
         }
+}
+
+.cgu-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 3em;
+    padding: 1em 3em;
+
+    &:hover {
+        transform: scale(1.2);
+        transition: 0.5s;
+    }
 }
