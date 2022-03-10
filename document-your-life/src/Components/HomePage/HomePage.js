@@ -7,6 +7,10 @@ import PropTypes from 'prop-types';
 // Scss
 import './homePage.scss';
 
+// react-router-dom
+//==================
+import { Link } from "react-router-dom";
+
 // Components
 import YoutubeEmbed from "../../utils/YoutubeEmbed/YoutubeEmbed";
 import Button from '../../utils/Button/Button';
@@ -46,20 +50,27 @@ const HomePage = () => {
                     aria-describedby="modal-modal-description">
                     <Box
                         className="modalHover-box" >
-                        <h1 className='modalHover-title'>Bienvenue sur Document Your Life</h1>
-                        <h3 className='modalHover-subtitle'>Ici vous pourrez:</h3>
+                        <h1>Bienvenue sur DYL !</h1>
                         <ul className='modalHover-container'>
-                            <li className='modalHover-container-text'>Logoden biniou. Bevañ onest. Vered ali. Ennon daoust. Oentr c’hilpenn. Rak  dan. Kant bloavezh. Gant ganin. Gouriz a-raok . Here aotrou.</li>
+                            <li className='modalHover-container-text'>Ici vous pourrez illustrer votre quotidien à l'aide de sons, d'images et bien plus.</li>
+                            <h3>Pour bien commencer :</h3>
+                            <li className='modalHover-container-step'>1. Inscrivez-vous et connectez-vous </li>
+                            <li className='modalHover-container-step'>2. Accédez à votre dashboard </li>
+                            <li className='modalHover-container-step'>3. Créez une nouvelle carte afin d'illustrer votre journée </li>
 
-                            <li className='modalHover-container-text'>Vezañ gambr. Drezañ ur. Wrierez drezo. Warnon diwezh. Deuet war. Plelann-Veur tregas. Holen Baz. Arabat goulenn. Mousc’hoarzhin chokolad. Bloaz yar.</li>
 
                             <li className='modalHover-container-text'>Labourat eost. Zo danvez. Mamm vihan. Harz dreñv. Ur harzhal. Karout gavr. Brieg gaoued. Pluenn araok. Nebeutoc’h Sun. Gouzout he.</li>
 
-                            <li className='modalHover-container-text'>Bloaz pal. Abardaez burzhud. C’har asied. Merc’her arrebeuri. Pegañ skouarn. Hor kleñved. Bobl sioul. Tregastell broust. Gouere unan. Sellout askorn.</li>
+                            {/* <li className='modalHover-container-text'>Bloaz pal. Abardaez burzhud. C’har asied. Merc’her arrebeuri. Pegañ skouarn. Hor kleñved. Bobl sioul. Tregastell broust. Gouere unan. Sellout askorn.</li> */}
                         </ul>
-                        <button>Inscription</button>
-                        <button>Connexion</button>                        
-                        <button>Regarder la video de présentation</button>
+                        <button className='modalHover-button'>
+                            <Link to='/login'>Connexion</Link>
+                        </button>
+                        <button className='modalHover-button'>
+                            <Link to='/signup'>Inscription</Link>
+                        </button>
+                        <button className='modalHover-skipButton' onClick={handleClose}>Passer</button>
+
                     </Box>
                 </Modal>
             </div>

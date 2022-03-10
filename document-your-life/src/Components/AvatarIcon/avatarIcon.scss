@@ -1,22 +1,22 @@
 .avatarInput{
   display: flex;
   justify-content: center;
-  &-text{
-
-  }
 
   &-inpute{
-    background-color: #63636365;
+    display: flex;
     width: 5rem;
     height: 5rem;
     border-radius: 50px;
+    justify-content: center;
   }
 
   &-avatar{
     display: flex;
-    width: 8.5rem;
-    height: 8.5rem;
-    border-radius: 50px;
+    background-color: #63636377;
+    width: 9rem;
+    height: 9rem;
+    border-radius: 50%;
+
     justify-content: center;
     align-items: center;
     align-content: center;
