@@ -23,9 +23,7 @@ const HeaderNavbar = ({ handleConnection }) => {
                     {LocationURL.pathname === '/' ?
                         <Link className='HeaderNavbar-link' to='/login' >Connexion</Link> :
                         <Link className='HeaderNavbar-link' to='/' >Accueil</Link>
-
                     }
-
                 </>
             ) : (
                 <>
