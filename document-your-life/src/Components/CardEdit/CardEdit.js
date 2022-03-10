@@ -56,7 +56,7 @@ export default function CardEdit() {
   const [cool, setCool] = React.useState(null);
   const [neutral, setNeutral] = React.useState(null);
   const [text, setText] = React.useState(null);
-  const [photo, setPhoto] = React.useState();
+  const [photo, setPhoto] = React.useState(null);
   const [micro, setMicro] = React.useState(null);
   const [video, setVideo] = React.useState(null);
 
@@ -67,6 +67,23 @@ export default function CardEdit() {
     console.log(toggleImg)
   }
   
+  const handleImageFile = (event) => {
+    setPhoto(event.target.files[0])
+    console.log(event)
+  }
+
+
+  const [toggleVideo, setToggleVideo] = React.useState(false);
+  function handleToggleVideo() {
+    setToggleVideo(!toggleVideo)
+    console.log(toggleVideo)
+  }
+
+  const handleVideoFile = (event) => {
+    setVideo(event)
+    console.log(event)
+  }
+
   // Apparition de l'input média au click
   const [styles, setStyles] = React.useState("container1");
 
@@ -84,46 +101,48 @@ export default function CardEdit() {
     e.preventDefault();
     if (happy !== null) {
       await putTodayCard("moodLabel", happy)
+      setOpen(false)
       console.log("happy submitted")
     }
     if (sad !== null) {
       await putTodayCard("moodLabel", sad)
+      setOpen(false)
       console.log("sad submitted")
     }
     if (cool !== null) {
       await putTodayCard("moodLabel", cool)
+      setOpen(false)
       console.log("cool submitted")
     }
     if (neutral !== null) {
       await putTodayCard("moodLabel", neutral)
+      setOpen(false)
       console.log("neutral submitted")
     }
     if (text !== null) {
       await putTodayCard("text", text)
+      setOpen(false)
       console.log("text submitted")
     }
     if (photo !== null) {
       // eslint-disable-next-line no-obj-calls
-      const res = await putTodayCard("image", String(photo))
       console.log(photo)
+      const res = await putTodayCard("image", photo.target.files[0])
+      setOpen(false)
       console.log("image submitted", res)
     }
     if (micro !== null) {
-      await putTodayCard("audio", micro)
+      await putTodayCard("audio", micro.target.files[0])
+      setOpen(false)
       console.log("audio submitted")
     }
     if (video !== null) {
-      await putTodayCard("video", video)
+      await putTodayCard("video", video.target.files[0])
+      setOpen(false)
       console.log("video submitted")
     }
-   
   }
 
-  React.useEffect((e) => {
-    console.log(photo)
-  
-  }, [photo])
-  
   return (
     <div>
       <button className="button-card-edit" onClick={handleOpen}>
@@ -134,7 +153,7 @@ export default function CardEdit() {
       <Modal
         open={open}
         onClose={handleClose}
-        aria-labelledby="modal-modal-title" 
+        aria-labelledby="modal-modal-title" s
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
@@ -145,6 +164,8 @@ export default function CardEdit() {
             <FontAwesomeIcon icon={faSadTear} className="fas fa-sad-tear" name="Sad" onClick={() => setSad("sad")} />
             <FontAwesomeIcon icon={faSmileWink} className="fas fa-smile-wink" name="Cool" onClick={() => setCool("cool")} />
             <FontAwesomeIcon icon={faMehBlank} className="fas fa-meh-blank" name="Neutral" onClick={() => setNeutral("neutral")} />
+
+
           </div>
           <div className="medias">
 
@@ -152,22 +173,38 @@ export default function CardEdit() {
             <FontAwesomeIcon icon={faKeyboard} className="fas fa-keyboard" name="Text" onClick={() => { setText("text"), displayInput }} />
 
             {!toggleImg ?
-            (<>
-              <div className={styles}>
-                <label >
-                <FontAwesomeIcon icon={faCamera} className="fas fa-camera" name="Photo" />
+              (<>
+                <div className={styles}>
+                  <label >
+                    <FontAwesomeIcon icon={faCamera} className="fas fa-camera" name="Photo" />
                     <input type="file" max-size="5000" name="upload_file" onChange={setPhoto} />
-                </label>
+                  </label>
                 </div>
-                </>)
+              </>)
               :
-              <div  onClick={handleToggleImg}>
+              <div onClick={handleToggleImg}>
                 <FontAwesomeIcon className="files-text" icon={faCamera} name="Photo" />
-              </div> }
+              </div>}
 
-            <FontAwesomeIcon icon={faMicrophone} className="fas fa-microphone" name="Micro" onClick={() => { setMicro("audio"), displayInput }} />
-            
-            <FontAwesomeIcon icon={faVideo} className="fas fa-video" name="Video" onClick={() => { setVideo("video"), displayInput }} />
+
+            {!toggleVideo ?
+              (<>
+                <div className={styles}>
+                  <label >
+                    <FontAwesomeIcon icon={faVideo} className="fas fa-video" name="Video" />
+                    <input type="file" max-size="5000" name="upload_file" onChange={setVideo} />
+                  </label>
+                </div>
+              </>)
+              :
+              <div onClick={handleToggleVideo}>
+                <FontAwesomeIcon icon={faVideo} className="fas fa-video" name="Video" />
+              </div>}
+
+
+
+
+            <FontAwesomeIcon icon={faMicrophone} className="fas fa-microphone" name="Micro" />
           </div>
 
 

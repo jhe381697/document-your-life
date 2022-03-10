@@ -57,7 +57,7 @@ const Calendar = () => {
                     </div>
                   </Link>
                   <Routes>
-                    <Route path={'/card/' + id} element={<Card key={id} />} />
+                    <Route path={'/card/*' + id} element={<Card key={id} />} />
                   </Routes>
                 </div >
               )

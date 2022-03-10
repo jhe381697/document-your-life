@@ -32,10 +32,10 @@ const TabDashboard = () => {
             <Calendar />} />
           <Route path="today" element={
             // today card resume
-            <CardResume />} />
+            <CardResume id={0} />} />
           <Route path="last" element={
             // last card resume
-            <CardResume />} />
+            <CardResume id={1} />} />
         </Routes> 
       </div>
     </>
