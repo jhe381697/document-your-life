@@ -27,13 +27,13 @@ const About = () => {
     {
       avatar: "https://avatars.githubusercontent.com/u/81814979?v=4",
       name: "Jérôme",
-      role: "Git master & front dev",
+      role: "Git master & Front dev",
       github: "https://github.com/Jerrylejer",
     },
     {
       avatar: "https://avatars.githubusercontent.com/u/83350003?v=4",
       name: "Joséphine",
-      role: "Scrum master & front dev",
+      role: "Scrum master & Front dev",
       github: "https://github.com/jhe381697",
     },
   ]
