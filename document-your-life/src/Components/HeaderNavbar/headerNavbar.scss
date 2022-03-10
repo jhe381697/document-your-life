@@ -1,5 +1,12 @@
 @import '../../styles/vars';
 
+.HeaderNavbar-container {
+    width: 100%;
+    height: 8.5rem;
+    display: flex;
+    justify-content: center;
+}
+
 .HeaderNavbar{
     z-index: 1;
     max-width: 100%;
@@ -10,12 +17,13 @@
     align-items: center;
     border-bottom: 1px solid #636363;
     border-top: 1px solid #636363;
-    margin: 1.5rem 0 3em 0;
+    margin: 1.5rem 0 1.5em 0;
     font: 18px "Caveat", regular;
     position: sticky;
     flex-wrap: nowrap;
     flex-direction: row;
     background: #fff;
+    position: fixed;
 
     &-link{
         margin: 0.6rem;
