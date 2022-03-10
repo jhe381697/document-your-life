@@ -51,11 +51,10 @@ export default function CardEdit() {
   }
   
   // Usestates des icones
-  const [happy, setHappy]= React.useState(null)
-  const [sad, setSad]= React.useState(null)
-  const [cool, setCool]= React.useState(null)
-  const [neutral, setNeutral]= React.useState(null)
-  
+  const [happy, setHappy]= React.useState(null);
+  const [sad, setSad]= React.useState(null);
+  const [cool, setCool]= React.useState(null);
+  const [neutral, setNeutral]= React.useState(null);
   const [text, setText] = React.useState(null);
 	const [photo, setPhoto] = React.useState(null);
 	const [micro, setMicro] = React.useState(null);
@@ -73,53 +72,51 @@ export default function CardEdit() {
 
   // Couleur change suivant upload du fichier ou non
   const [color, setColor] = React.useState("files1");
-  // const [file, setFile] = useState(null);
 
   const handleInputChange = (event) => {
     setColor("files2");
-    // setFile(event.target.file[0])
+    setFile(event.target.files[0])
   }
-
 
   // Requête PUT axios fichiers vers la BDD
   // Requête PUT axios icones vers la BDD
   const handleOnSubmit = async(e) => {
     e.preventDefault();
       if(happy !== null){
-        putTodayCard("moodLabel",happy)
+        await putTodayCard("moodLabel",happy)
         console.log("happy submitted")
       }
       if(sad !== null){
-        putTodayCard("moodLabel",sad)
+        await putTodayCard("moodLabel",sad)
         console.log("sad submitted")
       }
       if(cool !== null){
-        putTodayCard("moodLabel",cool)
+        await putTodayCard("moodLabel",cool)
         console.log("cool submitted")
       }
       if(neutral !== null){
-        putTodayCard("moodLabel",neutral)
+        await putTodayCard("moodLabel",neutral)
         console.log("neutral submitted")
       }
       if(text !== null){
-        putTodayCard("text",text)
+        await putTodayCard("text",text)
         console.log("text submitted")
       }
       if(photo !== null){
-        putTodayCard("image",photo)
+        await putTodayCard("image",photo)
         console.log("image submitted")
       }
       if(micro !== null){
-        putTodayCard("audio",micro)
+        await putTodayCard("audio",micro)
         console.log("audio submitted")
       }
       if(video !== null){
-        putTodayCard("video",video)
+        await putTodayCard("video",video)
         console.log("video submitted")
       }
-      // if(file !== null){
-      //   putTodayCard("file", file)
-      // }
+      if(file !== null){
+        putTodayCard("file", file)
+      }
 
     // Fermeture de la modale et remise à (null) des icones cliqués Submit
      open ? setOpen(false) : '';
@@ -158,9 +155,9 @@ export default function CardEdit() {
             <div className="medias">
               <h3 className="medias-text">... illustre ta journée:</h3>
               <FontAwesomeIcon icon={faKeyboard} className="fas fa-keyboard" name="Text" onClick={() => setText("text"), displayInput} />
-              <FontAwesomeIcon icon={faCamera} className="fas fa-camera" name="Photo" onClick={() => setPhoto("image"), displayInput}/>
-              <FontAwesomeIcon icon={faMicrophone} className="fas fa-microphone" name="Micro" onClick={() => setMicro("audio"), displayInput}/>
-              <FontAwesomeIcon icon={faVideo} className="fas fa-video" name="Video" onClick={() => setVideo("video"), displayInput}/>
+              <FontAwesomeIcon icon={faCamera} className="fas fa-camera" name="Photo" onClick={() => setPhoto("image"), displayInput} />
+              <FontAwesomeIcon icon={faMicrophone} className="fas fa-microphone" name="Micro" onClick={() => setMicro("audio"), displayInput} />
+              <FontAwesomeIcon icon={faVideo} className="fas fa-video" name="Video" onClick={() => setVideo("video"), displayInput} />
             </div>
             <div className={styles}>
               <label className="files-text">... et ajoute ton média:</label>
