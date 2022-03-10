@@ -13,25 +13,27 @@ const HeaderNavbar = ({ handleConnection }) => {
     const { isAuthenticated } = useContext(Auth);
     const LocationURL = useLocation()
     return (
-        <div className='HeaderNavbar'>
-                <img className='HeaderNavbar-logo' src={logo} />
-            <Link className='HeaderNavbar-link' to='/about' >À propos</Link>
-            <Link className='HeaderNavbar-link' to='/contact' >Contact</Link>
-            {/* condition if connected then show  link to logout and if disconnected show link to login */}
-            {!isAuthenticated ? (
-                <>
-                    {LocationURL.pathname === '/' ?
-                        <Link className='HeaderNavbar-link' to='/login' >Connexion</Link> :
-                        <Link className='HeaderNavbar-link' to='/' >Accueil</Link>
-                    }
-                </>
-            ) : (
-                <>
-                    {LocationURL.pathname === '/profil' ? <Link className='HeaderNavbar-link' to='/Dashboard/calendar' >Dashboard</Link> :
-                        <Link className='HeaderNavbar-link' to='/profil' >Profil</Link>}
-                    <Link onClick={handleConnection} className='HeaderNavbar-link' to='/' >Déconnexion</Link>
-                </>
-            )}
+        <div className='HeaderNavbar-container'>
+            <div className='HeaderNavbar'>
+                    <img className='HeaderNavbar-logo' src={logo} />
+                <Link className='HeaderNavbar-link' to='/about' >À propos</Link>
+                <Link className='HeaderNavbar-link' to='/contact' >Contact</Link>
+                {/* condition if connected then show  link to logout and if disconnected show link to login */}
+                {!isAuthenticated ? (
+                    <>
+                        {LocationURL.pathname === '/' ?
+                            <Link className='HeaderNavbar-link' to='/login' >Connexion</Link> :
+                            <Link className='HeaderNavbar-link' to='/' >Accueil</Link>
+                        }
+                    </>
+                ) : (
+                    <>
+                        {LocationURL.pathname === '/profil' ? <Link className='HeaderNavbar-link' to='/Dashboard/calendar' >Dashboard</Link> :
+                            <Link className='HeaderNavbar-link' to='/profil' >Profil</Link>}
+                        <Link onClick={handleConnection} className='HeaderNavbar-link' to='/' >Déconnexion</Link>
+                    </>
+                )}
+            </div>
         </div>
     )
 };
