@@ -32,11 +32,18 @@
     align-content: center;
 
     &-container{
-        margin: 0 4rem 2rem 4rem;
+        margin: 0 1rem 2rem 1rem;
 
         &-text{
-          font:$fontP;
-          line-height: 1.7rem;
+          font: $fontP;
+          line-height: 1.5rem;
+          margin: 1rem 0 1rem 0; 
+        }
+
+        &-step{
+            font: $fontP;
+            line-height: 1.5rem;
+            
         }
     }
 
