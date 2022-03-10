@@ -51,7 +51,7 @@ const HomePage = () => {
                     <Box
                         className="modalHover-box" >
                         <h1>Bienvenue sur DYL !</h1>
-                        <ol className='modalHover-container'>
+                        <ul className='modalHover-container'>
                             <li className='modalHover-container-text'>Ici vous pourrez illustrer votre quotidien à l'aide de sons, d'images et bien plus.</li>
                             <h3>Pour bien commencer :</h3>
                             <li className='modalHover-container-step'>1. Inscrivez-vous et connectez-vous </li>

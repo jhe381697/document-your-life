@@ -51,8 +51,8 @@ const AvatarIcon = () => {
 
   return (
     <div className="avatarInput">
-      <label className="avatarInput-inpute">
-        <div>
+      <label className="avatarInput-input">
+        <div className='avatarInput-container'>
           <img onClick={handleToggle} className='avatarInput-avatar' src={avatar} />
           {toggle ? (<p type="submit" className="avatarInput-text" title='Modifier votre photo de profile' onClick={() => submit()}>Modifier l'avatar</p>) : null}
         </div>

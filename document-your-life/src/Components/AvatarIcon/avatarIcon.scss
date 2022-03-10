@@ -1,15 +1,13 @@
 .avatarInput{
   display: flex;
   justify-content: center;
-  &-text{
-
-  }
 
   &-inpute{
-    background-color: #63636365;
+    display: flex;
     width: 5rem;
     height: 5rem;
     border-radius: 50px;
+    justify-content: center;
   }
 
   &-avatar{
