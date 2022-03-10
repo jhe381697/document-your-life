@@ -7,28 +7,33 @@ import './about.scss';
 const About = () => {
   const devTeam = [
     {
-      avatar: "",
+      avatar: "https://avatars.githubusercontent.com/u/90550668?v=4",
       name: "William",
+      role: "Product Owner & Back dev",
       github: "https://github.com/williamDev-End",
     },
     {
-      avatar: "",
+      avatar: "https://avatars.githubusercontent.com/u/90602548?v=4",
       name: "Gurvan",
+      role: "Lead developper back",
       github: "https://github.com/LardeuxGurvan",
     },
     {
-      avatar: "",
+      avatar: "https://avatars.githubusercontent.com/u/91324853?v=4",
       name: "François",
+      role: "Lead developper front",
       github: "https://github.com/FrancoisMoanaMichael",
     },
     {
-      avatar: "",
+      avatar: "https://avatars.githubusercontent.com/u/81814979?v=4",
       name: "Jérôme",
+      role: "Git master & front dev",
       github: "https://github.com/Jerrylejer",
     },
     {
-      avatar: "",
+      avatar: "https://avatars.githubusercontent.com/u/83350003?v=4",
       name: "Joséphine",
+      role: "Scrum master & front dev",
       github: "https://github.com/jhe381697",
     },
   ]
@@ -47,9 +52,9 @@ const About = () => {
               </p>
             </div>
             <div className='about-team'>
-              {devTeam.map(({ name, github, avatar }) => {
+              {devTeam.map(({ name, role, github, avatar }) => {
                 return (
-                <DevCard key={name} avatar={avatar} name={name} github={github} />
+                <DevCard key={name} avatar={avatar} name={name} role={role} github={github} />
                 )
               })}
             </div>
