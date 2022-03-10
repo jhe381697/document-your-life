@@ -1,4 +1,4 @@
- /* eslint-disable react/jsx-key */
+/* eslint-disable react/jsx-key */
 import React from 'react'
 import { useState, useEffect } from 'react';
 import getAllCards, { getTodayCard } from '../../RequestsAxios/CardsReq';
@@ -25,16 +25,16 @@ const Card = () => {
 
   async function dayCardData() {
     const dayCard = await getAllCards(idFromLocation);
-    if (dayCard.status === 200){
-        setDate(dayCard.data.card.dateString);
+    if (dayCard.status === 200) {
+      setDate(dayCard.data.card.dateString);
       setMood(oldArray => [...oldArray, dayCard.data.card.moodlabel]);
       setTexts(oldArray => [...oldArray, dayCard.data.card.text]);
       setSounds(oldArray => [...oldArray, dayCard.data.card.audio]);
       setPictures(oldArray => [...oldArray, dayCard.data.card.image]);
       setVideos(oldArray => [...oldArray, dayCard.data.card.video]);
       setIsLoading(false)
-        return
-      }
+      return
+    }
     else {
       console.log('erreur')
     }
@@ -42,8 +42,8 @@ const Card = () => {
 
   const todayDateData = async () => {
     const todayDate = await getTodayCard();
-    if(todayDate.statue === 200){
-console.log(todayDate)
+    if (todayDate.statue === 200) {
+      console.log(todayDate)
       setIsLoading(false)
     }
   }
@@ -52,41 +52,41 @@ console.log(todayDate)
     dayCardData();
     todayDateData();
   }, []);
-console.log(mood)
+  console.log(mood)
   return (
     <div className='card-container'>
       {isLoading ? <Spinner /> :
 
         <div style={labelToColor(mood[0])} className='card'>
-        <h2>{date}</h2>
-        <div className='card-mood'>
-          <h3>Humeur de la journée</h3>
-          <div className='card-mood-emoji'>{mood}</div>
-        </div>
-        <div className='card-medium'>
-          <h3>Résumé de la journée</h3>
-          <div className='card-medium-infos'>
-            {texts ?
-            texts.map((text) => (
-              <div>{text}</div>
-            )) : null}
-            {sounds ?
-            sounds.map((sound) => (
-              <div>{sound}</div>
-            )) : null}
-            {pictures ?
-            pictures.map((picture) => (
-                          <img className='card-user-video' src={picture}></img>
-            )) : null}
-            {videos ?
-            videos.map((video) => (
-              <div>{video}</div>
-            )) : null}
+          <h2>{date}</h2>
+          <div className='card-mood'>
+            <h3>Humeur de la journée</h3>
+            <div className='card-mood-emoji'>{mood}</div>
+          </div>
+          <div className='card-medium'>
+            <h3>Résumé de la journée</h3>
+            <div className='card-medium-infos'>
+              {texts ?
+                texts.map((text) => (
+                  <div>{text}</div>
+                )) : null}
+              {sounds ?
+                sounds.map((sound) => (
+                  <div>{sound}</div>
+                )) : null}
+              {pictures ?
+                pictures.map((picture) => (
+                  <img className='card-user-video' src={picture}></img>
+                )) : null}
+              {videos ?
+                videos.map((video) => (
+                  <div>{video}</div>
+                )) : null}
+            </div>
           </div>
         </div>
-      </div>
-            }
-            <CardEdit/> 
+      }
+      <CardEdit />
     </div>
   )
 }
