@@ -14,13 +14,12 @@ import CardResume from '../CardResume/CardResume';
 import AvatarIcon from '../AvatarIcon/AvatarIcon';
 
 
-
 const TabDashboard = () => {
   return (
     <>
       <div className='dashboard-container'>
       <AvatarIcon />
-        <div className='container'>
+        <div className='tab-container'>
           <div className='tab-dashboard'>
             <Link to="last" className='tab-dashboard-link'>Hier</Link>
             <Link to="calendar" className='tab-dashboard-link'>Calendrier</Link>
