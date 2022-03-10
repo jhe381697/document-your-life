@@ -3,19 +3,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './devCard.scss';
 
-const DevCard = ({ name, github, avatar }) => {
+const DevCard = ({ name, role, github, avatar }) => {
     return (
-            <a title='Cliquez pour accéder à nos github' className='devCard-link' href={github}>
+      <div className='devCard-container'>
+        <a title='GitHub Pages' className='devCard-link' href={github}>
         <div className='devCard'>
-                <img className='devCard-avatar' src={avatar}></img>
-                <h3 className='devCard-name'>{name}</h3>
+          <img className='devCard-avatar' src={avatar}></img>
+          <h3 className='devCard-name'>{name}</h3>
+          <p>{role}</p>
         </div>
-            </a>
+        </a>
+      </div>
     );
 };
 
 DevCard.propTypes = {
     name: PropTypes.string.isRequired,
+    role: PropTypes.string.isRequired,
     github: PropTypes.string.isRequired,
     avatar: PropTypes.string.isRequired,
 };

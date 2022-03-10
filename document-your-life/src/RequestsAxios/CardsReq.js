@@ -33,9 +33,11 @@ export async function getTodayCard() {
                 'Authorization': `Bearer ${access_token}`
             },
         })
+        console.log(response)
         return response
     }
     catch (err) {
+        console.log(err.response)
         return err.response;
     }
 }

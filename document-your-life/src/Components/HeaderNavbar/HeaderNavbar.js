@@ -34,6 +34,7 @@ const HeaderNavbar = ({ handleConnection }) => {
                     <Link onClick={handleConnection} className='HeaderNavbar-link' to='/' >Déconnexion</Link>
                 </>
             )}
+
         </div>
     )
 };

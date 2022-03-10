@@ -79,8 +79,16 @@ const Card = () => {
                   <img className='card-user-video' src={picture}></img>
                 )) : null}
               {videos ?
-                videos.map((video) => (
-                  <div>{video}</div>
+                videos.map((videos) => (
+                  <div className="video-responsive">
+                    <iframe
+                      src={videos}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      title="Embedded youtube"
+                    />
+                  </div>
                 )) : null}
             </div>
           </div>
