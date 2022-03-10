@@ -56,7 +56,7 @@ export default function CardEdit() {
   const [cool, setCool] = React.useState(null);
   const [neutral, setNeutral] = React.useState(null);
   const [text, setText] = React.useState(null);
-  const [photo, setPhoto] = React.useState(null);
+  const [photo, setPhoto] = React.useState();
   const [micro, setMicro] = React.useState(null);
   const [video, setVideo] = React.useState(null);
 
@@ -67,27 +67,15 @@ export default function CardEdit() {
     console.log(toggleImg)
   }
   
-  const handleImageFile = (event) => {
-    setPhoto(event.target.value[0])
-    console.log(photo)
-  }
-
   // Apparition de l'input média au click
   const [styles, setStyles] = React.useState("container1");
-
-  const displayInput = () => {
-    text !== ('') ? setStyles("container2") : setStyles("container1");
-    photo !== ('') ? setStyles("container2") : setStyles("container1");
-    micro !== ('') ? setStyles("container2") : setStyles("container1");
-    video !== ('') ? setStyles("container2") : setStyles("container1");
-  }
 
   // Couleur change suivant upload du fichier ou non
   const [color, setColor] = React.useState("files1");
 
   const handleInputChange = (event) => {
     setColor("files2");
-    setFile(event.target.files[0])
+    setFile(event.target)
   }
 
   // Requête PUT axios fichiers vers la BDD
@@ -131,6 +119,11 @@ export default function CardEdit() {
    
   }
 
+  React.useEffect((e) => {
+    console.log(photo)
+  
+  }, [photo])
+  
   return (
     <div>
       <button className="button-card-edit" onClick={handleOpen}>
@@ -141,7 +134,7 @@ export default function CardEdit() {
       <Modal
         open={open}
         onClose={handleClose}
-        aria-labelledby="modal-modal-title" s
+        aria-labelledby="modal-modal-title" 
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
@@ -163,7 +156,7 @@ export default function CardEdit() {
               <div className={styles}>
                 <label >
                 <FontAwesomeIcon icon={faCamera} className="fas fa-camera" name="Photo" />
-                  <input type="file" max-size="5000" name="upload_file" onChange={handleImageFile} />
+                    <input type="file" max-size="5000" name="upload_file" onChange={setPhoto} />
                 </label>
                 </div>
                 </>)

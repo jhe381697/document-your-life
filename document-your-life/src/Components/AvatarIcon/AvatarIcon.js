@@ -11,6 +11,7 @@ const AvatarIcon = () => {
   const [file, setFile] = useState(null);
   const [toggle, setToggle] = useState(true);
   const [avatar, setAvatar] = useState();
+  // const [newAvatar, setNewAvatar] = useState();
 
   const handleInputChange = (event) => {
     setFile(event.target.files[0])
@@ -21,7 +22,9 @@ const AvatarIcon = () => {
       const res = await patchAvatar("avatar", file)
       console.log(res)
       console.warn(file)
+      getAvatarFromApi()
       setToggle(!toggle)
+
       return
     } else (
       handleToggle())
@@ -40,11 +43,9 @@ const AvatarIcon = () => {
     } else (console.log(res.status))
   }
 
-  useEffect(() => {
-    getAvatarFromApi()
-  }, [])
 
   useEffect(() => {
+    getAvatarFromApi()
     submit()
   }, [file])
 
@@ -53,11 +54,10 @@ const AvatarIcon = () => {
       <label className="avatarInput-inpute">
         <div>
           <img onClick={handleToggle} className='avatarInput-avatar' src={avatar} />
-          {!toggle ? (<p type="submit" className="avatarInput-text" title='Modifier votre photo de profile' onClick={() => submit()}>Modifier l'avatar</p>) : null}
+          {toggle ? (<p type="submit" className="avatarInput-text" title='Modifier votre photo de profile' onClick={() => submit()}>Modifier l'avatar</p>) : null}
         </div>
         <input type="file" max-size="5000" name="upload_file" onChange={handleInputChange} />
       </label>
-
     </div>
 
   )
