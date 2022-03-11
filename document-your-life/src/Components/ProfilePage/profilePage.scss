@@ -1,16 +1,18 @@
 @import '../../styles/vars';
-            &-personal{
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: flex-end;
-                padding-bottom: 3rem;
-            &-avatar{
-            height: 5rem;
-            width: 5rem;
-            border-radius: 50px;
-            background-color: #f0f;
+
+.profilPage{
+    margin-top: 7rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    border-radius: 4px;
+    box-shadow: inset 0px 0px 20px 0px #00000033;
+    height: 20rem;
+    padding: 1.3rem;
+    justify-content: flex-end;
+    align-items: center;
+        &-personal{
+            width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -36,7 +38,6 @@
                 }
         }
 }
-
 .cgu-button {
     display: flex;
     justify-content: center;
