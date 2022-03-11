@@ -58,8 +58,7 @@ const HomePage = () => {
                             <li className='modalHover-container-step'>2. Accédez à votre dashboard </li>
                             <li className='modalHover-container-step'>3. Créez une nouvelle carte afin d'illustrer votre journée </li>
 
-
-                            <li className='modalHover-container-text'>Labourat eost. Zo danvez. Mamm vihan. Harz dreñv. Ur harzhal. Karout gavr. Brieg gaoued. Pluenn araok. Nebeutoc’h Sun. Gouzout he.</li>
+                            <li className='modalHover-container-text'>Pour plus de précision vous pouvez lire la vidéo de présentation de DYL.</li>
 
                             {/* <li className='modalHover-container-text'>Bloaz pal. Abardaez burzhud. C’har asied. Merc’her arrebeuri. Pegañ skouarn. Hor kleñved. Bobl sioul. Tregastell broust. Gouere unan. Sellout askorn.</li> */}
                         </ul>
