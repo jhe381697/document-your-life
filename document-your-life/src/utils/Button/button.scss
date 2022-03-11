@@ -5,11 +5,20 @@
     border-radius: 50px;
     transform: rotate(-$btnRottate);
     box-shadow: $btnShadow;
+    background-color: $btnBackColor;
     border: none;
         &-text{
             overflow: visible;
             font:$fontH2 ;
-            color: #7E8CAF;
+            color: #af9661;
+            // color: #7E8CAF;
+        }
+
+        &:hover {
+            transform: scale(1.05);
+            transition: 0.5s;
         }
     
 }
+
+
