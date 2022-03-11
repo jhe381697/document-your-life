@@ -33,6 +33,7 @@ const HomePage = () => {
     return (
         <>
             <div className='homepage'>
+
                 <h2 className='homepage-title'> Document Your Life </h2>
                 <div>
                     <YoutubeEmbed embedId={WelcomVid} />
