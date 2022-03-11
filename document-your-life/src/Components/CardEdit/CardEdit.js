@@ -51,14 +51,6 @@ export default function CardEdit() {
   }
 
   // Usestates des icones
-  const [happy, setHappy] = React.useState(null);
-  const [sad, setSad] = React.useState(null);
-  const [cool, setCool] = React.useState(null);
-  const [neutral, setNeutral] = React.useState(null);
-  const [text, setText] = React.useState('');
-  const [photo, setPhoto] = React.useState(null);
-  const [micro, setMicro] = React.useState(null);
-  const [video, setVideo] = React.useState(null);
 
 
   const [toggleText, setToggleText] = React.useState(false);
@@ -109,53 +101,6 @@ export default function CardEdit() {
 
   // Requête PUT axios fichiers vers la BDD
   // Requête PUT axios icones vers la BDD
-  const handleOnSubmit = async (e) => {
-    e.preventDefault();
-    if (happy !== null) {
-      await putTodayCard("moodLabel", happy)
-      setOpen(false)
-      console.log("happy submitted")
-    }
-    if (sad !== null) {
-      await putTodayCard("moodLabel", sad)
-      setOpen(false)
-      console.log("sad submitted")
-    }
-    if (cool !== null) {
-      await putTodayCard("moodLabel", cool)
-      setOpen(false)
-      console.log("cool submitted")
-    }
-    if (neutral !== null) {
-      await putTodayCard("moodLabel", neutral)
-      setOpen(false)
-      console.log("neutral submitted")
-    }
-    if (text !== null) {
-      await putTodayCard("text", text)
-      setOpen(false)
-      console.log("text submitted")
-    }
-    if (photo !== null) {
-      // eslint-disable-next-line no-obj-calls
-      console.log(photo)
-      const res = await putTodayCard("image", photo.target.files[0])
-      setOpen(false)
-      console.log("image submitted", res)
-    }
-    if (micro !== null) {
-      await putTodayCard("audio", micro.target.files[0])
-      setOpen(false)
-      console.log("audio submitted")
-    }
-    if (video !== null) {
-      await putTodayCard("video", video.target.files[0])
-      setOpen(false)
-      console.log("video submitted")
-    }
-    //  TODO remove reload page its only for testing
-    return window.location.reload(false);
-  }
 
   return (
     <div>
@@ -174,6 +119,7 @@ export default function CardEdit() {
           <div className="emojis">
             <FontAwesomeIcon icon={faTimes} className="fas fa-times" name="faTimes" onClick={handleCloseModal} />
             <h3 className="emojis-text">Partage ton humeur du jour:</h3>
+
             <FontAwesomeIcon icon={faLaughBeam} className="fas fa-laugh-beam" name="Happy" onClick={() => setHappy("happy")} />
             <FontAwesomeIcon icon={faSadTear} className="fas fa-sad-tear" name="Sad" onClick={() => setSad("sad")} />
             <FontAwesomeIcon icon={faSmileWink} className="fas fa-smile-wink" name="Cool" onClick={() => setCool("cool")} />
