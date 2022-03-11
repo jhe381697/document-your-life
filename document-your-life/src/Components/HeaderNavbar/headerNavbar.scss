@@ -15,9 +15,9 @@
     justify-content: center;
     align-content: center;
     align-items: center;
-    border-bottom: 1px solid #636363;
-    border-top: 1px solid #636363;
-    margin: 1.5rem 0 1.5em 0;
+    border-bottom: 1px solid #608058;
+    // border-top: 1px solid #636363;
+    margin: 5rem 0 1.5em 0;
     font: 17px "Caveat", regular;
     position: sticky;
     top: 0;
@@ -28,7 +28,7 @@
     &-link{
         margin: 0.6rem;
         text-decoration: none;
-        color: $colorsLinkNavBar;
+        color: #608058;
     }
     
     &-logo{
@@ -40,10 +40,17 @@
     }
 }
 
-    .HeaderNavbar-link-bottom{
-        
+    .HeaderNavbar-link-bottom{ 
+        margin: 1rem;
+        color: #608058;
+
         &-container{
+            display: flex;
+            justify-content: space-evenly;
             position: fixed;
-            bottom: 1px;
+            bottom: 1rem;
+            display: flex;
+
+            
         }
     }
