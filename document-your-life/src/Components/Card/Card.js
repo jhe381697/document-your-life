@@ -12,9 +12,7 @@ import labelToColor from '../../utils/LabelToColor/LabelToColor';
 const Card = () => {
   let idFromLocation = useLocation().pathname.split('/card/').at(-1)
   const [isLoading, setIsLoading] = useState(true)
-
   const [date, setDate] = useState();
-
   const [mood, setMood] = useState([]);
   const [texts, setTexts] = useState(['']);
   const [sounds, setSounds] = useState([]);
@@ -23,8 +21,9 @@ const Card = () => {
 
 
 
-  async function dayCardData() {
+  async function dayCardData(e) {
     const dayCard = await getAllCards(idFromLocation);
+    
     if (dayCard.status === 200) {
       setDate(dayCard.data.card.dateString);
       setMood( dayCard.data.card.moodlabel);
@@ -32,7 +31,7 @@ const Card = () => {
       setSounds( dayCard.data.card.audio);
       setPictures( dayCard.data.card.image);
       setVideos( dayCard.data.card.video);
-      
+      console.log(e)
       setIsLoading(false)
       return 
     }
@@ -45,7 +44,6 @@ const Card = () => {
     const todayDate = await getTodayCard();
     if (todayDate.statue === 200) {
       console.log(todayDate)
-      setIsLoading(false)
     }
   }
 
@@ -53,6 +51,10 @@ const Card = () => {
     dayCardData()
     todayDateData()
     console.log(e)
+  }, []);
+
+  useEffect(() => {
+    console.log(isLoading)
   }, []);
   console.log(mood)
   return (

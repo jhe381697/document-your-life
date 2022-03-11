@@ -153,6 +153,8 @@ export default function CardEdit() {
       setOpen(false)
       console.log("video submitted")
     }
+    //  TODO remove reload page its only for testing
+    return window.location.reload(false);
   }
 
   return (
