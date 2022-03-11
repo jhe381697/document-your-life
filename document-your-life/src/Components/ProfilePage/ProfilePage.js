@@ -1,5 +1,7 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/jsx-key */
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import getUserData from '../../RequestsAxios/userData';
 import Spinner from '../../utils/Spinner/Spinner';
 import AvatarIcon from '../AvatarIcon/AvatarIcon';
@@ -40,6 +42,9 @@ const ProfilePage = () => {
                             <li className='profilPage-personal-credentials'>{user.email}</li>
                         </ul>
                     </div>
+                    <button className='cgu-button'>
+                        <Link to='/cgu'>Lire nos Conditions Générales d'Utilisation</Link>
+                    </button>
                 </>
             )
             }
