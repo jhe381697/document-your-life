@@ -183,7 +183,7 @@ const Card = () => {
                   <div>
                     <label >
                       <FontAwesomeIcon icon={faCamera} className="fas fa-camera" name="Photo" />
-                      <input type="file" max-size="5000" name="upload_file" onChange={handleInputChangePictures} />
+                      <input type="file" max-size="5000" name="upload_file" onChange={setPhotoPut} />
                     </label>
                   </div>
                   
