@@ -23,8 +23,7 @@ const AvatarIcon = () => {
       console.log(res)
       console.warn(file)
       getAvatarFromApi()
-      setToggle(!toggle)
-
+      setToggle(true)
       return
     } else (
       handleToggle())
@@ -32,8 +31,10 @@ const AvatarIcon = () => {
 
   function handleToggle() {
     if (locationURL.pathname === "/profil") {
-      setToggle(!toggle)
-    }
+      setToggle(true)
+    } else (
+      setToggle(false)
+    )
     return
   }
   async function getAvatarFromApi() {
@@ -51,10 +52,10 @@ const AvatarIcon = () => {
 
   return (
     <div className="avatarInput">
+          <img onClick={handleToggle} className='avatarInput-avatar' src={avatar} />
       <label className="avatarInput-input">
         <div className='avatarInput-container'>
-          <img onClick={handleToggle} className='avatarInput-avatar' src={avatar} />
-          {toggle ? (<p type="submit" className="avatarInput-text" title='Modifier votre photo de profile' onClick={() => submit()}>Modifier l'avatar</p>) : null}
+          {toggle ? (<p type="submit" className="avatarInput-text" title='Modifier votre photo de profile' onClick={() => submit()}>Edit</p>) : null}
         </div>
         <input type="file" max-size="5000" name="upload_file" onChange={handleInputChange} />
       </label>

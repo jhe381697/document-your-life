@@ -91,7 +91,7 @@ try{
                     placeholder='Entrez votre Mot de passe' />
                 <div className='button-container'>
                     <button type="submit" className="AllButton">
-                        <p className='AllButton-text'>Envoyer</p>
+                        <p className='AllButton-text'>C'est parti!</p>
                     </button>
                 </div>
             </form>
