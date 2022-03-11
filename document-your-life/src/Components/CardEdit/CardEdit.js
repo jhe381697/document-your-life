@@ -55,10 +55,33 @@ export default function CardEdit() {
   const [sad, setSad] = React.useState(null);
   const [cool, setCool] = React.useState(null);
   const [neutral, setNeutral] = React.useState(null);
-  const [text, setText] = React.useState(null);
+  const [text, setText] = React.useState('');
   const [photo, setPhoto] = React.useState(null);
   const [micro, setMicro] = React.useState(null);
   const [video, setVideo] = React.useState(null);
+
+
+  const [toggleText, setToggleText] = React.useState(false);
+  function handleToggleText() {
+    setToggleText(!toggleText)
+    console.log(toggleText)
+  }
+
+  const handleTextFile = (event) => {
+    setText(event.target.files[0])
+    console.log(event)
+  }
+
+  const [toggleAudio, setToggleAudio] = React.useState(false);
+  function handleToggleAudio() {
+    setToggleAudio(!toggleAudio)
+    console.log(toggleAudio)
+  }
+
+  const handleAudioFile = (event) => {
+    setAudio(event.target.files[0])
+    console.log(event)
+  }
 
 
   const [toggleImg, setToggleImg] = React.useState(false);
@@ -66,7 +89,7 @@ export default function CardEdit() {
     setToggleImg(!toggleImg)
     console.log(toggleImg)
   }
-  
+
   const handleImageFile = (event) => {
     setPhoto(event.target.files[0])
     console.log(event)
@@ -82,17 +105,6 @@ export default function CardEdit() {
   const handleVideoFile = (event) => {
     setVideo(event)
     console.log(event)
-  }
-
-  // Apparition de l'input média au click
-  const [styles, setStyles] = React.useState("container1");
-
-  // Couleur change suivant upload du fichier ou non
-  const [color, setColor] = React.useState("files1");
-
-  const handleInputChange = (event) => {
-    setColor("files2");
-    setFile(event.target)
   }
 
   // Requête PUT axios fichiers vers la BDD
@@ -170,42 +182,68 @@ export default function CardEdit() {
           <div className="medias">
 
             <h3 className="medias-text">... illustre ta journée:</h3>
-            <FontAwesomeIcon icon={faKeyboard} className="fas fa-keyboard" name="Text" onClick={() => { setText("text"), displayInput }} />
 
-            {!toggleImg ?
-              (<>
-                <div className={styles}>
-                  <label >
-                    <FontAwesomeIcon icon={faCamera} className="fas fa-camera" name="Photo" />
-                    <input type="file" max-size="5000" name="upload_file" onChange={setPhoto} />
-                  </label>
-                </div>
-              </>)
-              :
-              <div onClick={handleToggleImg}>
-                <FontAwesomeIcon className="files-text" icon={faCamera} name="Photo" />
-              </div>}
-
-
-            {!toggleVideo ?
-              (<>
-                <div className={styles}>
-                  <label >
-                    <FontAwesomeIcon icon={faVideo} className="fas fa-video" name="Video" />
-                    <input type="file" max-size="5000" name="upload_file" onChange={setVideo} />
-                  </label>
-                </div>
-              </>)
-              :
-              <div onClick={handleToggleVideo}>
-                <FontAwesomeIcon icon={faVideo} className="fas fa-video" name="Video" />
-              </div>}
+            <form onSubmit={handleOnSubmit} >
+              {!toggleImg ?
+                (<>
+                  <div>
+                    <label >
+                      <FontAwesomeIcon icon={faCamera} className="fas fa-camera" name="Photo" />
+                      <input type="file" max-size="5000" name="upload_file" onChange={setPhoto} />
+                    </label>
+                  </div>
+                </>)
+                :
+                <div onClick={handleToggleImg}>
+                  <FontAwesomeIcon className="files-text" icon={faCamera} name="Photo" />
+                </div>}
 
 
+              {!toggleVideo ?
+                (<>
+                  <div>
+                    <label >
+                      <FontAwesomeIcon icon={faVideo} className="fas fa-video" name="Video" />
+                      <input type="file" max-size="5000" name="upload_file" onChange={setVideo} />
+                    </label>
+                  </div>
+                </>)
+                :
+                <div onClick={handleToggleVideo}>
+                  <FontAwesomeIcon icon={faVideo} className="fas fa-video" name="Video" />
+                </div>}
 
 
-            <FontAwesomeIcon icon={faMicrophone} className="fas fa-microphone" name="Micro" />
+              {!toggleAudio ?
+                (<>
+                  <div>
+                    <label >
+                      <FontAwesomeIcon icon={faMicrophone} className="fas fa-microphone" name="Micro" />
+                      <input type="file" max-size="5000" name="upload_file" onChange={setMicro} />
+                    </label>
+                  </div>
+                </>)
+                :
+                <div onClick={handleToggleAudio}>
+                  <FontAwesomeIcon icon={faMicrophone} className="fas fa-microphone" name="Micro" />
+                </div>}
+              {toggleText ?
+                (<>
+                  <div>
+                    <FontAwesomeIcon icon={faKeyboard} className="fas fa-keyboard" name="Text" />
+                    <input type="text"
+                      onChange={(e) => setText(e.target.value)} value={text} name="upload_text" />
+                  </div>
+                </>)
+                :
+                <div onClick={handleToggleText}>
+                  <FontAwesomeIcon icon={faKeyboard} className="fas fa-keyboard" name="Text" />
+                </div>}
+            </form>
+
           </div>
+
+
 
 
           <div className="submit">

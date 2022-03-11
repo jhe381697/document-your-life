@@ -14,9 +14,14 @@ const HeaderNavbar = ({ handleConnection }) => {
     const LocationURL = useLocation()
     return (
         <div className='HeaderNavbar'>
-                {/* <img className='HeaderNavbar-logo' src={logo} /> */}
-            <Link className='HeaderNavbar-link' to='/about' >À propos</Link>
-            <Link className='HeaderNavbar-link' to='/contact' >Contact</Link>
+            {/* <img className='HeaderNavbar-logo' src={logo} /> */}
+            {LocationURL.pathname === '/' || LocationURL.pathname === '/login' || LocationURL.pathname === '/signup' ? (
+                <>
+                    <Link className='HeaderNavbar-link' to='/about' >À propos</Link>
+                    <Link className='HeaderNavbar-link' to='/contact' >Contact</Link></>
+            )
+                :
+                null}
             {/* condition if connected then show  link to logout and if disconnected show link to login */}
             {!isAuthenticated ? (
                 <>
@@ -29,9 +34,11 @@ const HeaderNavbar = ({ handleConnection }) => {
                 </>
             ) : (
                 <>
-                    {LocationURL.pathname === '/profil' ? <Link className='HeaderNavbar-link' to='/Dashboard/calendar' >Dashboard</Link> :
-                        <Link className='HeaderNavbar-link' to='/profil' >Profil</Link>}
-                    <Link onClick={handleConnection} className='HeaderNavbar-link' to='/' >Déconnexion</Link>
+                    <Link className='HeaderNavbar-link' to='/Dashboard/calendar' >Dashboard</Link>
+                    <Link className='HeaderNavbar-link' to='/profil' >Profil</Link>
+                    {LocationURL.pathname === '/profil' &&
+                        <Link onClick={handleConnection} className='HeaderNavbar-link' to='/' >Déconnexion</Link>}
+
                 </>
             )}
 

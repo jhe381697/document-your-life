@@ -2,25 +2,25 @@
 export default function labelToColor(label) {
     if (label === "happy") {
         const style = {
-            backgroundColor: 'rgb(1, 248, 1)',
+            backgroundColor: '#FFF9C0',
         }
         return style
     }
     if (label === "sad") {
         const style = {
-            backgroundColor: 'grey',
+            backgroundColor: '#D7E4FE',
         }
         return style
     }
     if (label === "neutral") {
         const style = {
-            backgroundColor: 'rgb(245, 231, 104)',
+            backgroundColor: '#F5F9FF',
         }
         return style
     }
     if (label === "cool") {
         const style = {
-            backgroundColor: 'rgb(255, 157, 0)',
+            backgroundColor: '#FFD7B3)',
         }
         return style
     }
