@@ -10,6 +10,7 @@ import './cardResume.scss'
 import Spinner from '../../utils/Spinner/Spinner';
 import Card from '../Card/Card';
 import labelToColor from '../../utils/LabelToColor/LabelToColor';
+import moment from 'moment';
 
 const CardResume = ({id}) => {
   const [cardId, setCardId] = useState();
@@ -27,7 +28,7 @@ const CardResume = ({id}) => {
     console.log("on id:",id)
     if (todayCard.status === 200) {
       setCardId(todayCard.data.lastCards[id].id)
-      setDate(todayCard.data.lastCards[id].dateString);
+      setDate(todayCard.data.lastCards[id].created_at);
       setMood(todayCard.data.lastCards[id].moodlabel);
       setTexts( todayCard.data.lastCards[id].text);
       setSounds(todayCard.data.lastCards[id].audio);
@@ -55,7 +56,7 @@ const CardResume = ({id}) => {
       <div className='cardresume-container'>
         {isLoading ? <Spinner /> :
             <div style={labelToColor(mood)} className='cardresume'>
-            <h2>{date}</h2>
+              <h2>{moment(date).format("DD-MMM-YYYY")}</h2>
             <div className='cardresume-mood'>
               <h3>Humeur de la journée</h3>
               <div className='cardresume-mood-emoji'>{mood}</div>
@@ -63,24 +64,17 @@ const CardResume = ({id}) => {
             <div className='cardresume-medium'>
               <h3>Résumé de la journée</h3>
               <div className='cardresume-medium-infos'>
-                {texts && texts ===[] ?
-                  texts.map((text) => (
-                    <div key={text}>{text}</div>
-                  )) : null}
-
-                  {sounds && sounds===[] ?
-                  sounds.map((sound) => (
-                    <div key={sound}>{sound}</div>
-                  )) : null}
-
-                  {pictures && pictures === [] ?
-                  pictures.map((picture) => (
-                    <img key={picture} className='card-user-video' src={picture}></img>
-                  )) : null}
-
-                  {videos && videos === []?
-                    videos.map((videos) => (
-                      <div key={videos} className="video-responsive">
+                    <div >{texts}</div>
+                  <div >
+                    <iframe
+                      src={sounds}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      title="Embedded youtube"
+                    /></div>
+                    <img className='card-user-video' src={pictures}></img>
+                      <div className="video-responsive">
                         <iframe
                           src={videos}
                           frameBorder="0"
@@ -89,7 +83,7 @@ const CardResume = ({id}) => {
                           title="Embedded youtube"
                         />
                       </div>
-                  )) : null}
+            
               </div>
             </div>
           </div>

@@ -16,7 +16,7 @@ const Card = () => {
   const [date, setDate] = useState();
 
   const [mood, setMood] = useState([]);
-  const [texts, setTexts] = useState([]);
+  const [texts, setTexts] = useState(['']);
   const [sounds, setSounds] = useState([]);
   const [pictures, setPictures] = useState([]);
   const [videos, setVideos] = useState([]);
@@ -27,13 +27,14 @@ const Card = () => {
     const dayCard = await getAllCards(idFromLocation);
     if (dayCard.status === 200) {
       setDate(dayCard.data.card.dateString);
-      setMood(oldArray => [...oldArray, dayCard.data.card.moodlabel]);
-      setTexts(oldArray => [...oldArray, dayCard.data.card.text]);
-      setSounds(oldArray => [...oldArray, dayCard.data.card.audio]);
-      setPictures(oldArray => [...oldArray, dayCard.data.card.image]);
-      setVideos(oldArray => [...oldArray, dayCard.data.card.video]);
+      setMood( dayCard.data.card.moodlabel);
+      setTexts(dayCard.data.card.text);
+      setSounds( dayCard.data.card.audio);
+      setPictures( dayCard.data.card.image);
+      setVideos( dayCard.data.card.video);
+      
       setIsLoading(false)
-      return
+      return 
     }
     else {
       console.log('erreur')
@@ -48,9 +49,10 @@ const Card = () => {
     }
   }
 
-  useEffect(() => {
-    dayCardData();
-    todayDateData();
+  useEffect((e) => {
+    dayCardData()
+    todayDateData()
+    console.log(e)
   }, []);
   console.log(mood)
   return (
@@ -66,20 +68,9 @@ const Card = () => {
           <div className='card-medium'>
             <h3>Résumé de la journée</h3>
             <div className='card-medium-infos'>
-              {texts ?
-                texts.map((text) => (
-                  <div>{text}</div>
-                )) : null}
-              {sounds ?
-                sounds.map((sound) => (
-                  <div>{sound}</div>
-                )) : null}
-              {pictures ?
-                pictures.map((picture) => (
-                  <img className='card-user-video' src={picture}></img>
-                )) : null}
-              {videos ?
-                videos.map((videos) => (
+                  <div>{texts}</div>
+                  <div>{sounds}</div>
+                  <img className='card-user-video' src={pictures}></img>
                   <div className="video-responsive">
                     <iframe
                       src={videos}
@@ -89,7 +80,6 @@ const Card = () => {
                       title="Embedded youtube"
                     />
                   </div>
-                )) : null}
             </div>
           </div>
         </div>
