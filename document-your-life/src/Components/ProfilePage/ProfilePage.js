@@ -42,9 +42,9 @@ const ProfilePage = () => {
                             <li className='profilPage-personal-credentials'>{user.email}</li>
                         </ul>
                     </div>
-                    <button className='cgu-button'>
-                        <Link to='/cgu'>Lire nos Conditions Générales d'Utilisation</Link>
-                    </button>
+                        <Link className='HeaderNavbar-link' to='/about' >À propos</Link>
+                        <Link className='HeaderNavbar-link' to='/contact' >Contact</Link>
+                        <Link className='HeaderNavbar-link' to='/cgu'>Lire nos Conditions Générales d'Utilisation</Link>
                 </>
             )
             }
