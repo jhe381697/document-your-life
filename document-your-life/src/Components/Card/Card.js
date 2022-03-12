@@ -2,8 +2,7 @@
 /* eslint-disable react/jsx-key */
 import React from 'react'
 import { useState, useEffect } from 'react';
-import getAllCards, { getTodayCard, putTodayCard } from '../../RequestsAxios/CardsReq';
-import CardEdit from '../CardEdit/CardEdit';
+import getAllCards, { getTodayCard, patchTodayCardFiles, putTodayCardText, putTodayCarMood } from '../../RequestsAxios/CardsReq';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLaughBeam, faSadTear, faSmileWink, faMehBlank, faKeyboard, faCamera, faMicrophone, faVideo, faTimes } from '@fortawesome/free-solid-svg-icons';
@@ -28,54 +27,45 @@ const Card = () => {
   const [sadPut, setSadPut] = useState(null);
   const [coolPut, setCoolPut] = useState(null);
   const [neutralPut, setNeutralPut] = useState(null);
-  const [textPut, setTextPut] = useState('');
+  const [textPut, setTextPut] = useState(null);
   const [photoPut, setPhotoPut] = useState(null);
   const [microPut, setMicroPut] = useState(null);
   const [videoPut, setVideoPut] = useState(null);
 
-  async function handleSubCard(type, eventTarget) {
-    const value = eventTarget
-    await putTodayCard(type, value)
 
-}
-
-  const handleOnSubmit = async (e) => {
-    e.preventDefault();
+  async function handleOnSubmit() {
     if (happyPut !== null) {
-      await putTodayCard("moodLabel", happyPut)
+      await putTodayCarMood(happyPut)
       console.log("happy submitted")
     }
     if (sadPut !== null) {
-      await putTodayCard("moodLabel", sadPut)
+      await putTodayCarMood(sadPut)
       console.log("sad submitted")
     }
     if (coolPut !== null) {
-      await putTodayCard("moodLabel", coolPut)
+      await putTodayCarMood(coolPut)
       console.log("cool submitted")
     }
     if (neutralPut !== null) {
-      await putTodayCard("moodLabel", neutralPut)
+      await putTodayCarMood(neutralPut)
       console.log("neutral submitted")
     }
     if (textPut !== null) {
-      await putTodayCard("text", textPut)
+      await putTodayCardText(textPut)
       console.log("text submitted")
     }
     if (photoPut !== null) {
-      // eslint-disable-next-line no-obj-calls
-      const res = await putTodayCard("image", photoPut.target.files[0])
+      const res = await patchTodayCardFiles("image", photoPut.target.files[0])
       console.log("image submitted", res)
     }
     if (microPut !== null) {
-      await putTodayCard("audio", microPut.target.files[0])
+      await patchTodayCardFiles("audio", microPut.target.files[0])
       console.log("audio submitted")
     }
     if (videoPut !== null) {
-      await putTodayCard("video", videoPut.target.files[0])
+      await patchTodayCardFiles("video", videoPut.target.files[0])
       console.log("video submitted")
     }
-    //  TODO remove reload page its only for testing
-    return window.location.reload(false);
   }
 
   const handleInputChangePictures = (event) => {
@@ -85,10 +75,9 @@ const Card = () => {
   
   async function dayCardData(e) {
     const dayCard = await getAllCards(idFromLocation);
-
     if (dayCard.status === 200) {
       setDate(dayCard.data.card.dateString);
-      setMood(dayCard.data.card.moodlabel);
+      setMood(dayCard.data.card.moodabel);
       setTexts(dayCard.data.card.text);
       setSounds(dayCard.data.card.audio);
       setPictures(dayCard.data.card.image);
@@ -101,20 +90,15 @@ const Card = () => {
   }
   const todayDateData = async () => {
     const todayDate = await getTodayCard();
-    if (todayDate.statue === 200) {
-      console.log(todayDate)
-    
-    }
-
   }
 
-  useEffect((e) => {
+  useEffect(() => {
     dayCardData()
-    handleSubCard()
-    console.log(e)
-  }, [edit, handleSubCard]);
+    handleOnSubmit()
+    console.log(happyPut)
+    setEdit(false)
+  }, [edit,happyPut]);
 
-  console.log(mood)
   return (
     <>
       {edit ?
@@ -164,10 +148,10 @@ const Card = () => {
                 <div className='card-mood-emoji'>{mood}</div>
                 <div className="emojis">
                   <h3 className="emojis-text">Partage ton humeur du jour:</h3>
-                  <FontAwesomeIcon icon={faLaughBeam} className="fas fa-laugh-beam" name="Happy" onClick={()=>handleSubCard("moodLabel", "happy")} />
-                  <FontAwesomeIcon icon={faSadTear} className="fas fa-sad-tear" name="Sad" onClick={()=>handleSubCard("moodLabel", "sad")} />
-                  <FontAwesomeIcon icon={faSmileWink} className="fas fa-smile-wink" name="Cool" onClick={()=>handleSubCard("moodLabel", "cool")} />
-                  <FontAwesomeIcon icon={faMehBlank} className="fas fa-meh-blank" name="Neutral" onClick={()=>handleSubCard("moodLabel", "neutral")} />
+                  <FontAwesomeIcon icon={faLaughBeam} className="fas fa-laugh-beam" name="Happy" onClick={() => setHappyPut("happy")} />
+                  <FontAwesomeIcon icon={faSadTear} className="fas fa-sad-tear" name="Sad" onClick={() => setSadPut("sad")} />
+                  <FontAwesomeIcon icon={faSmileWink} className="fas fa-smile-wink" name="Cool" onClick={() => setCoolPut("cool")} />
+                  <FontAwesomeIcon icon={faMehBlank} className="fas fa-meh-blank" name="Neutral" onClick={() => setNeutralPut("neutral")} />
 
 
                 </div>

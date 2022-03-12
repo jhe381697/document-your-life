@@ -2,7 +2,7 @@ import axios from 'axios'
 
 
 const instance = axios.create({
-    baseURL: 'https://dyl-api.herokuapp.com',
+    baseURL: 'https://dyl-server-back.herokuapp.com/',
 });
 
 export default function getUserData() {
