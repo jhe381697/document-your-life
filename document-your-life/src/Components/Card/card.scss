@@ -48,3 +48,40 @@
     }
   }
 }
+.editMode{
+    background-color: #63636336;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    width: 100%;
+    position: fixed;
+    bottom: 0px;
+
+      &-moods{
+        display: flex;
+
+      &-mood{
+        margin:0.5rem 1rem;
+        height: 1.8rem;
+      }
+  }
+
+  &-file{
+      margin:0.5rem 1rem;
+      height: 1.8rem;
+
+       &-text{
+         background-color: #f0f;
+         font-size: 0.9rem;
+         width: 100%;
+       }
+  }
+
+  &-container{
+  display: flex;
+
+  }
+  
+}
