@@ -28,7 +28,7 @@ const AvatarBuild = () => {
   }
 
   // Requête Axios pour l'envoi de l'icone dans la BDD
-  axios.post("https://dyl-api.herokuapp.com/", {})
+  axios.post("https://dyl-server-back.herokuapp.com/", {})
   .then(response => console.log(response)
   .catch(error => console.log(error)))
 

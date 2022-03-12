@@ -8,7 +8,7 @@ import axios from 'axios'
  * @param {*} passwordconf 
  */
  export default function SignupAxios(email, firstName, lastName, password, passwordConf) {
-     axios.post('https://dyl-api.herokuapp.com/signup', {
+     axios.post('https://dyl-server-back.herokuapp.com/signup', {
          email: email,
          first_name: firstName,
          last_name: lastName,
