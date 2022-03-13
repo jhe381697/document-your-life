@@ -48,3 +48,62 @@
     }
   }
 }
+.editMode{
+    background-color: #ffb5b59d;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    width: 100%;
+    position: fixed;
+    bottom: 0px;
+    border-top-right-radius: 10px ;
+    border-top-left-radius: 10px ;
+
+      &-btn{
+        border: none;
+        background-color: rgba(214, 214, 214, 0.541);
+      }
+      &-moods{
+        display: flex;
+
+      &-happy{
+        margin:0.5rem 1rem;
+        height: 1.8rem;
+        color:#FFF9C0;
+      }
+      &-sad{
+        margin:0.5rem 1rem;
+        height: 1.8rem;
+        color:#D7E4FE;
+      }
+      &-cool{
+        margin:0.5rem 1rem;
+        height: 1.8rem;
+        color:#FFD7B3;
+      }
+      &-neutral{
+        margin:0.5rem 1rem;
+        height: 1.8rem;
+        color:#F5F9FF;
+      }
+  }
+
+  &-file{
+      margin:0.5rem 1rem;
+      height: 1.8rem;
+
+       &-text{
+         background-color: #f0f;
+         font-size: 0.9rem;
+         width: 100%;
+       }
+  }
+
+  &-container{
+  display: flex;
+
+  }
+  
+}

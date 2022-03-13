@@ -48,9 +48,10 @@ const Calendar = () => {
           {/* // eslint-disable-next-line react/jsx-key */}
           {/* <CalendarItem onClickDay={handleDay} onChange={onChange} value={value} /> */}
           {isLoading ? <Spinner /> :
-            cards.map(({ id, label, created_at }) => {
+            cards.map(({ index,id, label, created_at }) => {
               return (
                 <div key={id}>
+                  {console.log(index)}
                   <Link to={'/card/' + id}>
                     <div style={labelToColor(label)} className='calendarRow'>
                       <p className='calendarRow-text'>{moment(created_at).format("DD-MMM-YYYY")}</p>
