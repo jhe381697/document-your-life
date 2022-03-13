@@ -2,7 +2,7 @@
 /* eslint-disable react/jsx-key */
 import React from 'react'
 import { useState, useEffect } from 'react';
-import getAllCards, { getTodayCard, putTodayCard } from '../../RequestsAxios/CardsReq';
+import getAllCards, { getTodayCard, patchTodayCardFiles, putTodayCardMood, putTodayCardText } from '../../RequestsAxios/CardsReq';
 import TextField from '@mui/material/TextField';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -44,57 +44,56 @@ const Card = () => {
   const [microPut, setMicroPut] = useState(null);
   const [videoPut, setVideoPut] = useState(null);
 
-  async function handleSubCard(type, eventTarget) {
-    const value = eventTarget
-    await putTodayCard(type, value)
+  async function handleSubCard(value) {
+    await putTodayCardMood(value)
     setRender(!render)
   }
 
   async function handleOnSubmit() {
     if (happyPut !== null) {
-      await putTodayCard("moodLabel", happyPut)
+      await putTodayCardMood(happyPut)
       setEdit(!edit)
       console.log("happy submitted")
       return setRender(!render)
     }
     if (sadPut !== null) {
-      await putTodayCard("moodLabel", sadPut)
+      await putTodayCardMood(sadPut)
       setEdit(!edit)
       console.log("sad submitted")
       return setRender(!render)
     }
     if (coolPut !== null) {
-      await putTodayCard("moodLabel", coolPut)
+      await putTodayCardMood(coolPut)
       setEdit(!edit)
       console.log("cool submitted")
       return setRender(!render)
     }
     if (neutralPut !== null) {
-      await putTodayCard("moodLabel", neutralPut)
+      await putTodayCardMood(neutralPut)
       setEdit(!edit)
       console.log("neutral submitted")
       return setRender(!render)
     }
     if (textPut !== '') {
-      await putTodayCard("text", textPut)
-      setToggleText(!toggleText)
+      await putTodayCardText(textPut)
+      setToggleSound(!toggleText)
       console.log("text submitted")
       return setRender(!render)
     }
     if (photoPut !== null) {
-      await putTodayCard("image", photoPut.target.files[0])
+      await patchTodayCardFiles("image", photoPut.target.files[0])
       setEdit(!edit)
       console.log("image submitted")
       return setRender(!render)
     }
     if (microPut !== null) {
-      await putTodayCard("audio", microPut.target.files[0])
+      await patchTodayCardFiles("audio", microPut.target.files[0])
       setEdit(!edit)
       console.log("audio submitted")
       return setRender(!render)
     }
     if (videoPut !== null) {
-      await putTodayCard("video", videoPut.target.files[0])
+      await patchTodayCardFiles("video", videoPut.target.files[0])
       setEdit(!edit)
       console.log("video submitted")
       return setRender(!render)
@@ -222,10 +221,10 @@ const Card = () => {
           <form className='editMode' onSubmit={handleOnSubmit} >
             <button className='editMode-btn-modal' onClick={() => { setEdit(!edit) }}  >X</button>
             <div className='editMode-moods'>
-              <FontAwesomeIcon style={labelToColor("Happy")} icon={faLaughBeam} className="editMode-moods-happy" name="Happy" onClick={() => handleSubCard("moodLabel", "happy")} />
-              <FontAwesomeIcon icon={faSadTear} className="editMode-moods-sad" name="Sad" onClick={() => handleSubCard("moodLabel", "sad")} />
-              <FontAwesomeIcon icon={faSmileWink} className="editMode-moods-cool" name="Cool" onClick={() => handleSubCard("moodLabel", "cool")} />
-              <FontAwesomeIcon icon={faMehBlank} className="editMode-moods-neutral" name="Neutral" onClick={() => handleSubCard("moodLabel", "neutral")} />
+              <FontAwesomeIcon style={labelToColor("Happy")} icon={faLaughBeam} className="editMode-moods-happy" name="Happy" onClick={() => handleSubCard("happy")} />
+              <FontAwesomeIcon icon={faSadTear} className="editMode-moods-sad" name="Sad" onClick={() => handleSubCard("sad")} />
+              <FontAwesomeIcon icon={faSmileWink} className="editMode-moods-cool" name="Cool" onClick={() => handleSubCard("cool")} />
+              <FontAwesomeIcon icon={faMehBlank} className="editMode-moods-neutral" name="Neutral" onClick={() => handleSubCard("neutral")} />
             </div>
             <div className='editMode-container'>
               <div >
