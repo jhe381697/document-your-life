@@ -39,3 +39,11 @@
         margin-top: 1rem;
     }
 }
+
+    .HeaderNavbar-link-bottom{
+        
+        &-container{
+            position: fixed;
+            bottom: 1px;
+        }
+    }

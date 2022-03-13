@@ -17,8 +17,12 @@ const HeaderNavbar = ({ handleConnection }) => {
             {/* <img className='HeaderNavbar-logo' src={logo} /> */}
             {LocationURL.pathname === '/' || LocationURL.pathname === '/login' || LocationURL.pathname === '/signup' ? (
                 <>
-                    <Link className='HeaderNavbar-link' to='/about' >À propos</Link>
-                    <Link className='HeaderNavbar-link' to='/contact' >Contact</Link></>
+                    <div className='HeaderNavbar-link-bottom-container'> 
+                    
+                    <Link className='HeaderNavbar-link-bottom' to='/about' >À propos</Link>
+                    <Link className='HeaderNavbar-link-bottom' to='/contact' >Contact</Link>
+                </div>
+                    </>
             )
                 :
                 null}

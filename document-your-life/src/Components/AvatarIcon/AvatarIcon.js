@@ -24,7 +24,6 @@ const AvatarIcon = () => {
       console.warn(file)
       getAvatarFromApi()
       setToggle(true)
-
       return
     } else (
       handleToggle())
