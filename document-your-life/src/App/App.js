@@ -47,8 +47,11 @@ function App() {
   return (
     <Auth.Provider value={{ isAuthenticated, setIsAuthenticated }}>
       <div className="App">
-        <Logo/>
-        <HeaderNavbar IsConnected={IsConnected} handleConnection={handleConnection} />
+        <div className="headerContainer">
+          <Logo />
+          <HeaderNavbar IsConnected={IsConnected} handleConnection={handleConnection} />
+        </div>
+
         <Routes>
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
@@ -58,7 +61,7 @@ function App() {
           {/* acces only if not logged or get redirected */}
           <Route path="/" element={
             <IfConnectedRoute>
-          <HomePage />
+              <HomePage />
             </IfConnectedRoute>
           } />
           <Route path="/signup" element={
@@ -69,7 +72,7 @@ function App() {
             <IfConnectedRoute>
               <Login />
             </IfConnectedRoute>} />
-            
+
           {/* acces only with loggin or get redirected */}
 
           <Route path="/dashboard/*"
@@ -79,9 +82,9 @@ function App() {
               </PrivateRoute>} />
 
           <Route path="/card/*" element={
-              <PrivateRoute>
-                 <Card />
-              </PrivateRoute>
+            <PrivateRoute>
+              <Card />
+            </PrivateRoute>
           } />
 
           <Route path="/profil"
