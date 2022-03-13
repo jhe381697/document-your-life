@@ -80,7 +80,7 @@ try{
                     name='email'
                     onChange={handlechange}
                     type="email"
-                    placeholder='John' />
+                    placeholder='Jhon@gmail.com' />
 
                 <p className='formLogin-form-title'>Mot de passe</p>
                 <input
@@ -88,7 +88,7 @@ try{
                     name='password'
                     onChange={handlechange}
                     type="password"
-                    placeholder='Doe' />
+                    placeholder='*****' />
                 <div className='button-container'>
                     <button type="submit" className="AllButton">
                         <p className='AllButton-text'>C'est parti!</p>

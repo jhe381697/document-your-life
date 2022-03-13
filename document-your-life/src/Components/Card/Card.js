@@ -185,7 +185,7 @@ const Card = () => {
                   </form>
                 }
 
-                <div onClick={() => { setToggleText(!toggleText) }} >  {texts}</div>
+                <div onClick={() => { setToggleText(!toggleText) }}  className='card-text'>  {texts}</div>
                 {!toggleSound &&
                   <div>
                     <label >

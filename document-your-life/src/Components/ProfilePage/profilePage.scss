@@ -1,7 +1,7 @@
 @import '../../styles/vars';
 
 .profilPage{
-    margin-top: 7rem;
+    margin-top: 6em;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -38,8 +38,17 @@
                 }
         }
 }
-.HeaderNavbar-link{
-    margin: 1rem 1rem;
+.profilPage-link{
+    margin: 1rem;
+    color: #608058;
+
+        &-container{
+            display: flex;
+            flex-direction: column-reverse;
+            align-items: center;
+            justify-content: flex-start;
+            margin-top: 2rem;
+        }
 
 }
 

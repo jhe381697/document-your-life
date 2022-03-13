@@ -16,7 +16,12 @@
                 border: none;
                 border-bottom: 1px solid #636363;
                 margin: 0.3rem 0 0.5rem 0;
+                background-color: #fdfcf3;
+                width: 100%;
             }
+                &-input::placeholder{
+                    width: 100rem;
+                }
             &-checkbox{
                 display: flex;
                 justify-content: center;
