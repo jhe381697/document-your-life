@@ -24,6 +24,7 @@ const Card = () => {
   const [toggleText, setToggleText] = useState(true)
   const [togglePicture, setTogglePicture] = useState(true)
   const [toggleVideo, setToggleVideo] = useState(true)
+  const [toggleSound, setToggleSound] = useState(true)
 
   const [render, setRender] = useState(true)
 
@@ -185,6 +186,13 @@ const Card = () => {
                 }
 
                 <div onClick={() => { setToggleText(!toggleText) }} >  {texts}</div>
+                {!toggleSound &&
+                  <div>
+                    <label >
+                      <input type="file" max-size="5000" name="upload_file" onChange={setMicroPut} />
+                    </label>
+                  </div>
+                }
                 <div>{sounds}</div>
 
                 <label >
@@ -196,10 +204,11 @@ const Card = () => {
                   <div onClick={() => { setToggleVideo(!toggleVideo) }} className="video-responsive">
                     <iframe
                       src={videos}
-                      frameBorder="0" 
+                      frameBorder="0"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
                       title="Embedded youtube"
+                      height="200"
                     />
                     <input type="file" max-size="5000" name="upload_file" onChange={setVideoPut} />
                   </div>
