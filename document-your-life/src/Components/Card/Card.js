@@ -220,10 +220,10 @@ const Card = () => {
         {!edit &&
           <form className='editMode' onSubmit={handleOnSubmit} >
             <div className='editMode-moods'>
-              <FontAwesomeIcon icon={faLaughBeam} className="editMode-moods-mood" name="Happy" onClick={() => handleSubCard("moodLabel", "happy")} />
-              <FontAwesomeIcon icon={faSadTear} className="editMode-moods-mood" name="Sad" onClick={() => handleSubCard("moodLabel", "sad")} />
-              <FontAwesomeIcon icon={faSmileWink} className="editMode-moods-mood" name="Cool" onClick={() => handleSubCard("moodLabel", "cool")} />
-              <FontAwesomeIcon icon={faMehBlank} className="editMode-moods-mood" name="Neutral" onClick={() => handleSubCard("moodLabel", "neutral")} />
+              <FontAwesomeIcon style={labelToColor("Happy")} icon={faLaughBeam} className="editMode-moods-happy" name="Happy" onClick={() => handleSubCard("moodLabel", "happy")} />
+              <FontAwesomeIcon icon={faSadTear} className="editMode-moods-sad" name="Sad" onClick={() => handleSubCard("moodLabel", "sad")} />
+              <FontAwesomeIcon icon={faSmileWink} className="editMode-moods-cool" name="Cool" onClick={() => handleSubCard("moodLabel", "cool")} />
+              <FontAwesomeIcon icon={faMehBlank} className="editMode-moods-neutral" name="Neutral" onClick={() => handleSubCard("moodLabel", "neutral")} />
             </div>
             <div className='editMode-container'>
               <div >
