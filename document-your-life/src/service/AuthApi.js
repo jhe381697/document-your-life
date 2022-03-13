@@ -7,7 +7,7 @@ import { getItem, addItem, removeItem } from './LocaleStorage'
 
 
 const instance = axios.create({
-    baseURL: 'https://dyl-api.herokuapp.com',
+    baseURL: 'https://dyl-server-back.herokuapp.com',
 });
 
 export function hasAuthenticated() {

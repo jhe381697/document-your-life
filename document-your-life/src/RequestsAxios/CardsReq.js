@@ -4,7 +4,7 @@ import { getItem } from "../service/LocaleStorage";
 
 
 const instance = axios.create({
-    baseURL: 'https://dyl-api.herokuapp.com',
+    baseURL: 'https://dyl-server-back.herokuapp.com',
     timeout: 1000
 });
 
@@ -53,25 +53,71 @@ export async function getTodayCard() {
  * @audio {audio} file-
  * @returns 
  */
-export async function putTodayCard(type, value) {
+export async function putTodayCardText(value) {
     let access_token = getItem('token')
     let userId = getItem('userId')
-    const formData = new FormData();
-    formData.append(type, value)
     try {
-        const res = await instance.put(`/user/${userId}/cards/today`,
-            formData, {
+        const response = await instance.put(`/user/${userId}/cards/today`, { text: value }, {
             headers: {
-                'Authorization': `Bearer ${access_token}`
+                'Authorization': `Bearer ${access_token}`,
             },
         }
 
         )
-        console.log(res)
-        return res
+        console.log('essai de rectification auth', response)
+        return response
     }
     catch (err) {
-        console.log(err.res)
-        return err.res;
+        console.log(err.response)
+        return err.response;
     }
+}
+/**
+ * 
+ * @param {string}- id,text,moodLabel,video,image,audio
+ * @param {string}- {value} 
+ * @id {number}-
+ * @text {string}-
+ * @moodLabel {string}- neutral, happy, sad, cool
+ * @video {video} file-
+ * @image {image} file-
+ * @audio {audio} file-
+ * @returns 
+ */
+export async function putTodayCardMood(value) {
+    let access_token = getItem('token')
+    let userId = getItem('userId')
+    try {
+        const response = await instance.put(`/user/${userId}/cards/today`, { moodLabel: value }, {
+            headers: {
+                'Authorization': `Bearer ${access_token}`,
+            },
+        }
+           
+        )
+        console.log('essai de rectification auth', response)
+        return response
+    }
+    catch (err) {
+        console.log(err.response)
+        return err.response;
+    }
+}
+
+
+export async function patchTodayCardFiles(type, value) {
+    let userId = localStorage.getItem('userId')
+    let access_token = localStorage.getItem('token')
+    const formData = new FormData();
+    formData.append(type, value)
+    const res = await instance.patch(`/user/${userId}/cards/${type}`,
+        formData, {
+        headers: {
+            'Authorization': `Bearer ${access_token}`
+        },
+    })
+    console.log(res)
+    return res
+
+
 }

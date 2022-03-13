@@ -64,6 +64,14 @@
       &-btn{
         border: none;
         background-color: rgba(214, 214, 214, 0.541);
+          &-modal{
+           bottom: 72px;
+           right: 2px;
+           position: absolute;
+           border: none;
+           font-weight: 900;
+           }
+      
       }
       &-moods{
         display: flex;
