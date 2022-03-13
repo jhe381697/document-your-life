@@ -154,7 +154,8 @@ const Card = () => {
 
   return (
     <>
-      <button className='editMode-btn' onClick={() => { setEdit(!edit) }}  >Edit Mode</button>
+      {edit && <button className='editMode-btn' onClick={() => { setEdit(!edit) }}  >Edit Mode</button>}
+     
       <div className='card-container'>
 
         {isLoading ? <Spinner /> :
@@ -219,6 +220,7 @@ const Card = () => {
         }
         {!edit &&
           <form className='editMode' onSubmit={handleOnSubmit} >
+            <button className='editMode-btn-modal' onClick={() => { setEdit(!edit) }}  >X</button>
             <div className='editMode-moods'>
               <FontAwesomeIcon style={labelToColor("Happy")} icon={faLaughBeam} className="editMode-moods-happy" name="Happy" onClick={() => handleSubCard("moodLabel", "happy")} />
               <FontAwesomeIcon icon={faSadTear} className="editMode-moods-sad" name="Sad" onClick={() => handleSubCard("moodLabel", "sad")} />
