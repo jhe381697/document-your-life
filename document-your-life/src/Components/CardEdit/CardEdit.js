@@ -131,6 +131,34 @@ export default function CardEdit() {
 
             <h3 className="medias-text">... illustre ta journée:</h3>
 
+            <form onSubmit={handleOnSubmit} >
+                  <div>
+                    <label >
+                      <FontAwesomeIcon icon={faCamera} className="fas fa-camera" name="Photo" />
+                      <input type="file" max-size="5000" name="upload_file" onChange={setPhoto} />
+                    </label>
+                  </div>
+                  
+                  <div>
+                    <label >
+                      <FontAwesomeIcon icon={faVideo} className="fas fa-video" name="Video" />
+                      <input type="file" max-size="5000" name="upload_file" onChange={setVideo} />
+                    </label>
+                  </div>
+
+                  <div>
+                    <label >
+                      <FontAwesomeIcon icon={faMicrophone} className="fas fa-microphone" name="Micro" />
+                      <input type="file" max-size="5000" name="upload_file" onChange={setMicro} />
+                    </label>
+                  </div>
+
+                  <div>
+                    <FontAwesomeIcon icon={faKeyboard} className="fas fa-keyboard" name="Text" />
+                    <input type="text"
+                      onChange={(e) => setText(e.target.value)} value={text} name="upload_text" />
+                  </div>
+            </form>
 
           </div>
 

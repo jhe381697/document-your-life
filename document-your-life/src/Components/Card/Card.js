@@ -16,10 +16,15 @@ import labelToColor from '../../utils/LabelToColor/LabelToColor';
 const Card = () => {
 
   let idFromLocation = useLocation().pathname.split('/card/').at(-1)
+
+
   const [isLoading, setIsLoading] = useState(true)
   const [edit, setEdit] = useState(true)
+
   const [toggleText, setToggleText] = useState(true)
   const [togglePicture, setTogglePicture] = useState(true)
+  const [toggleVideo, setToggleVideo] = useState(true)
+
   const [render, setRender] = useState(true)
 
   const [date, setDate] = useState();
@@ -44,8 +49,7 @@ const Card = () => {
     setRender(!render)
   }
 
-  async function handleOnSubmit(e) {
-    e.preventDefault();
+  async function handleOnSubmit() {
     if (happyPut !== null) {
       await putTodayCard("moodLabel", happyPut)
       setEdit(!edit)
@@ -70,7 +74,7 @@ const Card = () => {
       console.log("neutral submitted")
       return setRender(!render)
     }
-    if (textPut !== null) {
+    if (textPut !== '') {
       await putTodayCard("text", textPut)
       setToggleText(!toggleText)
       console.log("text submitted")
@@ -97,15 +101,17 @@ const Card = () => {
 
   }
 
+  function textinput(e) {
+    e.preventDefault()
+    handleOnSubmit()
+  }
   function handleText(e) {
-    e.preventDefault();
     setTextPut(e.target.value)
   }
 
 
-  async function dayCardData(e) {
+  async function dayCardData() {
     const dayCard = await getAllCards(idFromLocation);
-
     if (dayCard.status === 200) {
       setDate(dayCard.data.card.dateString);
       setMood(dayCard.data.card.moodlabel);
@@ -131,14 +137,11 @@ const Card = () => {
 
   useEffect((e) => {
     dayCardData()
-  }, [
-    render,
-  ]);
+  }, [render]);
 
   useEffect((e) => {
     handleOnSubmit()
   }, [
-    render,
     photoPut,
     microPut,
     videoPut
@@ -148,16 +151,15 @@ const Card = () => {
     todayDateData()
   }, []);
 
-  console.log(render)
   return (
     <>
-
-      {!edit && <p>Edit mode</p>}
       <button className='editMode-btn' onClick={() => { setEdit(!edit) }}  >Edit Mode</button>
       <div className='card-container'>
+
         {isLoading ? <Spinner /> :
 
           <div style={labelToColor(mood)} className='card'>
+            {!edit && <p>Edit mode</p>}
             <h2>{date}</h2>
             <div className='card-mood'>
 
@@ -169,7 +171,7 @@ const Card = () => {
               <h3>Résumé de la journée</h3>
               <div className='card-medium-infos'>
                 {!toggleText &&
-                  <form onSubmit={handleOnSubmit} >
+                  <form onSubmit={textinput} >
                     <TextField
                       id="outlined-multiline-flexible"
                       label="Exprime toi"
@@ -177,7 +179,7 @@ const Card = () => {
                       value={textPut}
                       onChange={handleText}
                     />
-                    <button onClick={() => handleOnSubmit} >Envoyer</button>
+                    <button>Envoyer</button>
 
                   </form>
                 }
@@ -188,18 +190,20 @@ const Card = () => {
                 <label >
                   <input type="file" max-size="5000" name="upload_file" onChange={setPhotoPut}>
                   </input>
-                  <img onClick={() => { setTogglePicture(!togglePicture) }} className='card-user-video' src={pictures}/>
+                  <img onClick={() => { setTogglePicture(!togglePicture) }} className='card-user-video' src={pictures} />
                 </label>
-
-                <div className="video-responsive">
-                  <iframe
-                    src={videos}
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    title="Embedded youtube"
-                  />
-                </div>
+                <label >
+                  <div onClick={() => { setToggleVideo(!toggleVideo) }} className="video-responsive">
+                    <iframe
+                      src={videos}
+                      frameBorder="0" 
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      title="Embedded youtube"
+                    />
+                    <input type="file" max-size="5000" name="upload_file" onChange={setVideoPut} />
+                  </div>
+                </label>
               </div>
             </div>
           </div>
@@ -217,6 +221,12 @@ const Card = () => {
                 <FontAwesomeIcon onClick={() => setToggleText(!toggleText)} icon={faKeyboard} className="editMode-file" name="Text" />
               </div>
 
+              <div>
+                <label >
+                  <FontAwesomeIcon icon={faCamera} className="editMode-file" name="Photo" />
+                  <input type="file" max-size="5000" name="upload_file" onChange={setPhotoPut} />
+                </label>
+              </div>
               <div>
                 <label >
                   <FontAwesomeIcon icon={faVideo} className="editMode-file" name="Video" />
