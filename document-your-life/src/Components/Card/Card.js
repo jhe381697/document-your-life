@@ -154,16 +154,11 @@ const Card = () => {
 
   return (
     <>
-      {edit && <button className='editMode-btn' onClick={() => { setEdit(!edit) }}>
-      <FontAwesomeIcon icon={faPencil} name="Edit"/>
-        </button>}
-     
       <div className='card-container'>
 
         {isLoading ? <Spinner /> :
 
           <div style={labelToColor(mood)} className='card'>
-            {!edit && <p>Edit mode</p>}
             <h2>{date}</h2>
             <div className='card-mood'>
 
@@ -184,7 +179,6 @@ const Card = () => {
                       onChange={handleText}
                     />
                     <button>Envoyer</button>
-
                   </form>
                 }
 
@@ -217,6 +211,9 @@ const Card = () => {
                   </div>
                 </label>
               </div>
+              {edit && <button className='editMode-btn' onClick={() => { setEdit(!edit) }}>
+                <FontAwesomeIcon className='editMode-btn-pencil' icon={faPencil} name="Edit"/>
+              </button>}
             </div>
           </div>
         }
