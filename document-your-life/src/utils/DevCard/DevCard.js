@@ -6,7 +6,7 @@ import './devCard.scss';
 const DevCard = ({ name, role, github, avatar }) => {
     return (
       <div className='devCard-container'>
-        <a title='GitHub Pages' className='devCard-link' href={github}>
+        <a title='GitHub Pages' className='devCard-link' href={github} target='_blank' rel= 'noreferrer' >
         <div className='devCard'>
           <img className='devCard-avatar' src={avatar}></img>
           <h3 className='devCard-name'>{name}</h3>

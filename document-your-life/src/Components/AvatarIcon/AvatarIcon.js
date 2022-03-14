@@ -42,10 +42,11 @@ const AvatarIcon = () => {
     const res = await getUserData()
     if (res.status === 200) {
       setAvatar(res.data.image)
-      setIsAvatar(false)
+      console.log('avatar? ->',isAvatar)
+      return setIsAvatar(true)
     } else{
       console.log(res.status),
-      setIsAvatar(true)
+      setIsAvatar(false)
     }
   }
 
@@ -53,31 +54,29 @@ const AvatarIcon = () => {
   useEffect(() => {
     getAvatarFromApi()
     submit()
-  }, [file])
+  }, [file,isAvatar])
 
   return (
     <div className="avatarInput">
       <label className="avatarInput-input">
         
         <Link to='/profil'>
-{!isAvatar? 
-       <> {!toggle && <img className='avatarInput-avatar' src={defaultAvatar} />
-         }</> : <>
-        {!toggle && <img className='avatarInput-avatar' src={avatar} />
-         }</>}
+    {!isAvatar? 
+       <> {!toggle && <img className='avatarInput-avatar' src={defaultAvatar} />} </>
+       : 
+       <> {!toggle && <img className='avatarInput-avatar' src={avatar} />} </>}
       </Link>
         <div className='avatarInput-container'>
-        {!isAvatar? <>
-          {toggle && (<img onClick={handleToggle} className='avatarInput-avatar' src={defaultAvatar} />)}</> :
-          <>
-          {!toggle && <img onClick={handleToggle} className='avatarInput-avatar' src={avatar} />
-           }</>}
+
+        {!isAvatar? 
+          <>{toggle && (<img onClick={handleToggle} className='avatarInput-avatar' src={defaultAvatar} />)}</> 
+          :
+          <>{toggle && (<img onClick={handleToggle} className='avatarInput-avatar' src={avatar} />)}</>}
 
         </div>
         <input type="file" max-size="5000" name="upload_file" onChange={handleInputChange} />
       </label>
     </div>
-
   )
 
 }
