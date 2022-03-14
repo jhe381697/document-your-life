@@ -160,12 +160,6 @@ const Card = () => {
 
           <div style={labelToColor(mood)} className='card'>
             <h2>{date}</h2>
-            <div className='card-mood'>
-
-              <h3>Humeur de la journée</h3>
-
-              <div className='card-mood-emoji'>{mood}</div>
-            </div>
             <div className='card-medium'>
               <h3>Résumé de la journée</h3>
               <div className='card-medium-infos'>
@@ -178,7 +172,7 @@ const Card = () => {
                       value={textPut}
                       onChange={handleText}
                     />
-                    <button>Envoyer</button>
+                    <button className='card-medium-infos-submit-text'>Envoyer</button>
                   </form>
                 }
 

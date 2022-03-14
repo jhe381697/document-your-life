@@ -30,16 +30,6 @@
     margin: 0.3em 0 0.3em 0;
   }
 
-  &-mood {
-    margin: 1em 0.5em 1em 0.5em;
-
-    &-emoji {
-      text-align: center;
-      color: #636363;
-      margin: 0.3em 0 0.3em 0;
-    }
-  }
-
   &-medium {
     margin: 1em 0.5em 1em 0.5em;
 
@@ -47,6 +37,14 @@
       text-align: center;
       color: #636363;
       margin: 0.3em 0 0.3em 0;
+
+      &-submit-text {
+        border-radius: 5px; 
+        color: #636363;
+        background-color: #60805800;
+        border: none;
+      }
+
     }
   }
   &-text{
