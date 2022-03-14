@@ -53,7 +53,7 @@ const HomePage = () => {
                         <h1>Bienvenue sur DYL !</h1>
                         <ul className='modalHover-container'>
                             <li className='modalHover-container-text'>Ici vous pourrez illustrer votre quotidien à l'aide de sons, d'images et bien plus.</li>
-                            <h3>Pour bien commencer :</h3>
+                            <h3 className='modalHover-h3'>Pour bien commencer :</h3>
                             <li className='modalHover-container-step'>1. Inscrivez-vous et connectez-vous </li>
                             <li className='modalHover-container-step'>2. Accédez à votre dashboard </li>
                             <li className='modalHover-container-step'>3. Créez une nouvelle carte afin d'illustrer votre journée </li>
