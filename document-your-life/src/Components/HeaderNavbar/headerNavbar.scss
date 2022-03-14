@@ -39,12 +39,9 @@
         color: #608058;
 
         &-container{
-            display: flex;
             justify-content: space-evenly;
             position: fixed;
-            bottom: 1rem;
-            display: flex;
-
+            bottom: 0.1rem;
             
         }
     }
