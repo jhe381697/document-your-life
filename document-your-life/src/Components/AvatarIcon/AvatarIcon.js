@@ -1,23 +1,24 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/jsx-key */
 import React, { memo, useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import getUserData, { patchAvatar } from '../../RequestsAxios/userData';
+import defaultAvatar from './../logo/defaultAvatar.svg'
 import './avatarIcon.scss'
 
 const AvatarIcon = () => {
   const locationURL = useLocation()
-
+// entre the default avatar
   const [file, setFile] = useState(null);
   const [toggle, setToggle] = useState(true);
   const [avatar, setAvatar] = useState();
-  // const [newAvatar, setNewAvatar] = useState();
-
+  const [isAvatar, setIsAvatar] = useState(false);
   const handleInputChange = (event) => {
     setFile(event.target.files[0])
   }
 
   async function submit() {
+
     if (file !== null) {
       const res = await patchAvatar("avatar", file)
       console.log(res)
@@ -41,7 +42,11 @@ const AvatarIcon = () => {
     const res = await getUserData()
     if (res.status === 200) {
       setAvatar(res.data.image)
-    } else (console.log(res.status))
+      setIsAvatar(false)
+    } else{
+      console.log(res.status),
+      setIsAvatar(true)
+    }
   }
 
 
@@ -52,12 +57,22 @@ const AvatarIcon = () => {
 
   return (
     <div className="avatarInput">
-          <img onClick={handleToggle} className='avatarInput-avatar' src={avatar} />
       <label className="avatarInput-input">
+        
+        <Link to='/profil'>
+{!isAvatar? 
+       <> {!toggle && <img className='avatarInput-avatar' src={defaultAvatar} />
+         }</> : <>
+        {!toggle && <img className='avatarInput-avatar' src={avatar} />
+         }</>}
+      </Link>
         <div className='avatarInput-container'>
-          {toggle ? (<p type="submit" className="avatarInput-text" title='Modifier votre photo de profile' onClick={() => submit()}>
-        <input type="file" max-size="5000" name="upload_file" onChange={handleInputChange} />
-          </p>) : null}
+        {!isAvatar? <>
+          {toggle && (<img onClick={handleToggle} className='avatarInput-avatar' src={defaultAvatar} />)}</> :
+          <>
+          {!toggle && <img onClick={handleToggle} className='avatarInput-avatar' src={avatar} />
+           }</>}
+
         </div>
         <input type="file" max-size="5000" name="upload_file" onChange={handleInputChange} />
       </label>
