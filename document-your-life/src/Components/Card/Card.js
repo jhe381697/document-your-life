@@ -29,8 +29,10 @@ const Card = () => {
 
   const [render, setRender] = useState(true)
   const [cardId, setCardId] = useState(Number);
-
-
+  const [cardTodayId, setCardTodayId] = useState(Number);
+  const [today, setToday] = useState(false);
+  
+  
   const [date, setDate] = useState();
   const [mood, setMood] = useState([]);
   const [texts, setTexts] = useState(['']);
@@ -130,14 +132,25 @@ const Card = () => {
       console.log('erreur')
     }
   }
-  const todayDateData = async () => {
-    const todayDate = await getTodayCard();
-    if (todayDate.statue === 200) {
-      console.log(todayDate)
-
+  async function todayCard() {
+    const dayCard = await getTodayCard(idFromLocation);
+    if (dayCard.status === 200) {
+      setCardTodayId(dayCard.data.lastCards[0].id)
     }
-
+    else {
+      console.log('erreur')
+    }
   }
+  function isTodayCard() {
+    if (cardId === cardTodayId) {
+      setToday(true)
+      console.log('this card id is :', cardId, 'today card id is :', cardTodayId)
+    }else{
+      setToday(false)
+      console.log('this card id is :', cardId, 'today card id is :', cardTodayId)
+    }
+  }
+
 
   function hanldeDeleteCard() {
     deleteCard(cardId)
@@ -145,9 +158,14 @@ const Card = () => {
     nav('/Dashboard/calendar')
   }
 
-  useEffect((e) => {
+  useEffect(() => {
     dayCardData()
+    todayCard()
   }, [render]);
+  
+  useEffect(() => {
+    isTodayCard()
+  }, []);
 
   useEffect((e) => {
     handleOnSubmit()
@@ -157,10 +175,7 @@ const Card = () => {
     videoPut
   ]);
 
-  useEffect((e) => {
-    todayDateData()
-  }, []);
-  console.log('this card id is :', cardId)
+
 
   return (
     <>
@@ -170,9 +185,10 @@ const Card = () => {
             <h2>{date}</h2>
             <div className='card-medium'>
               <h3>Résumé de la journée
+                {today && (<>
                 {edit && <button className='editMode-btn' onClick={() => { setEdit(!edit) }}>
                   <FontAwesomeIcon className='editMode-btn-pencil' icon={faPencil} name="Edit" />
-                </button>}</h3>
+                </button>}</>)}</h3>
               <div className='card-medium-infos'>
                 {!toggleText &&
                   <form onSubmit={textinput} >
@@ -203,33 +219,33 @@ const Card = () => {
                   <img onClick={() => { setTogglePicture(!togglePicture) }} className='card-user-video' src={pictures} />
                 </label>
                 <label >
-                  <div onClick={() => { setToggleVideo(!toggleVideo) }} className="video-responsive">
-                    <iframe
-                      width='100%'
-                      height="880"
-                      src={videos}
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    ></iframe>
-                    <input type="file" max-size="5000" name="upload_file" onChange={setVideoPut} />
-                  </div>
+                  <iframe
+                    src={videos}
+                    height='600'
+                    width='100%'
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                  <input type="file" max-size="5000" name="upload_file" onChange={setVideoPut} />
                 </label>
               </div>
             </div>
+            {!today && 
             <button className='card-delete-modal-openModal' onClick={() => setToggleDel(!toggleDel)}>Supprimer la carte</button>
+            }
           </div>
         }
 
         {toggleDel && <>
-            <div className='card-delete-modal'>
-              <p className='card-delete-modal-title'>Êtes-vous sûr de vouloir supprimer cette carte ? </p>
-              <div className='card-delete-modal-btn-container' >
-                <button className='card-delete-modal-btn-supp' onClick={hanldeDeleteCard}>Supprimer la carte</button>
-                <button className='card-delete-modal-btn-cancel' onClick={() => setToggleDel(false)}>Annuler</button>
-              </div>
+          <div className='card-delete-modal'>
+            <p className='card-delete-modal-title'>Êtes-vous sûr de vouloir supprimer cette carte ? </p>
+            <div className='card-delete-modal-btn-container' >
+              <button className='card-delete-modal-btn-supp' onClick={hanldeDeleteCard}>Supprimer la carte</button>
+              <button className='card-delete-modal-btn-cancel' onClick={() => setToggleDel(false)}>Annuler</button>
+            </div>
           </div>
-          </>
+        </>
         }
         {!edit &&
           <form className='editMode' onSubmit={handleOnSubmit} >
