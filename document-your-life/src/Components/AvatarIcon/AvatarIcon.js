@@ -11,7 +11,7 @@ const AvatarIcon = () => {
 // entre the default avatar
   const [file, setFile] = useState(null);
   const [toggle, setToggle] = useState(true);
-  const [avatar, setAvatar] = useState();
+  const [avatar, setAvatar] = useState(null);
   const [isAvatar, setIsAvatar] = useState(false);
   const handleInputChange = (event) => {
     setFile(event.target.files[0])
@@ -42,11 +42,12 @@ const AvatarIcon = () => {
     const res = await getUserData()
     if (res.status === 200) {
       setAvatar(res.data.image)
-      console.log('avatar? ->',isAvatar)
-      return setIsAvatar(true)
+    if(avatar === null){
+      return setIsAvatar(false)
+    }else{
+      return setIsAvatar(true)}
     } else{
-      console.log(res.status),
-      setIsAvatar(false)
+      console.log(res.status)
     }
   }
 
@@ -54,7 +55,7 @@ const AvatarIcon = () => {
   useEffect(() => {
     getAvatarFromApi()
     submit()
-  }, [file,isAvatar])
+  }, [file,isAvatar,avatar])
 
   return (
     <div className="avatarInput">
