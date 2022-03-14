@@ -2,7 +2,7 @@
 export default function labelToColor(label) {
     if (label === "happy") {
         const style = {
-            backgroundColor: '#FFF9C0',
+            backgroundColor: '#D1F4CB',
         }
         return style
     }
@@ -20,7 +20,7 @@ export default function labelToColor(label) {
     }
     if (label === "cool") {
         const style = {
-            backgroundColor: '#FFD7B3)',
+            backgroundColor: '#FFD7B3',
         }
         return style
     }
