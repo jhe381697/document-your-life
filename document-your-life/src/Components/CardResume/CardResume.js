@@ -57,14 +57,10 @@ const CardResume = ({id}) => {
         {isLoading ? <Spinner /> :
             <div style={labelToColor(mood)} className='cardresume'>
               <h2>{date}</h2>
-            <div className='cardresume-mood'>
-              <h3>Humeur de la journée</h3>
-              <div className='cardresume-mood-emoji'>{mood}</div>
-            </div>
             <div className='cardresume-medium'>
               <h3>Résumé de la journée</h3>
               <div className='cardresume-medium-infos'>
-                    <div >{texts}</div>
+                    <div className='cardresume-text'>{texts}</div>
                   <div >
                     <iframe
                       src={sounds}
