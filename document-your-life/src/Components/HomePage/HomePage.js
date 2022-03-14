@@ -49,8 +49,7 @@ const HomePage = () => {
                     onClose={handleClose}
                     aria-labelledby="modal-modal-title"
                     aria-describedby="modal-modal-description">
-                    <Box
-                        className="modalHover-box" >
+                    <Box className="modalHover-box" >
                         <h1>Bienvenue sur DYL !</h1>
                         <ul className='modalHover-container'>
                             <li className='modalHover-container-text'>Ici vous pourrez illustrer votre quotidien à l'aide de sons, d'images et bien plus.</li>
