@@ -6,7 +6,7 @@ import getAllCards, { getTodayCard, patchTodayCardFiles, putTodayCardMood, putTo
 import TextField from '@mui/material/TextField';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLaughBeam, faSadTear, faSmileWink, faMehBlank, faKeyboard, faCamera, faMicrophone, faVideo, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faLaughBeam, faSadTear, faSmileWink, faMehBlank, faKeyboard, faCamera, faMicrophone, faVideo, faTimes, faXmark, faPencil } from '@fortawesome/free-solid-svg-icons';
 
 import './card.scss';
 import { useLocation } from 'react-router-dom';
@@ -153,7 +153,9 @@ const Card = () => {
 
   return (
     <>
-      {edit && <button className='editMode-btn' onClick={() => { setEdit(!edit) }}  >Edit Mode</button>}
+      {edit && <button className='editMode-btn' onClick={() => { setEdit(!edit) }}>
+      <FontAwesomeIcon icon={faPencil} name="Edit"/>
+        </button>}
      
       <div className='card-container'>
 
@@ -219,12 +221,14 @@ const Card = () => {
         }
         {!edit &&
           <form className='editMode' onSubmit={handleOnSubmit} >
-            <button className='editMode-btn-modal' onClick={() => { setEdit(!edit) }}  >X</button>
+            <button className='editMode-btn-modal' onClick={() => { setEdit(!edit) }}>
+              <FontAwesomeIcon icon={faXmark} name="Close"/>
+            </button>
             <div className='editMode-moods'>
               <FontAwesomeIcon style={labelToColor("Happy")} icon={faLaughBeam} className="editMode-moods-happy" name="Happy" onClick={() => handleSubCard("happy")} />
-              <FontAwesomeIcon icon={faSadTear} className="editMode-moods-sad" name="Sad" onClick={() => handleSubCard("sad")} />
-              <FontAwesomeIcon icon={faSmileWink} className="editMode-moods-cool" name="Cool" onClick={() => handleSubCard("cool")} />
-              <FontAwesomeIcon icon={faMehBlank} className="editMode-moods-neutral" name="Neutral" onClick={() => handleSubCard("neutral")} />
+              <FontAwesomeIcon style={labelToColor("Sad")} icon={faSadTear} className="editMode-moods-sad" name="Sad" onClick={() => handleSubCard("sad")} />
+              <FontAwesomeIcon style={labelToColor("Cool")} icon={faSmileWink} className="editMode-moods-cool" name="Cool" onClick={() => handleSubCard("cool")} />
+              <FontAwesomeIcon style={labelToColor("Neutral")} icon={faMehBlank} className="editMode-moods-neutral" name="Neutral" onClick={() => handleSubCard("neutral")} />
             </div>
             <div className='editMode-container'>
               <div >
