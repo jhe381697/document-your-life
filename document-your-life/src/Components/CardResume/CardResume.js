@@ -10,7 +10,6 @@ import './cardResume.scss'
 import Spinner from '../../utils/Spinner/Spinner';
 import Card from '../Card/Card';
 import labelToColor from '../../utils/LabelToColor/LabelToColor';
-import moment from 'moment';
 
 const CardResume = ({id}) => {
   const [cardId, setCardId] = useState();
@@ -26,9 +25,11 @@ const CardResume = ({id}) => {
   const todayCardData = async () => {
     const todayCard = await getTodayCard();
     console.log("on id:",id)
+    setIsLoading(true)
     if (todayCard.status === 200) {
+    
       setCardId(todayCard.data.lastCards[id].id)
-      setDate(todayCard.data.lastCards[id].created_at);
+      setDate(todayCard.data.lastCards[id].dateString);
       setMood(todayCard.data.lastCards[id].moodlabel);
       setTexts( todayCard.data.lastCards[id].text);
       setSounds(todayCard.data.lastCards[id].audio);
@@ -38,15 +39,14 @@ const CardResume = ({id}) => {
       return
     }
     else {
+      setIsLoading(true)
       console.log('erreur')
     }
   };
 
   useEffect(() => {
-    setIsLoading(true)
     todayCardData();
     console.log(id, date ,"from resum")
-    setIsLoading(false)
   }, [id,date])
 
 
@@ -56,7 +56,7 @@ const CardResume = ({id}) => {
       <div className='cardresume-container'>
         {isLoading ? <Spinner /> :
             <div style={labelToColor(mood)} className='cardresume'>
-              <h2>{moment(date).format("DD-MMM-YYYY")}</h2>
+              <h2>{date}</h2>
             <div className='cardresume-mood'>
               <h3>Humeur de la journée</h3>
               <div className='cardresume-mood-emoji'>{mood}</div>
