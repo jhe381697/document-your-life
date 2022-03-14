@@ -42,15 +42,12 @@ const AvatarIcon = () => {
     const res = await getUserData()
     if (res.status === 200) {
       setAvatar(res.data.image)
-      console.log('avatar? ->',avatar)
     if(avatar === null){
-      console.log('if avatar? ->',avatar)
       return setIsAvatar(false)
     }else{
       return setIsAvatar(true)}
     } else{
-      console.log(res.status),
-      setIsAvatar(false)
+      console.log(res.status)
     }
   }
 
