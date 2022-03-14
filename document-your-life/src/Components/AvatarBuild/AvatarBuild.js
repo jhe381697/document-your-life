@@ -1,4 +1,4 @@
-/* eslint-disable react/jsx-key */
+p/* eslint-disable react/jsx-key */
 import React from 'react';
 import Avatar from "react-avatar-edit";
 import { useState } from "react";

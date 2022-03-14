@@ -55,7 +55,9 @@ const AvatarIcon = () => {
           <img onClick={handleToggle} className='avatarInput-avatar' src={avatar} />
       <label className="avatarInput-input">
         <div className='avatarInput-container'>
-          {toggle ? (<p type="submit" className="avatarInput-text" title='Modifier votre photo de profile' onClick={() => submit()}>Edit</p>) : null}
+          {toggle ? (<p type="submit" className="avatarInput-text" title='Modifier votre photo de profile' onClick={() => submit()}>
+        <input type="file" max-size="5000" name="upload_file" onChange={handleInputChange} />
+          </p>) : null}
         </div>
         <input type="file" max-size="5000" name="upload_file" onChange={handleInputChange} />
       </label>
