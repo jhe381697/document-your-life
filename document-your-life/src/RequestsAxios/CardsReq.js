@@ -57,8 +57,9 @@ export async function putTodayCardText(value) {
     let access_token = getItem('token')
     let userId = getItem('userId')
     try {
-        const response = await instance.put(`/user/${userId}/cards/today`, { text: value }, {
-            headers: {
+        const response = await instance.put(`/user/${userId}/cards/today`, 
+        { text: value }, 
+        { headers: {
                 'Authorization': `Bearer ${access_token}`,
             },
         }
