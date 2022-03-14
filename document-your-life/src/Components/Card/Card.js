@@ -15,7 +15,7 @@ import labelToColor from '../../utils/LabelToColor/LabelToColor';
 
 const Card = () => {
 
-  let idFromLocation = useLocation().pathname.split('/card/').at(-1)
+   let idFromLocation = useLocation().pathname.split('/card/').at(-1)
 
 
   const [isLoading, setIsLoading] = useState(true)
@@ -104,6 +104,7 @@ const Card = () => {
   function textinput(e) {
     e.preventDefault()
     handleOnSubmit()
+    setToggleText(true)
   }
   function handleText(e) {
     setTextPut(e.target.value)
