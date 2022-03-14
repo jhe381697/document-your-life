@@ -27,6 +27,7 @@ import Card from "../Components/Card/Card"
 import Cgu from "../Components/Cgu/Cgu";
 import CardResume from "../Components/CardResume/CardResume";
 import CardEdit from "../Components/CardEdit/CardEdit";
+import Page404 from "../Components/page404/page404";
 
 
 function App() {
@@ -53,6 +54,7 @@ function App() {
         </div>
 
         <Routes>
+          <Route path="/*" element={<Page404 />}/>
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
           {/* A ENLEVER */}
