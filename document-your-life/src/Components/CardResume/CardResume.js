@@ -26,7 +26,9 @@ const CardResume = ({id}) => {
   const todayCardData = async () => {
     const todayCard = await getTodayCard();
     console.log("on id:",id)
+    setIsLoading(true)
     if (todayCard.status === 200) {
+    
       setCardId(todayCard.data.lastCards[id].id)
       setDate(todayCard.data.lastCards[id].created_at);
       setMood(todayCard.data.lastCards[id].moodlabel);
@@ -38,15 +40,14 @@ const CardResume = ({id}) => {
       return
     }
     else {
+      setIsLoading(true)
       console.log('erreur')
     }
   };
 
   useEffect(() => {
-    setIsLoading(true)
     todayCardData();
     console.log(id, date ,"from resum")
-    setIsLoading(false)
   }, [id,date])
 
 
