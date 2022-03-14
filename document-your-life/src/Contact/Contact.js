@@ -7,6 +7,9 @@ import { send } from 'emailjs-com';
 import{ init } from '@emailjs/browser';
 init("user_sueC3QU4o0Lqhn8No1D2h");
 import './contact.scss';
+import notifyFunc from '../utils/notifyFunc'
+import Notify from '../utils/notifyFunc';
+import { ToastContainer } from 'react-toastify';
 
 const Contact = () => {
 
@@ -30,13 +33,14 @@ const [message, setMessage] = useState("");
 // envoi et remise à zéro des données du formulaire
 const handleSubmit = (e) => {
   e.preventDefault();
+  console.log('before acces ok')
+  if( name && company && phone && email && message !== "" ){
   send(
     'service_q906umf',
     'template_hnng7zu',
     {name, company, phone, email, message},
     'user_sueC3QU4o0Lqhn8No1D2h'
-  )
-  .then((response) => {
+  ).then((response) => {
         completedForm()
         setName("");
         setCompany("");
@@ -45,10 +49,25 @@ const handleSubmit = (e) => {
         setMessage("");
     console.log('message sent successfully', response.status, response.text);
   })
+}else{
+  console.log('acces not ok')
+  notifyFunc('Tous les champs doivent être remplis.', 'warning' )
+}
 };
 
 return (
   <div className="contact-container">
+<ToastContainer
+            position="top-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+        />
   <form className="contact-form">
     <h2>Contactez-nous!</h2>
     <div className="form-content">
