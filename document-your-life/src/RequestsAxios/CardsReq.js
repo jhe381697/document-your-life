@@ -121,3 +121,21 @@ export async function patchTodayCardFiles(type, value) {
 
 
 }
+
+export async function deleteCard(cardId) {
+    let access_token = getItem('token')
+    let userId = getItem('userId')
+    try {
+        const response = await instance.delete(`/user/${userId}/cards/${cardId}`, {
+            headers: {
+                'Authorization': `Bearer ${access_token}`
+            },
+        })
+        console.log(response)
+        return response
+    }
+    catch (err) {
+        console.log(err.response)
+        return err.response;
+    }
+}
