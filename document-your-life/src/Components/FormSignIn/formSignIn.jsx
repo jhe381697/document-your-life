@@ -168,8 +168,9 @@ const FormSignIn = () => {
 					match: "Mots de passe identiques.",
 				}}/>
                 <div className='formSignin-form-checkbox'>
-                <input className='formSignine-form-checkbox-input' type="checkbox" name='checkbox' onChange={handleCheckbox}/>
-                <Link to='/cgu'> <p>J'accepte les conditions d'utilisation</p> </Link>
+                <input className='formSignin-form-checkbox-input' type="checkbox" name='checkbox' onChange={handleCheckbox}/>
+                <p>J'accepte les conditions d'utilisation</p>
+                <Link to='/cgu' className='formSignin-form-link'>Lire les conditions d'utilisation</Link>
                 {checkboxText? <p className='formSignin-form-checkbox-error'>Acceptez les conditions d'utilisation </p>: null}
                 </div>
                 <div className='button-container'>
