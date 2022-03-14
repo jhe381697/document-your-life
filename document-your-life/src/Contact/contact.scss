@@ -1,7 +1,6 @@
 @import '../styles/vars';
 
 .contact-container {
-  margin-top: -10em;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -52,21 +51,29 @@ input {
 }
 
 .button {
-  font-size: 1em;
-  font-weight: 400;
-  text-decoration: none;
-  letter-spacing: 1px;
-  padding: 0.5em 2em 0.5em;
-  border: 1px solid black;
-  border-radius: 15px;
-  cursor: pointer;
+  z-index: 1;
+  background-color: #e2e2e29d;
+  border: 1px solid #0a61b91a;
+  box-sizing: border-box;
+  color: #3e53387e;
+  font-family: "Lato", regular;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 24px;
+  padding: 5px 23px;
+  margin: 20px 0 10px;
   position: relative;
-  background: rgb(222,222,222);
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0);
+  transition: 0.2s;
 }
 
 .button:hover {
-transform: scale(1.03);
-transition: 0.3s;
+transform: scale(1.09);
+transition: 0.2s;
 background: rgb(222,222,222);
 }
 

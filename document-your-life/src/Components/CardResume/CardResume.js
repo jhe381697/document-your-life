@@ -22,6 +22,9 @@ const CardResume = ({id}) => {
   const [pictures, setPictures] = useState([null]);
   const [videos, setVideos] = useState([null]);
 
+  const [toggleVideos, setToggleVideos] = useState(false);
+  const [toggleSound, setToggleSound] = useState(false);
+
   const todayCardData = async () => {
     const todayCard = await getTodayCard();
     console.log("on id:",id)
@@ -31,7 +34,7 @@ const CardResume = ({id}) => {
       setCardId(todayCard.data.lastCards[id].id)
       setDate(todayCard.data.lastCards[id].dateString);
       setMood(todayCard.data.lastCards[id].moodlabel);
-      setTexts( todayCard.data.lastCards[id].text);
+      setTexts(todayCard.data.lastCards[id].text);
       setSounds(todayCard.data.lastCards[id].audio);
       setPictures(todayCard.data.lastCards[id].image);
       setVideos(todayCard.data.lastCards[id].video);
@@ -50,6 +53,20 @@ const CardResume = ({id}) => {
   }, [id,date])
 
 
+  useEffect(() => {
+
+    if(videos){
+      return setToggleVideos(true)
+    }else{
+      setToggleVideos(false)
+    }
+    if(sounds){
+      return  setToggleSound(true)
+    }else{
+      setToggleSound(false)
+    }
+  }, [videos,sounds])
+
   return (
     <>
     <Link to={'/card/' + cardId }>
@@ -61,25 +78,29 @@ const CardResume = ({id}) => {
               <h3>Résumé de la journée</h3>
               <div className='cardresume-medium-infos'>
                     <div className='cardresume-text'>{texts}</div>
-                  <div >
+                {toggleSound && 
+                  <div>
                     <iframe
                       src={sounds}
                       frameBorder="0"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
                       title="Embedded youtube"
-                    /></div>
+                    />
+                    </div>
+                  }
                     <img className='card-user-video' src={pictures}></img>
-                      <div className="video-responsive">
+                    {toggleVideos && 
                         <iframe
                           src={videos}
+                          height='600'
+                          width='100%'
                           frameBorder="0"
                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                           allowFullScreen
                           title="Embedded youtube"
                         />
-                      </div>
-            
+                      }   
               </div>
             </div>
           </div>

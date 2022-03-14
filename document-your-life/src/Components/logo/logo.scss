@@ -11,3 +11,33 @@ width: fit-content;
                 max-width: 10rem;
         }
 }
+
+@media screen and (min-width: 481px) {
+        .logo{
+                &-image{
+                        top: 28px;
+                        right: 87%; 
+                        width: 6rem;   
+                }
+        }
+}
+
+@media screen and (min-width: 769px) {
+        .logo{
+                &-image{
+                        top: 50px;
+                        right: 87%;
+                        width: 7rem;  
+                }
+        }
+}
+
+@media screen and (min-width: 1024px) {
+        .logo{
+                &-image{
+                        top: 50px;
+                        right: 87%;
+                        width: 8rem; 
+                }
+        }
+}

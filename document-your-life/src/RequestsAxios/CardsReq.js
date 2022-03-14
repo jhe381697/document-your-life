@@ -57,8 +57,9 @@ export async function putTodayCardText(value) {
     let access_token = getItem('token')
     let userId = getItem('userId')
     try {
-        const response = await instance.put(`/user/${userId}/cards/today`, { text: value }, {
-            headers: {
+        const response = await instance.put(`/user/${userId}/cards/today`, 
+        { text: value }, 
+        { headers: {
                 'Authorization': `Bearer ${access_token}`,
             },
         }
@@ -120,4 +121,22 @@ export async function patchTodayCardFiles(type, value) {
     return res
 
 
+}
+
+export async function deleteCard(cardId) {
+    let access_token = getItem('token')
+    let userId = getItem('userId')
+    try {
+        const response = await instance.delete(`/user/${userId}/cards/${cardId}`, {
+            headers: {
+                'Authorization': `Bearer ${access_token}`
+            },
+        })
+        console.log(response)
+        return response
+    }
+    catch (err) {
+        console.log(err.response)
+        return err.response;
+    }
 }
