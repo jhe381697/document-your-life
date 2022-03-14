@@ -6,7 +6,7 @@
 
     &-title{
         display: flex;
-        margin: 1rem 0;
+        margin: 2.5rem 0;
         justify-content: center;
     }
 
@@ -63,13 +63,15 @@
         user-select: none;
         -webkit-user-select: none;
         touch-action: manipulation;
+
         &:hover {
             background-color: transparent;
             cursor: pointer;
             outline: 0;
         }
+
         &:before {
-            background-color: #d5edf69c;
+            background-color: #a2ca98;
             content: "";
             height: calc(100% + 3px);
             position: absolute;
@@ -79,8 +81,9 @@
             width: 100%;
             z-index: -1;
         }
+
         &:hover:before{
-            background-color: #6DCFF6;
+            background-color: #608058;
         }
     }
     &-skipButton {
@@ -90,7 +93,7 @@
         padding: 6px 30px;
         font-family: "Lato", regular;
         border-radius: 6px;
-        color: #7E8CAF;
+        color: #608058;
         background: rgba(255, 255, 255, 0.041);
         border: none;
         box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.014);
@@ -102,18 +105,22 @@
             outline: 0;
         }
     }
-    &-box{
-    background-color:#ffffffe0 ;
-    margin: 2rem;
-    padding: 1rem;
-    height: 85%;
-    width: 80%;
-    border: none;
-    border-radius: 5px;   
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+        &-box{
+        background-color:#fdfcf3 ;
+        opacity: 0.9;
+        margin: 2rem;
+        padding: 1rem;
+        height: 85%;
+        width: 80%;
+        border: none;
+        border-radius: 5px;   
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        h3 {
+            color: #608058;
+        }
 
     }
 
