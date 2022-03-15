@@ -42,11 +42,7 @@
     }
 }
 
-@media screen and (min-width: 1024px){
-    .profilPage{
-        margin: 5rem;
-    }
-}
+
 
 .profilPage-link {
     margin: 1rem;
@@ -75,3 +71,10 @@
         transition: 0.5s;
     }
 }
+
+@media screen and (min-width: 768px){
+    .profilPage{
+        margin: 12rem 15rem 0 15rem;
+        
+    }
+  }
