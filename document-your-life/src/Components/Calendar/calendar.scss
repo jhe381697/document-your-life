@@ -42,6 +42,9 @@
     flex-wrap: nowrap;
     overflow: scroll;
     max-height: 16rem;
+            &::-webkit-scrollbar {
+  display: none;
+}
 }
   .calendarRow {
     display: flex;

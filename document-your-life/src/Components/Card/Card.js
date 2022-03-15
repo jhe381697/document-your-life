@@ -110,6 +110,7 @@ const Card = () => {
       return setIsLoading(false)
     }
     else {
+      nav('/page404')
       console.log('erreur')
     }
   }

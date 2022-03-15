@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/jsx-key */
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import {getTodayCard} from '../../RequestsAxios/CardsReq';
 
 import './tabDashboard.scss';
@@ -59,7 +59,9 @@ useEffect(() => {
           <Route path="last" element={
             // last card resume
             <CardResume id={1} />} />
-
+          <Route path="/*" element={
+            // last card resume
+           <Navigate to='/page404'/> }/>
         </Routes> 
       </div>
     </>
