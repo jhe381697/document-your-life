@@ -141,11 +141,11 @@ const Card = () => {
 
   useEffect(() => {
     dayCardData()
-    todayCard()
   }, [render]);
   
   useEffect(() => {
     isTodayCard()
+    todayCard()
   }, []);
 
   useEffect((e) => {
