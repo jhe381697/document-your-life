@@ -18,9 +18,10 @@ const HeaderNavbar = ({ handleConnection }) => {
             {LocationURL.pathname === '/' || LocationURL.pathname === '/login' || LocationURL.pathname === '/signup' ? (
                 <>
                     <div className='HeaderNavbar-link-bottom-container'> 
-                    
+                    {LocationURL.pathname !== '/signup' && <>
                     <Link className='HeaderNavbar-link-bottom' to='/about' >À propos</Link>
                     <Link className='HeaderNavbar-link-bottom' to='/contact' >Contact</Link>
+                    </>}
                 </div>
                     </>
             )
@@ -39,7 +40,8 @@ const HeaderNavbar = ({ handleConnection }) => {
             ) : (
                 <>
                     <Link className='HeaderNavbar-link' to='/Dashboard/calendar' >Dashboard</Link>
-                    <Link className='HeaderNavbar-link' to='/profil' >Profil</Link>
+                    {LocationURL.pathname !== '/profil' &&
+                    <Link className='HeaderNavbar-link' to='/profil' >Profil</Link>}
                     {LocationURL.pathname === '/profil' &&
                         <Link onClick={handleConnection} className='HeaderNavbar-link' to='/' >Déconnexion</Link>}
 
