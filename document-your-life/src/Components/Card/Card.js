@@ -132,7 +132,6 @@ const Card = () => {
     }
   }
 
-
   function hanldeDeleteCard() {
     deleteCard(cardId)
     setToggleDel(!toggleDel)
@@ -146,7 +145,7 @@ const Card = () => {
   useEffect(() => {
     isTodayCard()
     todayCard()
-  }, []);
+  }, [dayCardData]);
 
   useEffect((e) => {
     handleOnSubmit()
