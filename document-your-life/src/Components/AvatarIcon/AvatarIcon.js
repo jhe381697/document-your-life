@@ -18,7 +18,6 @@ const AvatarIcon = () => {
   }
 
   async function submit() {
-
     if (file !== null) {
       const res = await patchAvatar("avatar", file)
       console.log(res)
@@ -42,10 +41,10 @@ const AvatarIcon = () => {
     const res = await getUserData()
     if (res.status === 200) {
       setAvatar(res.data.image)
-    if(avatar === null){
-      return setIsAvatar(false)
-    }else{
-      return setIsAvatar(true)}
+        if(avatar === null){
+          return setIsAvatar(true)
+        }else{
+          return setIsAvatar(false)}
     } else{
       console.log(res.status)
     }
@@ -53,23 +52,26 @@ const AvatarIcon = () => {
 
 
   useEffect(() => {
-    getAvatarFromApi()
     submit()
-  }, [file,isAvatar,avatar])
+  }, [file, isAvatar])
+
+  useEffect(() => {
+    getAvatarFromApi()
+  }, [file, isAvatar, ])
 
   return (
     <div className="avatarInput">
       <label className="avatarInput-input">
         
         <Link to='/profil'>
-    {!isAvatar? 
+    {isAvatar? 
        <> {!toggle && <img className='avatarInput-avatar' src={defaultAvatar} />} </>
        : 
        <> {!toggle && <img className='avatarInput-avatar' src={avatar} />} </>}
       </Link>
         <div className='avatarInput-container'>
 
-        {!isAvatar? 
+        {isAvatar? 
           <>{toggle && (<img onClick={handleToggle} className='avatarInput-avatar' src={defaultAvatar} />)}</> 
           :
           <>{toggle && (<img onClick={handleToggle} className='avatarInput-avatar' src={avatar} />)}</>}
