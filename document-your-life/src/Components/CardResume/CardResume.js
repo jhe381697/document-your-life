@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import { useState, useEffect } from 'react';
 import { getTodayCard } from '../../RequestsAxios/CardsReq';
-import { Link, Route, Routes } from "react-router-dom"
+import { Link, Navigate, Route, Routes } from "react-router-dom"
 
 import './cardResume.scss'
 import Spinner from '../../utils/Spinner/Spinner';
@@ -109,6 +109,9 @@ const CardResume = ({id}) => {
     </Link >
       <Routes>
         <Route path={'/card/' + cardId} element={<Card />} />
+        <Route path="/card/*" element={
+          // last card resume
+          <Navigate to='/page404' />} />
       </Routes>
       </>
   )
