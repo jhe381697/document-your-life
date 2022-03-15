@@ -5,7 +5,7 @@ import { getItem } from "../service/LocaleStorage";
 
 const instance = axios.create({
     baseURL: 'https://dyl-server-back.herokuapp.com',
-    timeout: 1000
+    timeout: 5000
 });
 
 export default async function getAllCards(cardId) {
