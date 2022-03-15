@@ -2,7 +2,9 @@
 /* eslint-disable react/jsx-key */
 import React, { memo, useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import getUserData, { patchAvatar } from '../../RequestsAxios/userData';
+import Notify from '../../utils/notifyFunc';
 import defaultAvatar from './../logo/defaultAvatar.svg'
 import './avatarIcon.scss'
 
@@ -19,12 +21,16 @@ const AvatarIcon = () => {
 
   async function submit() {
     if (file !== null) {
+      if (Math.round((file.size / 1024)) < 5000) {
       const res = await patchAvatar("avatar", file)
       console.log(res)
       console.warn(file)
       getAvatarFromApi()
       setToggle(true)
       return
+      } else {
+        return Notify('Votre avatar est trop volumineuse... <5Mb', 'error')
+      }
     } else (
       handleToggle())
   }
@@ -61,6 +67,17 @@ const AvatarIcon = () => {
 
   return (
     <div className="avatarInput">
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <label className="avatarInput-input">
         
         <Link to='/profil'>

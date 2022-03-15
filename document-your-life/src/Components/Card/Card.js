@@ -33,8 +33,8 @@ const Card = () => {
   const [cardId, setCardId] = useState(Number);
   const [cardTodayId, setCardTodayId] = useState(Number);
   const [today, setToday] = useState(false);
-  
-  
+
+
   const [date, setDate] = useState();
   const [mood, setMood] = useState([]);
   const [texts, setTexts] = useState(['']);
@@ -58,31 +58,40 @@ const Card = () => {
       console.log("text api res:", res.status)
       setToggleSound(!toggleText)
       console.log("text submitted")
-      if(res.status !== 200){
-        Notify("Attention, une erreur c'est produit.", "warning")
-      }
       return setRender(!render)
     }
-    if (photoPut !== null) {
+    if (photoPut !== null ) {
+      if (Math.round((photoPut.target.files[0].size / 1024)) < 5000){
       const res = await patchTodayCardFiles("image", photoPut.target.files[0])
-      console.log("image api res:", res.status )
+      console.log("image api res:", res.status)
       setEdit(false)
       console.log("image submitted")
       return setRender(!render)
+      }else{ 
+      return  Notify('Votre image est trop volumineuse... <5Mb', 'error')
+      }
     }
     if (microPut !== null) {
+      if (Math.round((microPut.target.files[0].size / 1024)) < 5000) {
       const res = await patchTodayCardFiles("audio", microPut.target.files[0])
-      console.log("audio api res:", res.status)
       setEdit(false)
       console.log("audio submitted")
       return setRender(!render)
+
+      } else {
+       return Notify('Votre fichier audio est trop volumineux... <5Mb', 'error')
+      }
     }
     if (videoPut !== null) {
+      if (Math.round((videoPut.target.files[0].size / 1024)) < 5000) {
       const res = await patchTodayCardFiles("video", videoPut.target.files[0])
       console.log("video api res:", res.status)
       setEdit(false)
       console.log("video submitted")
       return setRender(!render)
+      } else {
+       return Notify('Votre video est trop volumineuse... <5Mb', 'error')
+      }
     }
 
   }
@@ -127,7 +136,7 @@ const Card = () => {
     if (cardId === cardTodayId) {
       setToday(true)
       console.log('this card id is :', cardId, 'today card id is :', cardTodayId)
-    }else{
+    } else {
       setToday(false)
       console.log('this card id is :', cardId, 'today card id is :', cardTodayId)
     }
@@ -142,7 +151,7 @@ const Card = () => {
   useEffect(() => {
     dayCardData()
   }, [render]);
-  
+
   useEffect(() => {
     isTodayCard()
     todayCard()
@@ -155,7 +164,6 @@ const Card = () => {
     microPut,
     videoPut
   ]);
-console.log(edit)
 
   return (
     <>
@@ -178,8 +186,8 @@ console.log(edit)
               <h3>Résumé de la journée
                 {today && (<>
                   {!edit && <button className='editMode-btn' onClick={() => setEdit(true)}>
-                  <FontAwesomeIcon className='editMode-btn-pencil' icon={faPencil} name="Edit" />
-                </button>}</>)}</h3>
+                    <FontAwesomeIcon className='editMode-btn-pencil' icon={faPencil} name="Edit" />
+                  </button>}</>)}</h3>
               <div className='card-medium-infos'>
                 {!toggleText &&
                   <form onSubmit={textinput} >
@@ -222,8 +230,8 @@ console.log(edit)
                 </label>
               </div>
             </div>
-            {!today && 
-            <button className='card-delete-modal-openModal' onClick={() => setToggleDel(!toggleDel)}>Supprimer la carte</button>
+            {!today &&
+              <button className='card-delete-modal-openModal' onClick={() => setToggleDel(!toggleDel)}>Supprimer la carte</button>
             }
           </div>
         }
@@ -240,7 +248,7 @@ console.log(edit)
         }
         {edit &&
           <form className='editMode' onSubmit={handleOnSubmit} >
-            <button className='editMode-btn-modal' onClick={()=>setEdit(false)}>
+            <button className='editMode-btn-modal' onClick={() => setEdit(false)}>
               <FontAwesomeIcon icon={faXmark} name="Close" />
             </button>
             <div className='editMode-moods'>
