@@ -72,3 +72,27 @@
     position: relative;
     bottom: 8px;
 }
+
+@media screen and (min-width: 481px) {
+    .formSignin {
+        &-form {
+            width: 90%;
+        }
+    }
+}
+
+@media screen and (min-width: 769px) {
+    .formSignin {
+        &-form {
+            width: 70%;
+        }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .formSignin {
+        &-form {
+            width: 50%;
+        }
+    }
+}
