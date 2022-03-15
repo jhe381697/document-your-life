@@ -37,11 +37,11 @@
 
 .calendar-container{
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     align-items: stretch;
     flex-wrap: nowrap;
     overflow: scroll;
-    max-height: 16rem;   
+    max-height: 16rem;
 }
   .calendarRow {
     display: flex;
