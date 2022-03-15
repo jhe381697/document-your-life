@@ -12,6 +12,8 @@ import './card.scss';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Spinner from '../../utils/Spinner/Spinner';
 import labelToColor from '../../utils/LabelToColor/LabelToColor';
+import { ToastContainer } from 'react-toastify';
+import Notify from '../../utils/notifyFunc';
 
 const Card = () => {
   let nav = useNavigate()
@@ -20,7 +22,7 @@ const Card = () => {
   const [toggleDel, setToggleDel] = useState(false)
 
   const [isLoading, setIsLoading] = useState(true)
-  const [edit, setEdit] = useState(true)
+  const [edit, setEdit] = useState(false)
 
   const [toggleText, setToggleText] = useState(true)
   const [togglePicture, setTogglePicture] = useState(true)
@@ -40,11 +42,7 @@ const Card = () => {
   const [pictures, setPictures] = useState([]);
   const [videos, setVideos] = useState([]);
 
-  const [happyPut, setHappyPut] = useState(null);
-  const [sadPut, setSadPut] = useState(null);
-  const [coolPut, setCoolPut] = useState(null);
-  const [neutralPut, setNeutralPut] = useState(null);
-  const [textPut, setTextPut] = useState('');
+  const [textPut, setTextPut] = useState(undefined);
   const [photoPut, setPhotoPut] = useState(null);
   const [microPut, setMicroPut] = useState(null);
   const [videoPut, setVideoPut] = useState(null);
@@ -54,52 +52,35 @@ const Card = () => {
     setRender(!render)
   }
 
-  async function handleOnSubmit() {
-    if (happyPut !== null) {
-      await putTodayCardMood(happyPut)
-      setEdit(!edit)
-      console.log("happy submitted")
-      return setRender(!render)
-    }
-    if (sadPut !== null) {
-      await putTodayCardMood(sadPut)
-      setEdit(!edit)
-      console.log("sad submitted")
-      return setRender(!render)
-    }
-    if (coolPut !== null) {
-      await putTodayCardMood(coolPut)
-      setEdit(!edit)
-      console.log("cool submitted")
-      return setRender(!render)
-    }
-    if (neutralPut !== null) {
-      await putTodayCardMood(neutralPut)
-      setEdit(!edit)
-      console.log("neutral submitted")
-      return setRender(!render)
-    }
-    if (textPut !== '') {
-      await putTodayCardText(textPut)
+  async function handleOnSubmit(e) {
+    if (textPut !== undefined) {
+      const res = await putTodayCardText(textPut)
+      console.log("text api res:", res.status)
       setToggleSound(!toggleText)
       console.log("text submitted")
+      if(res.status !== 200){
+        Notify("Attention, une erreur c'est produit.", "warning")
+      }
       return setRender(!render)
     }
     if (photoPut !== null) {
-      await patchTodayCardFiles("image", photoPut.target.files[0])
-      setEdit(!edit)
+      const res = await patchTodayCardFiles("image", photoPut.target.files[0])
+      console.log("image api res:", res.status )
+      setEdit(false)
       console.log("image submitted")
       return setRender(!render)
     }
     if (microPut !== null) {
-      await patchTodayCardFiles("audio", microPut.target.files[0])
-      setEdit(!edit)
+      const res = await patchTodayCardFiles("audio", microPut.target.files[0])
+      console.log("audio api res:", res.status)
+      setEdit(false)
       console.log("audio submitted")
       return setRender(!render)
     }
     if (videoPut !== null) {
-      await patchTodayCardFiles("video", videoPut.target.files[0])
-      setEdit(!edit)
+      const res = await patchTodayCardFiles("video", videoPut.target.files[0])
+      console.log("video api res:", res.status)
+      setEdit(false)
       console.log("video submitted")
       return setRender(!render)
     }
@@ -151,7 +132,6 @@ const Card = () => {
     }
   }
 
-
   function hanldeDeleteCard() {
     deleteCard(cardId)
     setToggleDel(!toggleDel)
@@ -160,12 +140,12 @@ const Card = () => {
 
   useEffect(() => {
     dayCardData()
-    todayCard()
   }, [render]);
   
   useEffect(() => {
     isTodayCard()
-  }, []);
+    todayCard()
+  }, [dayCardData]);
 
   useEffect((e) => {
     handleOnSubmit()
@@ -174,11 +154,21 @@ const Card = () => {
     microPut,
     videoPut
   ]);
-
-
+console.log(edit)
 
   return (
     <>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <div className='card-container'>
         {isLoading ? <Spinner /> :
           <div style={labelToColor(mood)} className='card'>
@@ -186,7 +176,7 @@ const Card = () => {
             <div className='card-medium'>
               <h3>Résumé de la journée
                 {today && (<>
-                {edit && <button className='editMode-btn' onClick={() => { setEdit(!edit) }}>
+                  {!edit && <button className='editMode-btn' onClick={() => setEdit(true)}>
                   <FontAwesomeIcon className='editMode-btn-pencil' icon={faPencil} name="Edit" />
                 </button>}</>)}</h3>
               <div className='card-medium-infos'>
@@ -224,7 +214,7 @@ const Card = () => {
                     height='600'
                     width='100%'
                     frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                   ></iframe>
                   <input type="file" max-size="5000" name="upload_file" onChange={setVideoPut} />
@@ -247,9 +237,9 @@ const Card = () => {
           </div>
         </>
         }
-        {!edit &&
+        {edit &&
           <form className='editMode' onSubmit={handleOnSubmit} >
-            <button className='editMode-btn-modal' onClick={() => { setEdit(!edit) }}>
+            <button className='editMode-btn-modal' onClick={()=>setEdit(false)}>
               <FontAwesomeIcon icon={faXmark} name="Close" />
             </button>
             <div className='editMode-moods'>

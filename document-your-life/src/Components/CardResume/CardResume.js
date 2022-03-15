@@ -96,7 +96,7 @@ const CardResume = ({id}) => {
                           height='600'
                           width='100%'
                           frameBorder="0"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                           allowFullScreen
                           title="Embedded youtube"
                         />
