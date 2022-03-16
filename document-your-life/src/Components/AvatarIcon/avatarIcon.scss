@@ -21,8 +21,11 @@
     align-content: center;
     overflow: auto;
     margin-bottom: 1rem;
-    filter: opacity(0.5);
   }
+
+   &-default{
+      filter: opacity(0.5);
+    }
 }
 input[type="file"] {
     display: none;
