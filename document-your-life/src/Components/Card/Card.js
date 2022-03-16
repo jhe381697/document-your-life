@@ -233,7 +233,7 @@ const Card = () => {
                 
                   <ReactAudioPlayer
                     className="card-medium-medias"
-                    src="my_audio_file.ogg"
+                    src={sounds}
                     autoPlay
                     controls
                   />
