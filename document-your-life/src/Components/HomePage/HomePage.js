@@ -23,7 +23,6 @@ import video from './VideoHP.mp4';
 
 
 const HomePage = () => {
-    // enter the end of a youtube link
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
