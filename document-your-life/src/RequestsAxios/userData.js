@@ -28,7 +28,6 @@ export async function patchAvatar(type, value) {
             'Authorization': `Bearer ${access_token}`
         },
     })
-    console.log(res)
     return res
 
 

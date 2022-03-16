@@ -52,16 +52,20 @@ const Card = () => {
     setRender(!render)
   }
 
-  async function handleOnSubmit(e) {
+  async function handleOnSubmitText(e) {
     if (textPut !== undefined) {
       const res = await putTodayCardText(textPut)
       console.log("text api res:", res.status)
       setToggleSound(!toggleText)
       console.log("text submitted")
       return setRender(!render)
-    }
+    }}
+
+  async function handleOnSubmitPic(e) {
+
     if (photoPut !== null ) {
       if (Math.round((photoPut.target.files[0].size / 1024)) < 5000){
+      Notify('Votre image est en cours de chargement ...', 'info')
       const res = await patchTodayCardFiles("image", photoPut.target.files[0])
       console.log("image api res:", res.status)
       setEdit(false)
@@ -71,8 +75,13 @@ const Card = () => {
       return  Notify('Votre image est trop volumineuse... <5Mb', 'error')
       }
     }
+  }
+
+  async function handleOnSubmitAudio(e) {
+
     if (microPut !== null) {
       if (Math.round((microPut.target.files[0].size / 1024)) < 5000) {
+      Notify('Votr fichier audio est en cours de chargement ...', 'info')
       const res = await patchTodayCardFiles("audio", microPut.target.files[0])
       setEdit(false)
       console.log("audio submitted")
@@ -81,9 +90,14 @@ const Card = () => {
       } else {
        return Notify('Votre fichier audio est trop volumineux... <5Mb', 'error')
       }
-    }
+    }}
+
+  async function handleOnSubmitVideo(e) {
+
     if (videoPut !== null) {
       if (Math.round((videoPut.target.files[0].size / 1024)) < 5000) {
+      Notify('Votre video est en cours de chargement ...', 'info')
+      console.log("test video:",)
       const res = await patchTodayCardFiles("video", videoPut.target.files[0])
       console.log("video api res:", res.status)
       setEdit(false)
@@ -93,12 +107,11 @@ const Card = () => {
        return Notify('Votre video est trop volumineuse... <5Mb', 'error')
       }
     }
-
   }
 
   function textinput(e) {
     e.preventDefault()
-    handleOnSubmit()
+    handleOnSubmitText()
     setToggleText(true)
   }
   function handleText(e) {
@@ -135,10 +148,8 @@ const Card = () => {
   function isTodayCard() {
     if (cardId === cardTodayId) {
       setToday(true)
-      console.log('this card id is :', cardId, 'today card id is :', cardTodayId)
     } else {
       setToday(false)
-      console.log('this card id is :', cardId, 'today card id is :', cardTodayId)
     }
   }
 
@@ -156,14 +167,18 @@ const Card = () => {
     isTodayCard()
     todayCard()
   }, [dayCardData]);
+  
+  useEffect((e) => {
+    handleOnSubmitPic()
+  }, [photoPut]);
 
   useEffect((e) => {
-    handleOnSubmit()
-  }, [
-    photoPut,
-    microPut,
-    videoPut
-  ]);
+    handleOnSubmitAudio()
+  }, [microPut]);
+
+  useEffect((e) => {
+    handleOnSubmitVideo()
+  }, [videoPut]);
 
   return (
     <>
@@ -245,19 +260,23 @@ const Card = () => {
             </div>
           </div>
         </>
-        }
-        {edit &&
-          <form className='editMode' onSubmit={handleOnSubmit} >
+        }{edit &&
+          <form className='editMode' >
+
             <button className='editMode-btn-modal' onClick={() => setEdit(false)}>
               <FontAwesomeIcon icon={faXmark} name="Close" />
             </button>
+
             <div className='editMode-moods'>
-              <FontAwesomeIcon style={labelToColor("Happy")} icon={faLaughBeam} className="editMode-moods-happy" name="Happy" onClick={() => handleSubCard("happy")} />
-              <FontAwesomeIcon style={labelToColor("Sad")} icon={faSadTear} className="editMode-moods-sad" name="Sad" onClick={() => handleSubCard("sad")} />
-              <FontAwesomeIcon style={labelToColor("Cool")} icon={faSmileWink} className="editMode-moods-cool" name="Cool" onClick={() => handleSubCard("cool")} />
-              <FontAwesomeIcon style={labelToColor("Neutral")} icon={faMehBlank} className="editMode-moods-neutral" name="Neutral" onClick={() => handleSubCard("neutral")} />
+                <FontAwesomeIcon style={labelToColor("Happy")} icon={faLaughBeam} className="editMode-moods-happy" name="Happy" onClick={() => handleSubCard("happy")} />
+                <FontAwesomeIcon style={labelToColor("Sad")} icon={faSadTear} className="editMode-moods-sad" name="Sad" onClick={() => handleSubCard("sad")} />
+                <FontAwesomeIcon style={labelToColor("Cool")} icon={faSmileWink} className="editMode-moods-cool" name="Cool" onClick={() => handleSubCard("cool")} />
+                <FontAwesomeIcon style={labelToColor("Neutral")} icon={faMehBlank} className="editMode-moods-neutral" name="Neutral" onClick={() => handleSubCard("neutral")} />
             </div>
+
+
             <div className='editMode-container'>
+
               <div >
                 <FontAwesomeIcon onClick={() => setToggleText(!toggleText)} icon={faKeyboard} className="editMode-file" name="Text" />
               </div>
@@ -268,6 +287,7 @@ const Card = () => {
                   <input type="file" max-size="5000" name="upload_file" onChange={setPhotoPut} />
                 </label>
               </div>
+
               <div>
                 <label >
                   <FontAwesomeIcon icon={faVideo} className="editMode-file" name="Video" />
