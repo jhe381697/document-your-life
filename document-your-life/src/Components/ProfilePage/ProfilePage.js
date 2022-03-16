@@ -20,7 +20,6 @@ const ProfilePage = () => {
     async function loadUser() {
         const response = await getUserData()
         if (response.status === 200) {
-            console.log(response)
             setUser(response.data)
             return setLoading(false)
         }

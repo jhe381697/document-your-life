@@ -16,13 +16,14 @@ import YoutubeEmbed from "../../utils/YoutubeEmbed/YoutubeEmbed";
 import Button from '../../utils/Button/Button';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
+import video from './VideoHP.mp4';
+
 
 // Npm package
 
 
 const HomePage = () => {
     // enter the end of a youtube link
-    const WelcomVid = 'o1eHKf-dMwo'
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -35,12 +36,16 @@ const HomePage = () => {
             <div className='homepage'>
 
                 <h2 className='homepage-title'> Document Your Life </h2>
+                <div className='homepage-container'>
                 <div className='homepage-video-container'>
-                    <YoutubeEmbed embedId={WelcomVid} />
-                </div>
-            </div>
+                    <YoutubeEmbed src={video} />
             <div className='homepage-btn'>
                 <Button btnName="Let's Go!" path='/signup' />
+            </div>
+                </div>
+
+
+                </div>
             </div>
             <div className='homeModal'>
                 <Modal

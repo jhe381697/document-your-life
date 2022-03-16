@@ -4,6 +4,10 @@
      display: flex;
      flex-direction: column;
 
+     &-container {
+         padding-bottom: 15rem;
+     }
+
      &-title {
          display: flex;
          margin: 2.5rem 0;
@@ -11,9 +15,8 @@
      }
 
      &-video-container {
-         max-width: 1000px;
-         margin: 1rem auto;
          width: 100%;
+         height: 19rem;
      }
 
      &-link {
@@ -27,7 +30,7 @@
          display: flex;
          margin: 1rem 0;
          justify-content: center;
-         margin-top: 35%;
+         margin: 3rem;
 
      }
  }
@@ -148,11 +151,6 @@
  }
 
  @media (min-width: 481px) {
-     .homepage {
-         &-btn {
-             margin-top: 15%;
-         }
-     }
  }
 
  @media (min-width: 769px) {
@@ -169,6 +167,15 @@
      }
 
      .homepage {
+
+         &-video-container {
+             height: 21rem;
+         }
+
+         &-container {
+             display: flex;
+         }
+
          &-title {
              font-size: 2.5rem;
              margin: 2rem 0;
@@ -176,6 +183,12 @@
 
          &-btn {
              margin-top: 5%;
+             display: flex;
+             align-content: flex-start;
+             flex-direction: column;
+             justify-content: center;
+             align-items: center;
+             flex-wrap: nowrap;
          }
      }
  }
