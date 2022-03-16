@@ -4,6 +4,7 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import getAllCards, { deleteCard, getTodayCard, patchTodayCardFiles, putTodayCardMood, putTodayCardText } from '../../RequestsAxios/CardsReq';
 import TextField from '@mui/material/TextField';
+import ReactAudioPlayer from 'react-audio-player';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLaughBeam, faSadTear, faSmileWink, faMehBlank, faKeyboard, faCamera, faMicrophone, faVideo, faTimes, faXmark, faPencil } from '@fortawesome/free-solid-svg-icons';
@@ -197,7 +198,14 @@ const Card = () => {
         {isLoading ? <Spinner /> :
           <div style={labelToColor(mood)} className='card'>
             <h2>{date}</h2>
+
+
+
+
             <div className='card-medium'>
+
+
+
               <h3>Résumé de la journée
                 {today && (<>
                   {!edit && <button className='editMode-btn' onClick={() => setEdit(true)}>
@@ -217,7 +225,19 @@ const Card = () => {
                   </form>
                 }
 
+
+               
+                  <div className='card-medium-media-container'>
+
                 <div onClick={() => { setToggleText(!toggleText) }} className='card-text'>  {texts}</div>
+                
+                  <ReactAudioPlayer
+                    className="card-medium-medias"
+                    src="my_audio_file.ogg"
+                    autoPlay
+                    controls
+                  />
+
                 {!toggleSound &&
                   <div>
                     <label >
@@ -225,31 +245,34 @@ const Card = () => {
                     </label>
                   </div>
                 }
-                <div>{sounds}</div>
-
                 <label >
                   <input type="file" max-size="5000" name="upload_file" onChange={setPhotoPut}>
                   </input>
-                  <img onClick={() => { setTogglePicture(!togglePicture) }} className='card-user-video' src={pictures} />
+                  <img onClick={() => { setTogglePicture(!togglePicture) }} className='card-user-video card-medium-medias' src={pictures} />
                 </label>
-                <label >
+
+                <label>
                   <iframe
+                    className="card-medium-medias"
                     src={videos}
-                    height='600'
-                    width='100%'
+                    height='500'
                     frameBorder="0"
                     allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                   ></iframe>
                   <input type="file" max-size="5000" name="upload_file" onChange={setVideoPut} />
                 </label>
+                
               </div>
             </div>
+          </div>
             {!today &&
               <button className='card-delete-modal-openModal' onClick={() => setToggleDel(!toggleDel)}>Supprimer la carte</button>
             }
           </div>
         }
+
+
 
         {toggleDel && <>
           <div className='card-delete-modal'>
