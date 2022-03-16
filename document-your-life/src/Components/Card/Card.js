@@ -222,7 +222,7 @@ const Card = () => {
                   </form>
                 }
                   <div className='card-medium-media-container'>
-                    
+        
                 <div onClick={() => { setToggleTextField(!toggleTextField) }} className='card-text'>  {texts}</div>
                 {toggleSound &&
                   <ReactAudioPlayer
