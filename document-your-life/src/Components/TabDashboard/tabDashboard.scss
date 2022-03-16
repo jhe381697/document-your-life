@@ -17,6 +17,12 @@
   &-link {
     text-decoration: none;
     color: $colorsLinkNavBar;
+    &-icon{
+      vertical-align: middle;
+    }
+    &-icon-calendar{
+      font-size: 35px;
+    }
   }
 }
 .dashboard-container{
