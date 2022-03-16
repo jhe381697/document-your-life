@@ -17,7 +17,6 @@ export default async function getAllCards(cardId) {
                 'Authorization': `Bearer ${access_token}`,
             }
         })
-        console.log(res)
         return res
     }
     catch (err) {
@@ -33,11 +32,9 @@ export async function getTodayCard() {
                 'Authorization': `Bearer ${access_token}`
             },
         })
-        console.log(response)
         return response
     }
     catch (err) {
-        console.log(err.response)
         return err.response;
     }
 }
@@ -65,7 +62,6 @@ export async function putTodayCardText(value) {
         }
 
         )
-        console.log('essai de rectification auth', response)
         return response
     }
     catch (err) {
@@ -96,7 +92,6 @@ export async function putTodayCardMood(value) {
         }
            
         )
-        console.log('essai de rectification auth', response)
         return response
     }
     catch (err) {
@@ -117,7 +112,6 @@ export async function patchTodayCardFiles(type, value) {
             'Authorization': `Bearer ${access_token}`
         },
     })
-    console.log(res)
     return res
 
 
@@ -132,7 +126,6 @@ export async function deleteCard(cardId) {
                 'Authorization': `Bearer ${access_token}`
             },
         })
-        console.log(response)
         return response
     }
     catch (err) {

@@ -36,7 +36,6 @@ function App() {
   const [IsConnected, setIsConnected] = useState(false)
   let data = localStorage.getItem('userId')
   if (data === undefined) {
-    console.log('no user')
     setIsAuthenticated(false)
   }
   function handleConnection() {

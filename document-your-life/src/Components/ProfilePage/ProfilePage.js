@@ -20,7 +20,6 @@ const ProfilePage = () => {
     async function loadUser() {
         const response = await getUserData()
         if (response.status === 200) {
-            console.log(response)
             setUser(response.data)
             return setLoading(false)
         }
@@ -35,7 +34,7 @@ const ProfilePage = () => {
             {loading ? <Spinner /> : (
                 <>
                     <div className='profilPage'>
-                        <AvatarIcon/>
+                        <AvatarIcon alt='avatar picture'/>
                         <ul className='profilPage-personal'>
                             <li className='profilPage-personal-credentials'>{user.first_name}</li>
                             <li className='profilPage-personal-credentials'>{user.last_name}</li>
