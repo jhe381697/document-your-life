@@ -23,6 +23,11 @@ const HeaderNavbar = ({ handleConnection }) => {
                     <Link className='HeaderNavbar-link-bottom' to='/contact' >Contact</Link>
                     </>}
                 </div>
+                <div className='HeaderNavbar-copyright-bottom-container'> 
+                    {LocationURL.pathname !== '/signup' && <>
+                    <span className='HeaderNavbar-copyright-bottom' >©</span>
+                    </>}
+                </div>
                     </>
             )
                 :

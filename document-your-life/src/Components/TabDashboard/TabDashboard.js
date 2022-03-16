@@ -3,6 +3,8 @@
 import React, { useState } from 'react'
 import { Link, Navigate } from 'react-router-dom'
 import {getTodayCard} from '../../RequestsAxios/CardsReq';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCalendar, faCalendarDays, faCalendarPlus } from '@fortawesome/free-solid-svg-icons';
 
 import './tabDashboard.scss';
 
@@ -43,10 +45,16 @@ useEffect(() => {
         <div className='tab-container'>
           <div className='tab-dashboard'>
             {isdefinedCard && 
-            <Link to="last" className='tab-dashboard-link'>Hier</Link>
+            <Link to="last" className='tab-dashboard-link'>
+              <FontAwesomeIcon className='tab-dashboard-link-icon' icon={faCalendar} alt='icon-link to last card edited' />
+            </Link>
             }
-            <Link to="calendar" className='tab-dashboard-link'>Calendrier</Link>
-            <Link to="today" className='tab-dashboard-link'>Aujourdhui</Link>
+            <Link to="calendar" className='tab-dashboard-link'>
+              <FontAwesomeIcon className='tab-dashboard-link-icon tab-dashboard-link-icon-calendar' icon={faCalendarDays} alt='icon-link to the calendar' />
+            </Link>
+            <Link to="today" className='tab-dashboard-link'>
+              <FontAwesomeIcon className='tab-dashboard-link-icon' icon={faCalendarPlus} alt='icon-link to the today card' />
+            </Link>
           </div>
         </div>
         <Routes>
