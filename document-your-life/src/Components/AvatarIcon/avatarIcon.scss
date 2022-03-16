@@ -22,6 +22,10 @@
     overflow: auto;
     margin-bottom: 1rem;
   }
+
+   &-default{
+      filter: opacity(0.5);
+    }
 }
 input[type="file"] {
     display: none;

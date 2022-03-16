@@ -29,7 +29,7 @@ const AvatarIcon = () => {
       setToggle(true)
       return
       } else {
-        return Notify('Votre avatar est trop volumineuse... <5Mb', 'error')
+        return Notify('Votre avatar est trop volumineux... <5Mb', 'error')
       }
     } else (
       handleToggle())
@@ -82,14 +82,14 @@ const AvatarIcon = () => {
         
         <Link to='/profil'>
     {isAvatar? 
-       <> {!toggle && <img className='avatarInput-avatar' src={defaultAvatar} />} </>
+       <> {!toggle && <img className='avatarInput-avatar avatarInput-default' src={defaultAvatar} />} </>
        : 
        <> {!toggle && <img className='avatarInput-avatar' src={avatar} />} </>}
       </Link>
         <div className='avatarInput-container'>
 
         {isAvatar? 
-          <>{toggle && (<img onClick={handleToggle} className='avatarInput-avatar' src={defaultAvatar} />)}</> 
+          <>{toggle && (<img onClick={handleToggle} className='avatarInput-avatar avatarInput-default' src={defaultAvatar} />)}</> 
           :
           <>{toggle && (<img onClick={handleToggle} className='avatarInput-avatar' src={avatar} />)}</>}
 
