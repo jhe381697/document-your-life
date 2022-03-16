@@ -154,6 +154,8 @@
       text-align: center;
       color: #636363;
       margin: 0.3em 0 0.3em 0;
+	  display: flex;
+	  flex-wrap: wrap;
 
       &-submit-text {
         border-radius: 5px; 
@@ -170,6 +172,11 @@
     padding: 1rem;
   }
 }
+
+.upload_file {
+	max-width: 40rem;
+}
+
 .editMode{
     background-color: #608058;
 	opacity: 0.88;
