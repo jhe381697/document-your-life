@@ -26,10 +26,8 @@ const Card = () => {
   const [edit, setEdit] = useState(false)
   
   const [toggleTextField, setToggleTextField] = useState(false)
-  const [toggleText, setToggleText] = useState(false)
-  const [togglePicture, setTogglePicture] = useState(false)
-  const [toggleVideo, setToggleVideo] = useState(false)
-  const [toggleSound, setToggleSound] = useState(false)
+  const [togglePicture, setTogglePicture] = useState(true)
+  const [toggleVideo, setToggleVideo] = useState(true)
 
   const [render, setRender] = useState(true)
   const [cardId, setCardId] = useState(Number);
@@ -58,7 +56,7 @@ const Card = () => {
     if (textPut !== undefined) {
       const res = await putTodayCardText(textPut)
       console.log("text api res:", res.status)
-      setToggleText(true)
+      setToggleTextField(false)
       console.log("text submitted")
       return setRender(!render)
     }}
@@ -70,11 +68,12 @@ const Card = () => {
       Notify('Votre image est en cours de chargement ...', 'info')
       const res = await patchTodayCardFiles("image", photoPut.target.files[0])
       console.log("image api res:", res.status)
-      setTogglePicture(true)
+    setTogglePicture(true)
       setEdit(false)
       console.log("image submitted")
       return setRender(!render)
       }else{ 
+    setTogglePicture(false)
       return  Notify('Votre image est trop volumineuse... <5Mb', 'error')
       }
     }
@@ -86,7 +85,6 @@ const Card = () => {
       if (Math.round((microPut.target.files[0].size / 1024)) < 5000) {
       Notify('Votr fichier audio est en cours de chargement ...', 'info')
       const res = await patchTodayCardFiles("audio", microPut.target.files[0])
-      setToggleSound(true)
       setEdit(false)
       console.log("audio submitted")
       return setRender(!render)
@@ -109,6 +107,7 @@ const Card = () => {
       console.log("video submitted")
       return setRender(!render)
       } else {
+      setToggleVideo(false)
        return Notify('Votre video est trop volumineuse... <5Mb', 'error')
       }
     }
@@ -224,26 +223,27 @@ const Card = () => {
                   <div className='card-medium-media-container'>
         
                 <div onClick={() => { setToggleTextField(!toggleTextField) }} className='card-text'>  {texts}</div>
-                {toggleSound &&
+               
                   <ReactAudioPlayer
-                    className="card-medium-medias"
+                    className="card-medium-medias-audio"
                     src={sounds}
-                    autoPlay
                     controls
                   />
-                }
-                {togglePicture && 
+                
+
                 <label >
                   <input type="file" max-size="5000" name="upload_file" onChange={setPhotoPut}>
                   </input>
                   <img onClick={() => { setTogglePicture(!togglePicture) }} className='card-user-video card-medium-medias' src={pictures} />
-                </label>}
+                </label>
+
                 {toggleVideo && 
                 <label>
                   <iframe
                     className="card-medium-medias"
                     src={videos}
                     height='500'
+                    width='238'
                     frameBorder="0"
                     allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen

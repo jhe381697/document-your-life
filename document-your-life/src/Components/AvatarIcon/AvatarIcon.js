@@ -27,7 +27,7 @@ const AvatarIcon = () => {
       console.warn(file)
       getAvatarFromApi()
       setToggle(true)
-      return
+      return Notify('Image de profile en cour de chargement', 'info')
       } else {
         return Notify('Votre avatar est trop volumineux... <5Mb', 'error')
       }
