@@ -209,7 +209,9 @@
 
      .modalHover {
          &-box {
-             justify-content: space-evenly;
+             &::-webkit-scrollbar {
+                display: none;
+              }
          }
 
          &-container-text {
