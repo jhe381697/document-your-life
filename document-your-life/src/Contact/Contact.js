@@ -48,6 +48,7 @@ const handleSubmit = (e) => {
         setEmail("");
         setMessage("");
     console.log('message sent successfully', response.status, response.text);
+    notifyFunc('Le message a bien été envoyé !', 'success' )
   })
 }else{
   console.log('acces not ok')
