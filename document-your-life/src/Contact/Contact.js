@@ -8,7 +8,6 @@ import{ init } from '@emailjs/browser';
 init("EhkiYWclsW8HG6kVA");
 import './contact.scss';
 import notifyFunc from '../utils/notifyFunc'
-import Notify from '../utils/notifyFunc';
 import { ToastContainer } from 'react-toastify';
 
 const Contact = () => {
@@ -19,16 +18,6 @@ const [company, setCompany] = useState("");
 const [phone, setPhone] = useState("");
 const [email, setEmail] = useState("");
 const [message, setMessage] = useState("");
-
-  // Message en cas de succès de l'envoi
-  const completedForm = () => {
-    // Je stocke ma div contenant mon message
-    let formMess = document.querySelector('.form-message');
-    // J'agis sur ma div d'alerte
-    formMess.innerHTML = 'Le message a bien été envoyé !';
-    formMess.style.opacity = '1';
-    formMess.style.background = '#c0ce03';
-  }
 
 // envoi et remise à zéro des données du formulaire
 const handleSubmit = (e) => {
@@ -41,7 +30,6 @@ const handleSubmit = (e) => {
     {name, company, phone, email, message},
     'EhkiYWclsW8HG6kVA'
   ).then((response) => {
-        completedForm()
         setName("");
         setCompany("");
         setPhone("");
