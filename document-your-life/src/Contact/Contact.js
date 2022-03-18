@@ -5,7 +5,7 @@
 import React, { useState } from 'react';
 import { send } from 'emailjs-com';
 import{ init } from '@emailjs/browser';
-init("user_sueC3QU4o0Lqhn8No1D2h");
+init("EhkiYWclsW8HG6kVA");
 import './contact.scss';
 import notifyFunc from '../utils/notifyFunc'
 import Notify from '../utils/notifyFunc';
@@ -36,10 +36,10 @@ const handleSubmit = (e) => {
   console.log('before acces ok')
   if( name && company && phone && email && message !== "" ){
   send(
-    'service_q906umf',
-    'template_hnng7zu',
+    'service_cajrxoq',
+    'template_tz4rg6x',
     {name, company, phone, email, message},
-    'user_sueC3QU4o0Lqhn8No1D2h'
+    'EhkiYWclsW8HG6kVA'
   ).then((response) => {
         completedForm()
         setName("");
